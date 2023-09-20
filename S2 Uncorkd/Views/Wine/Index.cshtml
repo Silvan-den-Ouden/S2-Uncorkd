@@ -1,0 +1,13 @@
+﻿
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Index</h1>
+
+
+@foreach (var wine in @Model)
+{
+    <p>@wine.Name</p>
+}
+
