@@ -5,6 +5,8 @@ function searchBar() {
     input = document.getElementById("mySearch");
     filter = input.value.toUpperCase();
 
+    console.log(filter);
+
     if (selectedMenu == null) {
         selectedMenu = "wineMenu";
     }
@@ -13,18 +15,22 @@ function searchBar() {
     li = ul.getElementsByTagName("li");
 
     // Only display search bar when typing innit
-    if (filter !== "") {
-        ul.style.display = "block";
-    } else {
+    if (filter == "") {
         ul.style.display = "none";
+    } else {
+        ul.style.display = "block";
     }
 
     // Hide items that don't match search query
-    if (filter !== "#") {
+    if (filter == "#") {
+        for (i = 0; i < li.length; i++) {
+            li[i].style.display = "block";
+        }
+    } else {
         for (i = 0; i < li.length; i++) {
             a = li[i].getElementsByTagName("a")[0];
             if (a.innerHTML.toUpperCase().indexOf(filter) > -1) {
-                li[i].style.display = "";
+                li[i].style.display = "block";
             } else {
                 li[i].style.display = "none";
             }
@@ -34,18 +40,16 @@ function searchBar() {
 
 function handleRadioChange(event) {
     const selectedValue = event.target.value;
-    const searchBar = document.getElementById("mySearch");
-   
-    console.log("Selected value:", selectedValue);
+    const currentMenu = document.getElementById(selectedMenu);
 
-    searchBar.value = "";
-
-    if (selectedValue == "wine") {
-        selectedMenu = "wineMenu";
-    }
-    if (selectedValue == "winery") {
-        selectedMenu = "wineryMenu";
+    if (currentMenu) {
+        const currentItems = currentMenu.getElementsByTagName("li");
+        for (let i = 0; i < currentItems.length; i++) {
+            currentItems[i].style.display = "none";
+        }
     }
 
-    return selectedMenu;
+    selectedMenu = selectedValue + "Menu";
+
+    searchBar();
 }
