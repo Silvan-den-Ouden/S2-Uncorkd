@@ -8,7 +8,7 @@ using MySql.Data.MySqlClient;
 
 namespace Uncorkd_DAL.DALs
 {
-    internal class Connetor
+    internal class Connector
     {
         private static readonly string connectionString = "Server=127.0.0.1,3306;Database=uncorkd;Uid=root;";
 

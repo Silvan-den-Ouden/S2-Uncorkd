@@ -2,18 +2,63 @@
     ViewData["Title"] = "Explore";
 }
 
-<link rel="stylesheet" href="~/css/explore.css"/>
+<link rel="stylesheet" href="~/css/searchbar.css" />
+<link rel="stylesheet" href="~/css/searchtoggle.css" />
 <script src="~/js/searchbar.js"></script>
+@*<script src="~/js/searchtoggle.js"></script>*@
 
 <h1>Explore</h1>
 
 <input type="text" id="mySearch" onkeyup="searchBar()" placeholder="Search.." title="Type in a category">
+<br /><br />
 
-<ul id="myMenu" style="display: none;">
-    @foreach (var wine in @Model)
+<div class="container" onchange="handleRadioChange(event)">
+    <div class="cat wine">
+        <label>
+            <input type="radio" name="category" id="wineRadio" value="wine" checked="checked"><span>Wine</span>
+        </label>
+    </div>
+
+    <div class="cat winery">
+        <label>
+            <input type="radio" name="category" id="wineryRadio" value="winery"><span>Winery</span>
+        </label>
+    </div>
+</div>
+
+<br /><br /><br /> 
+
+<ul id="wineMenu" style="display: none;">
+    @foreach (var wine in @Model.Wines)
     {
         <li onclick="location.href='/Wine?id=@wine.Id'"><a>@wine.Name</a></li>
     }
 </ul>
+<ul id="wineryMenu" style="display: none;">
+    @foreach (var winery in @Model.Wineries)
+    {
+        <li onclick="location.href='/Winery?id=@winery.Id'"><a>@winery.Name</a></li>
+    }
+</ul>
 
+@*
+<script>
+    function handleRadioChange(event) {
+        const selectedValue = event.target.value;
+        const wineMenu = document.getElementById("wineMenu");
+        const wineryMenu = document.getElementById("wineryMenu");
+        console.log("Selected value:", selectedValue);
 
+        //if (selectedValue == "wine") {
+        //    wineMenu.display = "block";
+        //} else {
+        //    wineMenu.display = "none";
+        //}
+
+        //if (selectedValue == "winery") {
+        //    wineryMenu.display = "block";
+        //} else {
+        //    wineryMenu.display = "none";
+        //}
+    }
+</script>*@

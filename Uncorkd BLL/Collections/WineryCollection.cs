@@ -13,6 +13,23 @@ namespace Uncorkd_BLL.Collections
     {
         private readonly WineryDAL _wineryDAL = new WineryDAL();
 
+        public List<WineryModel> GetWineries()
+        {
+            List<WineryModel> wineryModels = new List<WineryModel>();
+
+            foreach (WineryDTO wineryDTO in _wineryDAL.GetWineryDTOs())
+            {
+                WineryModel wineryModel = new WineryModel()
+                {
+                    Id = wineryDTO.Id,
+                    Name = wineryDTO.Name,
+                    Description = wineryDTO.Description,
+                };
+                wineryModels.Add(wineryModel);
+            }
+            return wineryModels;
+        }
+
         public WineryModel GetWineryWithID(int ID) { 
             WineryDTO wineryDTO = _wineryDAL.GetWineryDTOWithID(ID);
 

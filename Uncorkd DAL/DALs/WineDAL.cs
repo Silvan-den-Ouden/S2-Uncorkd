@@ -13,7 +13,7 @@ namespace Uncorkd_DAL.DALs
         public List<WineDTO> GetWineDTOs() {
             List<WineDTO> wineDTOs = new List<WineDTO>();
 
-            using (MySqlConnection con = Connetor.MakeConnection())
+            using (MySqlConnection con = Connector.MakeConnection())
             {
                 con.Open();
                 MySqlCommand cmd = new MySqlCommand("SELECT * FROM `wine`", con);
@@ -41,7 +41,7 @@ namespace Uncorkd_DAL.DALs
         {
             WineDTO wineDTO = new WineDTO();
 
-            using (MySqlConnection con = Connetor.MakeConnection())
+            using (MySqlConnection con = Connector.MakeConnection())
             {
                 con.Open();
                 MySqlCommand cmd = new MySqlCommand("SELECT * FROM `wine` WHERE `id` = @ID", con);

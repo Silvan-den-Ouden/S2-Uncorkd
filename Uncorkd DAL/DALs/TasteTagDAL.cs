@@ -14,7 +14,7 @@ namespace Uncorkd_DAL.DALs
         {
             List<TasteTagDTO> tasteTagDTOs = new List<TasteTagDTO>();
 
-            using (MySqlConnection con = Connetor.MakeConnection())
+            using (MySqlConnection con = Connector.MakeConnection())
             {
                 con.Open();
                 MySqlCommand cmd = new MySqlCommand("SELECT tastetag.id, tastetag.tag_name\r\nFROM `tastetag`\r\nJOIN `wine_to_tastetag` wtt ON tastetag.id = wtt.tag_id\r\nJOIN `wine` ON wtt.wine_id = wine.id\r\nWHERE wine.id = @wineID;", con);

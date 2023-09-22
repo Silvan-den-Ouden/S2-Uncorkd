@@ -93,7 +93,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="DALs\Connetor.cs" />
+    <Compile Include="DALs\Connector.cs" />
     <Compile Include="DALs\TasteTagDAL.cs" />
     <Compile Include="DALs\WineryDAL.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

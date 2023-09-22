@@ -1,8 +1,15 @@
-﻿function searchBar() {
+﻿var selectedMenu;
+
+function searchBar() {
     var input, filter, ul, li, a, i;
     input = document.getElementById("mySearch");
     filter = input.value.toUpperCase();
-    ul = document.getElementById("wineMenu");
+
+    if (selectedMenu == null) {
+        selectedMenu = "wineMenu";
+    }
+
+    ul = document.getElementById(selectedMenu);
     li = ul.getElementsByTagName("li");
 
     // Only display search bar when typing innit
@@ -23,4 +30,22 @@
             }
         }
     }
+}
+
+function handleRadioChange(event) {
+    const selectedValue = event.target.value;
+    const searchBar = document.getElementById("mySearch");
+   
+    console.log("Selected value:", selectedValue);
+
+    searchBar.value = "";
+
+    if (selectedValue == "wine") {
+        selectedMenu = "wineMenu";
+    }
+    if (selectedValue == "winery") {
+        selectedMenu = "wineryMenu";
+    }
+
+    return selectedMenu;
 }
