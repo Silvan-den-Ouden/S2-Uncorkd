@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Razor.TagHelpers;
+using S2_Uncorkd.ViewModels;
 using Uncorkd_BLL.Collections;
 using Uncorkd_BLL.Models;
 
@@ -8,13 +9,25 @@ namespace S2_Uncorkd.Controllers
     public class WineController : Controller
     {
         private readonly WineCollection _wineCollection = new();
-        public IActionResult Index()
+        private readonly WineryCollection _wineryCollection = new();
+        private readonly TasteTagCollection _tasteTagCollection = new();
+        //public IActionResult Index()
+        //{
+        //    List<WineModel> wineModels = _wineCollection.GetWines();
+
+        //    return View(wineModels);
+        //}
+
+        public IActionResult Index(int ID)
         {
-            List<WineModel> wineModels = _wineCollection.GetWines();
+            WineModel wineModel = _wineCollection.GetWineWithID(ID);
+            WineryModel wineryModel = _wineryCollection.GetWineryWithID(wineModel.Id);
+            List<TasteTagModel> tasteTagModels = _tasteTagCollection.GetTagFromWineID(wineModel.Id);
 
-            return View(wineModels);
+            WineViewModel wineViewModel = new(wineModel, wineryModel, tasteTagModels);
+
+            return View(wineViewModel);
         }
-
 
     }
 }

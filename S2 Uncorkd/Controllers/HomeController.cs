@@ -1,6 +1,6 @@
 ﻿using System.Diagnostics;
 using Microsoft.AspNetCore.Mvc;
-using S2_Uncorkd.Models;
+using S2_Uncorkd.ViewModels;
 
 namespace S2_Uncorkd.Controllers
 {

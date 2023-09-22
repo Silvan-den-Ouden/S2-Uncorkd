@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using MySql.Data.MySqlClient;
-using Uncorkd_DTO;
+using Uncorkd_DTO.DTOs;
 
-namespace Uncorkd_DAL
+namespace Uncorkd_DAL.DALs
 {
     public class WineDAL
     {
@@ -37,5 +37,29 @@ namespace Uncorkd_DAL
             return wineDTOs;
         }
 
+        public WineDTO GetWineWithID(int ID)
+        {
+            WineDTO wineDTO = new WineDTO();
+
+            using (MySqlConnection con = Connetor.MakeConnection())
+            {
+                con.Open();
+                MySqlCommand cmd = new MySqlCommand("SELECT * FROM `wine` WHERE `id` = @ID", con);
+                cmd.Parameters.AddWithValue("@ID", ID);
+                MySqlDataReader reader = cmd.ExecuteReader();
+
+                while (reader.Read())
+                {
+                    wineDTO.Id = reader.GetInt32("id");
+                    wineDTO.Name = reader.GetString("name");
+                    wineDTO.Description = reader.GetString("description");
+                    wineDTO.Check_ins = reader.GetInt32("check_ins");
+                    wineDTO.Winery_id = reader.GetInt32("winery_id");
+                }
+                con.Close();
+            }
+
+            return wineDTO;
+        }
     }
 }

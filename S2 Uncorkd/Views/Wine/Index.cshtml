@@ -3,11 +3,13 @@
     ViewData["Title"] = "Index";
 }
 
-<h1>Index</h1>
+<h1>@Model.Wine.Name</h1>
+<p>@Model.Wine.Description</p>
 
+<p>From: @Model.Winery.Name</p>
 
-@foreach (var wine in @Model)
-{
-    <p>@wine.Name</p>
-}
-
+<p>Tags: @foreach(var tag in Model.TasteTags)
+    {
+        <text>@tag.TagName </text>
+    }
+</p>

@@ -1,0 +1,19 @@
+﻿@{
+    ViewData["Title"] = "Explore";
+}
+
+<link rel="stylesheet" href="~/css/explore.css"/>
+<script src="~/js/searchbar.js"></script>
+
+<h1>Explore</h1>
+
+<input type="text" id="mySearch" onkeyup="searchBar()" placeholder="Search.." title="Type in a category">
+
+<ul id="myMenu" style="display: none;">
+    @foreach (var wine in @Model)
+    {
+        <li onclick="location.href='/Wine?id=@wine.Id'"><a>@wine.Name</a></li>
+    }
+</ul>
+
+

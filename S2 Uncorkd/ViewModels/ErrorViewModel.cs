@@ -1,4 +1,4 @@
-namespace S2_Uncorkd.Models
+namespace S2_Uncorkd.ViewModels
 {
     public class ErrorViewModel
     {

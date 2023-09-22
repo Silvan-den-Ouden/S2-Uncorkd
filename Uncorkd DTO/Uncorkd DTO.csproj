@@ -41,6 +41,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="DTOs\TasteTagDTO.cs" />
+    <Compile Include="DTOs\WineryDTO.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="DTOs\WineDTO.cs" />
   </ItemGroup>

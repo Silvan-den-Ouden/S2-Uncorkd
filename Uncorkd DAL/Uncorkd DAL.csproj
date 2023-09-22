@@ -94,6 +94,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="DALs\Connetor.cs" />
+    <Compile Include="DALs\TasteTagDAL.cs" />
+    <Compile Include="DALs\WineryDAL.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="DALs\WineDAL.cs" />
   </ItemGroup>

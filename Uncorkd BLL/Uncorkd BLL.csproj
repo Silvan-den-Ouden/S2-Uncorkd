@@ -41,9 +41,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Class1.cs" />
+    <Compile Include="Collections\TasteTagCollection.cs" />
     <Compile Include="Collections\WineCollection.cs" />
+    <Compile Include="Collections\WineryCollection.cs" />
+    <Compile Include="Models\TasteTagModel.cs" />
     <Compile Include="Models\WineModel.cs" />
+    <Compile Include="Models\WineryModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
