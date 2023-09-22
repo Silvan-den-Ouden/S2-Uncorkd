@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.5.33502.453
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "S2 Uncorkd", "S2 Uncorkd\S2 Uncorkd.csproj", "{C5DC78DD-20A6-4EC5-81B6-972F9AE99436}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "S2 Uncorkd", "S2 Uncorkd\S2 Uncorkd.csproj", "{C5DC78DD-20A6-4EC5-81B6-972F9AE99436}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Uncorkd BLL", "Uncorkd BLL\Uncorkd BLL.csproj", "{29DC41F4-983E-42BC-9086-1AD341CE90BD}"
 EndProject
