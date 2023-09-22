@@ -3,9 +3,8 @@
 function searchBar() {
     var input, filter, ul, li, a, i;
     input = document.getElementById("mySearch");
+   
     filter = input.value.toUpperCase();
-
-    console.log(filter);
 
     if (selectedMenu == null) {
         selectedMenu = "wineMenu";
@@ -17,11 +16,13 @@ function searchBar() {
     // Only display search bar when typing innit
     if (filter == "") {
         ul.style.display = "none";
+        menuButtons.style.display = "none";
     } else {
         ul.style.display = "block";
+        menuButtons.style.display = "block";
     }
 
-    // Hide items that don't match search query
+    // Hide items that don't match search query unless searching for #
     if (filter == "#") {
         for (i = 0; i < li.length; i++) {
             li[i].style.display = "block";
@@ -38,10 +39,18 @@ function searchBar() {
     }
 }
 
+function displayMenuButtons() {
+    const menuButtons = document.getElementById("menuButtons");
+
+    menuButtons.style.display = "block";
+}
+
 function handleRadioChange(event) {
     const selectedValue = event.target.value;
     const currentMenu = document.getElementById(selectedMenu);
 
+
+    // Hide all elements from previous (current) menu
     if (currentMenu) {
         const currentItems = currentMenu.getElementsByTagName("li");
         for (let i = 0; i < currentItems.length; i++) {
@@ -52,4 +61,6 @@ function handleRadioChange(event) {
     selectedMenu = selectedValue + "Menu";
 
     searchBar();
+
+    menuButtons.style.display = "block";
 }

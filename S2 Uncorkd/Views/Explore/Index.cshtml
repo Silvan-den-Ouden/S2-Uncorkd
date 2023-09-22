@@ -8,10 +8,10 @@
 
 <h1>Explore</h1>
 
-<input type="text" id="mySearch" onkeyup="searchBar()" placeholder="Search.." title="Type in a category">
+<input type="text" id="mySearch" onkeyup="searchBar()" onclick="displayMenuButtons()" placeholder="Search.." title="Type in a category">
 <br /><br />
 
-<div class="container" onchange="handleRadioChange(event)">
+<div id="menuButtons" onchange="handleRadioChange(event)"  style="display: none;">
     <div class="cat wine">
         <label>
             <input type="radio" name="category" id="wineRadio" value="wine" checked="checked"><span>Wine</span>
