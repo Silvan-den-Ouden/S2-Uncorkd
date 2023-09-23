@@ -4,10 +4,10 @@
 
 <link rel="stylesheet" href="~/css/searchbar.css" />
 <link rel="stylesheet" href="~/css/searchtoggle.css" />
+<link rel="stylesheet" href="~/css/explore-flexboxes.css" />
 <script src="~/js/searchbar.js"></script>
-
+    
 <body>
-
     <h1>Explore</h1>
 
     <input type="text" id="mySearch" onkeyup="searchBar()" onclick="displayMenuButtons()" placeholder="Search.." title="Type in a category">
@@ -27,17 +27,34 @@
         </div>
     </div>
 
-    <ul id="wineMenu" style="display: none;">
-        @foreach (var wine in @Model.Wines)
-        {
-            <li onclick="location.href='/Wine?id=@wine.Id'"><a>@wine.Name</a></li>
-        }
-    </ul>
-    <ul id="wineryMenu" style="display: none;">
-        @foreach (var winery in @Model.Wineries)
-        {
-            <li onclick="location.href='/Winery?id=@winery.Id'"><a>@winery.Name</a></li>
-        }
-    </ul>
+    <div>
+        <ul id="wineMenu" style="display: none;">
+            @foreach (var wine in @Model.Wines)
+            {
+                <li onclick="location.href='/Wine?id=@wine.Id'"><a>@wine.Name</a></li>
+            }
+        </ul>
+        <ul id="wineryMenu" style="display: none;">
+            @foreach (var winery in @Model.Wineries)
+            {
+                <li onclick="location.href='/Winery?id=@winery.Id'"><a>@winery.Name</a></li>
+            }
+        </ul>
+    </div>
+
+    <div>
+        <div class ="best-wines-container">  
+            <div>1</div>
+            <div>2</div>
+            <div>3</div>        
+            <div>4</div>
+        </div>
+        <div class="popular-wines-container">
+            <div>1</div>
+            <div>2</div>
+            <div>3</div>
+            <div>4</div>
+        </div>
+    </div>
 
 </body>
