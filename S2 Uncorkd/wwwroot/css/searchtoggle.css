@@ -19,12 +19,13 @@
     text-align: center;
     padding: 3px 0;
     display: block;
+    cursor: pointer;
 }
 
 .cat label input {
     position: absolute;
     display: none;
-    color: #fff !important;
+    color: #fff;
 }
            
 .cat label input + span {

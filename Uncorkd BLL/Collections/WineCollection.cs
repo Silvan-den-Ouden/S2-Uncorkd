@@ -47,5 +47,24 @@ namespace Uncorkd_BLL.Collections
 
             return wineModel;
         }
+
+        public List<WineModel> GetBest()
+        {
+            List<WineModel> wineModels = new List<WineModel>();
+
+            foreach (WineDTO wineDTO in _wineDAL.GetBest())
+            {
+                WineModel wineModel = new WineModel()
+                {
+                    Id = wineDTO.Id,
+                    Name = wineDTO.Name,
+                    Description = wineDTO.Description,
+                    Check_ins = wineDTO.Check_ins,
+                    Winery_id = wineDTO.Winery_id,
+                };
+                wineModels.Add(wineModel);
+            }
+            return wineModels;
+        }
     }
 }

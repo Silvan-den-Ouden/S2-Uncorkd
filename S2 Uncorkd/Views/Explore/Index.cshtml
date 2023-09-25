@@ -29,13 +29,13 @@
 
     <div>
         <ul id="wineMenu" style="display: none;">
-            @foreach (var wine in @Model.Wines)
+            @foreach (var wine in Model.Wines)
             {
                 <li onclick="location.href='/Wine?id=@wine.Id'"><a>@wine.Name</a></li>
             }
         </ul>
         <ul id="wineryMenu" style="display: none;">
-            @foreach (var winery in @Model.Wineries)
+            @foreach (var winery in Model.Wineries)
             {
                 <li onclick="location.href='/Winery?id=@winery.Id'"><a>@winery.Name</a></li>
             }
@@ -43,8 +43,19 @@
     </div>
 
     <div>
+        <p>Best Wines</p>
         <div class="best-wines-container">  
-            <div>
+            @foreach(var wine in Model.BestWines)
+            {
+                <div>
+                    <h2>5.00</h2>
+                    <h3>Test</h3>
+                    <h3>Sweet</h3>
+                    <h3>SweetSweetSweet</h3>
+                    <h1>@wine.Name</h1>
+                </div>
+            }
+           @* <div>
                 <h2>4.13</h2>
                 <h3>Sweet</h3>
                 <h3>Sweet</h3>
@@ -53,8 +64,9 @@
             </div>
             <div>2</div>
             <div>3</div>        
-            <div>4</div>
+            <div>4</div>*@
         </div>
+        <p>Popular Wines</p>
         <div class="popular-wines-container">
             <div>1</div>
             <div>2</div>

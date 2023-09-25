@@ -14,8 +14,9 @@ namespace S2_Uncorkd.Controllers
         {
             List<WineModel> wineModels = _wineCollection.GetAll();
             List<WineryModel> wineryModels = _wineryCollection.GetAll();
+            List<WineModel> bestWineModels = _wineCollection.GetBest();
 
-            ExplorerViewModel explorerViewModel = new(wineModels, wineryModels);
+            ExplorerViewModel explorerViewModel = new(wineModels, wineryModels, bestWineModels);
 
             return View(explorerViewModel);
         }
