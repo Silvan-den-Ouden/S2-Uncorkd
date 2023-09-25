@@ -7,12 +7,35 @@
 
     .best-wines-container > div, .popular-wines-container > div {
         background-color: #f1f1f1;
-        width: 100%;
+        width: 20%;
         height: 207px;
         margin: 1%;
         margin-left: 2%;
         margin-right: 2%;
-        text-align: center;
-        line-height: 75px;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+    }
+
+    .best-wines-container h1,
+    .popular-wines-container h1 {
+        margin-top: auto; 
         font-size: 30px;
+        text-align: center;
+    }
+
+    .best-wines-container h2,
+    .popular-wines-container h2 {
+        align-self: flex-start; 
+        font-size: 20px; 
+        margin-left: 10px; 
+        text-align: left;
+    }
+
+    .best-wines-container h3,
+    .popular-wines-container h3 {
+        align-self: flex-end;
+        font-size: 20px;
+        margin-right: 10px; 
+        text-align: right;
     }
