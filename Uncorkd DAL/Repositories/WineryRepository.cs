@@ -8,9 +8,9 @@ using Uncorkd_DTO.DTOs;
 
 namespace Uncorkd_DAL.DALs
 {
-    public class WineryDAL
+    public class WineryRepository
     {
-        public List<WineryDTO> GetWineryDTOs()
+        public List<WineryDTO> GetAll()
         {
             List<WineryDTO> wineryDTOs = new List<WineryDTO>();
 
@@ -36,7 +36,7 @@ namespace Uncorkd_DAL.DALs
         }
 
 
-        public WineryDTO GetWineryDTOWithID(int ID)
+        public WineryDTO GetWithID(int ID)
         {
             WineryDTO wineryDTO = new WineryDTO();
 

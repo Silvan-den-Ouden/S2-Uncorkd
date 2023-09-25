@@ -12,8 +12,8 @@ namespace S2_Uncorkd.Controllers
 
         public IActionResult Index()
         {
-            List<WineModel> wineModels = _wineCollection.GetWines();
-            List<WineryModel> wineryModels = _wineryCollection.GetWineries();
+            List<WineModel> wineModels = _wineCollection.GetAll();
+            List<WineryModel> wineryModels = _wineryCollection.GetAll();
 
             ExplorerViewModel explorerViewModel = new(wineModels, wineryModels);
 

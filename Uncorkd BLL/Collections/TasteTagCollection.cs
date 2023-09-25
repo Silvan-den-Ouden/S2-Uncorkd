@@ -12,13 +12,18 @@ namespace Uncorkd_BLL.Collections
 {
     public class TasteTagCollection
     {
-        private readonly TasteTagDAL _tasteTagDAL = new TasteTagDAL();
+        private readonly TasteTagRepository _tasteTagDAL;
 
-        public List<TasteTagModel> GetTagFromWineID(int wineID)
+        public TasteTagCollection()
+        {
+            _tasteTagDAL = new TasteTagRepository();
+        }
+
+        public List<TasteTagModel> GetFromWineID(int wineID)
         {
             List<TasteTagModel> tasteTagModels = new List<TasteTagModel>();
 
-            foreach(TasteTagDTO tasteTagDTO in _tasteTagDAL.GetTagDTOFromWineID(wineID))
+            foreach(TasteTagDTO tasteTagDTO in _tasteTagDAL.GetFromWineID(wineID))
             {
                 TasteTagModel tasteTagModel = new TasteTagModel()
                 {

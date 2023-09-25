@@ -8,9 +8,9 @@ using Uncorkd_DTO.DTOs;
 
 namespace Uncorkd_DAL.DALs
 {
-    public class TasteTagDAL
+    public class TasteTagRepository
     {
-        public List<TasteTagDTO> GetTagDTOFromWineID(int wineID)
+        public List<TasteTagDTO> GetFromWineID(int wineID)
         {
             List<TasteTagDTO> tasteTagDTOs = new List<TasteTagDTO>();
 

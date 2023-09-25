@@ -93,11 +93,11 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="DALs\Connector.cs" />
-    <Compile Include="DALs\TasteTagDAL.cs" />
-    <Compile Include="DALs\WineryDAL.cs" />
+    <Compile Include="Repositories\Connector.cs" />
+    <Compile Include="Repositories\TasteTagRepository.cs" />
+    <Compile Include="Repositories\WineryRepository.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="DALs\WineDAL.cs" />
+    <Compile Include="Repositories\WineRepository.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />

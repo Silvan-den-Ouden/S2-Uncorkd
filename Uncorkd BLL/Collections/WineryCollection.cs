@@ -11,13 +11,13 @@ namespace Uncorkd_BLL.Collections
 {
     public class WineryCollection
     {
-        private readonly WineryDAL _wineryDAL = new WineryDAL();
+        private readonly WineryRepository _wineryDAL = new WineryRepository();
 
-        public List<WineryModel> GetWineries()
+        public List<WineryModel> GetAll()
         {
             List<WineryModel> wineryModels = new List<WineryModel>();
 
-            foreach (WineryDTO wineryDTO in _wineryDAL.GetWineryDTOs())
+            foreach (WineryDTO wineryDTO in _wineryDAL.GetAll())
             {
                 WineryModel wineryModel = new WineryModel()
                 {
@@ -30,8 +30,8 @@ namespace Uncorkd_BLL.Collections
             return wineryModels;
         }
 
-        public WineryModel GetWineryWithID(int ID) { 
-            WineryDTO wineryDTO = _wineryDAL.GetWineryDTOWithID(ID);
+        public WineryModel GetWithID(int ID) { 
+            WineryDTO wineryDTO = _wineryDAL.GetWithID(ID);
 
             WineryModel wineryModel = new WineryModel()
             {

@@ -8,9 +8,9 @@ using Uncorkd_DTO.DTOs;
 
 namespace Uncorkd_DAL.DALs
 {
-    public class WineDAL
+    public class WineRepository
     {
-        public List<WineDTO> GetWineDTOs() {
+        public List<WineDTO> GetAll() {
             List<WineDTO> wineDTOs = new List<WineDTO>();
 
             using (MySqlConnection con = Connector.MakeConnection())
@@ -37,7 +37,7 @@ namespace Uncorkd_DAL.DALs
             return wineDTOs;
         }
 
-        public WineDTO GetWineWithID(int ID)
+        public WineDTO GetWithID(int ID)
         {
             WineDTO wineDTO = new WineDTO();
 
