@@ -43,8 +43,8 @@
     </div>
 
     <div>
-        <p>Best Wines</p>
-        <div class="best-wines-container">  
+        <label for="best-wines-container">Most rated wines</label>
+        <div class="best-wines-container">
             @for(int i = 0; i < Model.BestWines.Count; i++)
             {
                 <div onclick="location.href='Wine?id=@Model.BestWines[i].Id'">
@@ -57,13 +57,19 @@
                 </div>
             }
         </div>
-        <p>Popular Wines</p>
+        <label for="popular-wines-container">Popular wines</label>
         <div class="popular-wines-container">
-            <div>1</div>
-            <div>2</div>
-            <div>3</div>
-            <div>4</div>
-            <div>5</div>
+            @for (int i = 0; i < Model.BestWines.Count; i++)
+            {
+                <div onclick="location.href='Wine?id=@Model.BestWines[i].Id'">
+                    <h2>5.00</h2>
+                @for (int j = 0; j < 3; j++)
+                {
+                            <h3>@Model.BestTasteTags[i][j].TagName</h3>
+                }
+                    <h1>@Model.BestWines[i].Name</h1>
+                </div>
+            }
         </div>
     </div>
 

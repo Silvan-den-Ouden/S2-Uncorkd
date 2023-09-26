@@ -62,7 +62,7 @@ namespace Uncorkd_DAL.DALs
             return wineDTO;
         }
 
-        public List<WineDTO> GetBest()
+        public List<WineDTO> GetPopular()
         {
             List<WineDTO> wineDTOs = new List<WineDTO>();
 

@@ -48,11 +48,11 @@ namespace Uncorkd_BLL.Collections
             return wineModel;
         }
 
-        public List<WineModel> GetBest()
+        public List<WineModel> GetPopular()
         {
             List<WineModel> wineModels = new List<WineModel>();
 
-            foreach (WineDTO wineDTO in _wineDAL.GetBest())
+            foreach (WineDTO wineDTO in _wineDAL.GetPopular())
             {
                 WineModel wineModel = new WineModel()
                 {

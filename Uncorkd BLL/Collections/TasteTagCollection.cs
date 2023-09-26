@@ -38,11 +38,11 @@ namespace Uncorkd_BLL.Collections
             return tasteTagModels;
         }
 
-        public List<List<TasteTagModel>> GetBestWinesTags()
+        public List<List<TasteTagModel>> GetPopularWinesTags()
         {
             List<List<TasteTagModel>> tasteTagModels = new List<List<TasteTagModel>>();
 
-            foreach(var Wine in _wineCollection.GetBest()) {
+            foreach(var Wine in _wineCollection.GetPopular()) {
                 List<TasteTagModel> tasteTagM = GetFromWineID(Wine.Id);
                 tasteTagModels.Add(tasteTagM);
             }
