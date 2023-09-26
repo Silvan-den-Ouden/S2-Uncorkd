@@ -45,26 +45,17 @@
     <div>
         <p>Best Wines</p>
         <div class="best-wines-container">  
-            @foreach(var wine in Model.BestWines)
+            @for(int i = 0; i < Model.BestWines.Count; i++)
             {
-                <div>
+                <div onclick="location.href='Wine?id=@Model.BestWines[i].Id'">
                     <h2>5.00</h2>
-                    <h3>Test</h3>
-                    <h3>Sweet</h3>
-                    <h3>SweetSweetSweet</h3>
-                    <h1>@wine.Name</h1>
+                    @for(int j = 0; j < 3; j++)
+                    {
+                        <h3>@Model.BestTasteTags[i][j].TagName</h3>
+                    }
+                    <h1>@Model.BestWines[i].Name</h1>
                 </div>
             }
-           @* <div>
-                <h2>4.13</h2>
-                <h3>Sweet</h3>
-                <h3>Sweet</h3>
-                <h3>Sweet</h3>
-                <h1>test</h1>
-            </div>
-            <div>2</div>
-            <div>3</div>        
-            <div>4</div>*@
         </div>
         <p>Popular Wines</p>
         <div class="popular-wines-container">
@@ -72,6 +63,7 @@
             <div>2</div>
             <div>3</div>
             <div>4</div>
+            <div>5</div>
         </div>
     </div>
 

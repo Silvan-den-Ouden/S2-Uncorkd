@@ -9,14 +9,16 @@ namespace S2_Uncorkd.Controllers
     {
         private readonly WineCollection _wineCollection = new();
         private readonly WineryCollection _wineryCollection = new();
+        private readonly TasteTagCollection _tasteTagCollection = new();
 
         public IActionResult Index()
         {
             List<WineModel> wineModels = _wineCollection.GetAll();
             List<WineryModel> wineryModels = _wineryCollection.GetAll();
             List<WineModel> bestWineModels = _wineCollection.GetBest();
+            List<List<TasteTagModel>> bestTasteTags = _tasteTagCollection.GetBestWinesTags(); 
 
-            ExplorerViewModel explorerViewModel = new(wineModels, wineryModels, bestWineModels);
+            ExplorerViewModel explorerViewModel = new(wineModels, wineryModels, bestWineModels, bestTasteTags);
 
             return View(explorerViewModel);
         }

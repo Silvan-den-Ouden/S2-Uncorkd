@@ -1,12 +1,12 @@
 ﻿.best-wines-container,
 .popular-wines-container {
     display: flex;
-    flex-wrap: nowrap;
+    flex-wrap: wrap;
     background-color: DodgerBlue;
 }
 
     .best-wines-container > div, .popular-wines-container > div {
-        background-color: #000000;
+        background-color: #808080;
         width: 16%;
         height: 13em;
         margin: 1%;
@@ -14,9 +14,10 @@
         margin-right: 2%;
         display: flex;
         flex-direction: column;
+        cursor: pointer;
     }
 
-    .best-wines-container h1,
+    .best-wines-container h1,   
     .popular-wines-container h1 {
         white-space: nowrap;
         font-size: 20px;
@@ -31,15 +32,18 @@
 
     .best-wines-container h2,
     .popular-wines-container h2 {
-        align-self: flex-start; 
-        font-size: 20px; 
-        margin-left: 10px; 
-        margin-top: 10px;
+        align-self: flex-start;
+        font-size: 20px;
+        padding: .5rem;
+        position: absolute;
     }
 
     .best-wines-container h3,
     .popular-wines-container h3 {
         align-self: flex-end;
         font-size: 20px;
+        margin-top: 20px;
         margin-right: 10px;
+        position: relative;
+        line-height: 0;
     }

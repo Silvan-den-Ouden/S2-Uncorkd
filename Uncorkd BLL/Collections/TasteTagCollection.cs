@@ -13,10 +13,12 @@ namespace Uncorkd_BLL.Collections
     public class TasteTagCollection
     {
         private readonly TasteTagRepository _tasteTagDAL;
+        private readonly WineCollection _wineCollection;
 
         public TasteTagCollection()
         {
             _tasteTagDAL = new TasteTagRepository();
+            _wineCollection = new WineCollection();
         }
 
         public List<TasteTagModel> GetFromWineID(int wineID)
@@ -36,5 +38,16 @@ namespace Uncorkd_BLL.Collections
             return tasteTagModels;
         }
 
+        public List<List<TasteTagModel>> GetBestWinesTags()
+        {
+            List<List<TasteTagModel>> tasteTagModels = new List<List<TasteTagModel>>();
+
+            foreach(var Wine in _wineCollection.GetBest()) {
+                List<TasteTagModel> tasteTagM = GetFromWineID(Wine.Id);
+                tasteTagModels.Add(tasteTagM);
+            }
+
+            return tasteTagModels;
+        }
     }
 }
