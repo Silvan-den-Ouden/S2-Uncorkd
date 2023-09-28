@@ -2,11 +2,13 @@
 .popular-wines-container {
     display: flex;
     flex-wrap: wrap;
-    background-color: DodgerBlue;
 }
 
-    .best-wines-container > div, .popular-wines-container > div {
-        background-color: #808080;
+    .best-wines-container > div,
+    .popular-wines-container > div {
+        background-color: #171717;
+        background-size: 100% 100%;
+        background-repeat: no-repeat;
         width: 16%;
         height: 13em;
         margin: 1%;
@@ -16,12 +18,16 @@
         flex-direction: column;
         cursor: pointer;
         user-select: none;
+        position: relative;
     }
 
-    .best-wines-container h1,   
+    .best-wines-container h1,
     .popular-wines-container h1 {
+        -webkit-text-stroke: black 1.5px;
         white-space: nowrap;
         font-size: 25px;
+        font-weight: 900;
+        color: white;
         overflow: hidden;
         text-overflow: ellipsis;
         text-align: center;
@@ -31,25 +37,34 @@
         margin-top: auto;
     }
 
+        .best-wines-container h1:hover {
+            overflow: visible;
+            white-space: normal;
+        }
+
     .best-wines-container h2,
     .popular-wines-container h2 {
-        align-self: flex-start;
-        font-size: 15px;
-        padding: .5rem;
+        font-size: 18px;
+        padding-top: .5rem;
+        padding-left: .5rem;
         position: absolute;
+        text-shadow: 2px 2px 3px #CCCC00;
+        color: white;
     }
 
     .best-wines-container h3,
     .popular-wines-container h3 {
-        align-self: flex-end;
-        font-size: 15px;
-        margin-top: 20px;
-        margin-right: 10px;
-        position: relative;
-        line-height: 0;
+        font-size: 18px;
+        padding-top: .5rem;
+        padding-right: .5rem;
+        text-align: right;
+        margin-bottom: 0rem;
+        text-shadow: -2px 2px 3px #0000FF;
+        color: white;
     }
-    
-    label {
-        font-size: 30px;
-        font-weight: 600;
-    }
+
+label {
+    font-size: 30px;
+    font-weight: 600;
+}
+

@@ -26,6 +26,7 @@ namespace Uncorkd_DAL.DALs
                         Id = reader.GetInt32("id"),
                         Name = reader.GetString("name"),
                         Description = reader.GetString("description"),
+                        Image_URL = reader.GetString("image_url"),
                         Check_ins = reader.GetInt32("check_ins"),
                         Winery_id = reader.GetInt32("winery_id"),
                     };
@@ -53,6 +54,7 @@ namespace Uncorkd_DAL.DALs
                     wineDTO.Id = reader.GetInt32("id");
                     wineDTO.Name = reader.GetString("name");
                     wineDTO.Description = reader.GetString("description");
+                    wineDTO.Image_URL = reader.GetString("image_url");
                     wineDTO.Check_ins = reader.GetInt32("check_ins");
                     wineDTO.Winery_id = reader.GetInt32("winery_id");
                 }
@@ -79,6 +81,7 @@ namespace Uncorkd_DAL.DALs
                         Id = reader.GetInt32("id"),
                         Name = reader.GetString("name"),
                         Description = reader.GetString("description"),
+                        Image_URL = reader.GetString("image_url"),
                         Check_ins = reader.GetInt32("check_ins"),
                         Winery_id = reader.GetInt32("winery_id"),
                     };
