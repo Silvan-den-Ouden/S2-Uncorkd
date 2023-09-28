@@ -9,14 +9,17 @@ namespace S2_Uncorkd.ViewModels
         public List<WineModel> BestWines { get; set; }
         public List<WineModel> RandomWines { get; set; }
         public List<List<TasteTagModel>> BestTasteTags { get; set; }
+        public List<List<TasteTagModel>> RandomTasteTags { get; set; }
 
-        public ExplorerViewModel(List<WineModel> _wines, List<WineryModel> _wineries, List<WineModel> _bestWines,List<List<TasteTagModel>> _bestTasteTags, List<WineModel> _randomWines)
+
+        public ExplorerViewModel(List<WineModel> _wines, List<WineryModel> _wineries, List<WineModel> _bestWines, List<WineModel> _randomWines, List<List<TasteTagModel>> _bestTasteTags, List<List<TasteTagModel>> _randomTasteTags)
         {
             Wines = _wines;
             Wineries = _wineries;
             BestWines = _bestWines;
-            BestTasteTags = _bestTasteTags;
             RandomWines = _randomWines;
+            BestTasteTags = _bestTasteTags;
+            RandomTasteTags = _randomTasteTags;
         }
     }
 }

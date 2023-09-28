@@ -11,7 +11,11 @@ namespace Uncorkd_BLL.Collections
 {
     public class WineryCollection
     {
-        private readonly WineryRepository _wineryDAL = new WineryRepository();
+        private readonly WineryRepository _wineryDAL;
+
+        public WineryCollection() {
+            _wineryDAL = new WineryRepository();
+        }
 
         public List<WineryModel> TransformDTOs(List<WineryDTO> wineryDTOs)
         {

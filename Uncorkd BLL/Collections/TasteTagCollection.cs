@@ -15,6 +15,12 @@ namespace Uncorkd_BLL.Collections
         private readonly TasteTagRepository _tasteTagDAL;
         private readonly WineCollection _wineCollection;
 
+        public TasteTagCollection()
+        {
+            _tasteTagDAL = new TasteTagRepository();
+            _wineCollection = new WineCollection();
+        }
+
         public List<TasteTagModel> TransformDTOs(List<TasteTagDTO> tasteTagDTOs)
         {
             List<TasteTagModel> tasteTagModels = new List<TasteTagModel>();
@@ -32,12 +38,6 @@ namespace Uncorkd_BLL.Collections
             return tasteTagModels;
         }
 
-        public TasteTagCollection()
-        {
-            _tasteTagDAL = new TasteTagRepository();
-            _wineCollection = new WineCollection();
-        }
-
         public List<TasteTagModel> GetFromWineID(int wineID)
         {
             List<TasteTagModel> tasteTagModels = TransformDTOs(_tasteTagDAL.GetFromWineID(wineID));
@@ -50,6 +50,19 @@ namespace Uncorkd_BLL.Collections
             List<List<TasteTagModel>> tasteTagModels = new List<List<TasteTagModel>>();
 
             foreach(var Wine in _wineCollection.GetPopular()) {
+                List<TasteTagModel> tasteTagM = GetFromWineID(Wine.Id);
+                tasteTagModels.Add(tasteTagM);
+            }
+
+            return tasteTagModels;
+        }
+
+        public List<List<TasteTagModel>> GetRandomWinesTags()
+        {
+            List<List<TasteTagModel>> tasteTagModels = new List<List<TasteTagModel>>();
+
+            foreach (var Wine in _wineCollection.GetRandom())
+            {
                 List<TasteTagModel> tasteTagM = GetFromWineID(Wine.Id);
                 tasteTagModels.Add(tasteTagM);
             }
