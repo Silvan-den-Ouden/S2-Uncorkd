@@ -13,22 +13,6 @@ namespace Uncorkd_BLL.Collections
     {
         private readonly WineryRepository _wineryDAL = new WineryRepository();
 
-        public List<WineryModel> GetAll()
-        {
-            List<WineryModel> wineryModels = TransformDTOs(_wineryDAL.GetAll());
-
-            return wineryModels;
-        }
-
-        public WineryModel GetWithID(int id) {
-            List<WineryDTO> wineryDTOs = new List<WineryDTO>() { _wineryDAL.GetWithID(id) };
-            List<WineryModel> wineryModels = TransformDTOs(wineryDTOs);
-
-            WineryModel wineryModel = wineryModels[0];
-
-            return wineryModel;
-        }
-
         public List<WineryModel> TransformDTOs(List<WineryDTO> wineryDTOs)
         {
             List<WineryModel> wineryModels = new List<WineryModel>();
@@ -44,6 +28,22 @@ namespace Uncorkd_BLL.Collections
                 wineryModels.Add(wineryModel);
             }
             return wineryModels;
+        }
+
+        public List<WineryModel> GetAll()
+        {
+            List<WineryModel> wineryModels = TransformDTOs(_wineryDAL.GetAll());
+
+            return wineryModels;
+        }
+
+        public WineryModel GetWithID(int id) {
+            List<WineryDTO> wineryDTOs = new List<WineryDTO>() { _wineryDAL.GetWithID(id) };
+            List<WineryModel> wineryModels = TransformDTOs(wineryDTOs);
+
+            WineryModel wineryModel = wineryModels[0];
+
+            return wineryModel;
         }
     }
 }

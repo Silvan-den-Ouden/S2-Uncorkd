@@ -14,6 +14,31 @@ namespace Uncorkd_BLL.Collections
     {
         private readonly WineRepository _wineDAL = new WineRepository();
 
+        public List<WineModel> TransformDTOs(List<WineDTO> wineDTOs)
+        {
+            List<WineModel> wineModels = new List<WineModel>();
+            string defaultWine = "https://i.ibb.co/KXygvP6/Default-Wine-512.png";
+
+            foreach (WineDTO wineDTO in wineDTOs)
+            {
+                if (wineDTO.Image_URL == "")
+                {
+                    wineDTO.Image_URL = defaultWine;
+                }
+
+                WineModel wineModel = new WineModel()
+                {
+                    Id = wineDTO.Id,
+                    Name = wineDTO.Name,
+                    Description = wineDTO.Description,
+                    Image_URL = wineDTO.Image_URL,
+                    Check_ins = wineDTO.Check_ins,
+                    Winery_id = wineDTO.Winery_id,
+                };
+                wineModels.Add(wineModel);
+            }
+            return wineModels;
+        }
         public List<WineModel> GetAll()
         {
             List<WineModel> wineModels = TransformDTOs(_wineDAL.GetAll());
@@ -41,32 +66,6 @@ namespace Uncorkd_BLL.Collections
         {
             List<WineModel> wineModels = TransformDTOs (_wineDAL.GetRandom());
 
-            return wineModels;
-        }
-        
-        public List<WineModel> TransformDTOs(List<WineDTO> wineDTOs)
-        {
-            List<WineModel> wineModels = new List<WineModel>();
-            string defaultWine = "https://i.ibb.co/KXygvP6/Default-Wine-512.png";
-
-            foreach (WineDTO wineDTO in wineDTOs)
-            {
-                if (wineDTO.Image_URL == "")
-                {
-                    wineDTO.Image_URL = defaultWine;
-                }
-
-                WineModel wineModel = new WineModel()
-                {
-                    Id = wineDTO.Id,
-                    Name = wineDTO.Name,
-                    Description = wineDTO.Description,
-                    Image_URL = wineDTO.Image_URL,
-                    Check_ins = wineDTO.Check_ins,
-                    Winery_id = wineDTO.Winery_id,
-                };
-                wineModels.Add(wineModel);
-            }
             return wineModels;
         }
     }
