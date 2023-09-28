@@ -43,7 +43,7 @@
     </div>
 
     <div>
-        <label for="best-wines-container">Most rated wines</label>
+        <label for="best-wines-container">Most rated wines (technically popular wines but my naming is all fucked)</label>
         <div class="best-wines-container">
             @for(int i = 0; i < Model.BestWines.Count; i++)
             {
@@ -60,12 +60,12 @@
                 </div>
             }
         </div>
-        <label for="popular-wines-container">Popular wines</label>
+        <label for="popular-wines-container">I'm feeling lucky</label>
         <div class="popular-wines-container">
-            @for (int i = 0; i < Model.BestWines.Count; i++)
+            @for (int i = 0; i < Model.RandomWines.Count; i++)
             {
-                <div onclick="location.href='Wine?id=@Model.BestWines[i].Id'"
-                     style="background-image: url('https://media.discordapp.net/attachments/1072088170927243298/1156528013266133092/image.png?ex=65154c25&is=6513faa5&hm=182a1fae91c85171f6788c86ffe1f401d9748e6a3cc769fe750810046dcf9912&=&width=625&height=625');">
+                <div onclick="location.href='Wine?id=@Model.RandomWines[i].Id'"
+                     style="background-image: url('@Model.RandomWines[i].Image_URL');">
 
                     <h2>5.00</h2>
                     @for (int j = 0; j < 3; j++)
@@ -73,7 +73,7 @@
                         <h3>@Model.BestTasteTags[i][j].TagName</h3>
                     }
 
-                    <h1>@Model.BestWines[i].Name</h1>
+                    <h1>@Model.RandomWines[i].Name</h1>
                 </div>
             }
         </div>

@@ -16,9 +16,10 @@ namespace S2_Uncorkd.Controllers
             List<WineModel> wineModels = _wineCollection.GetAll();
             List<WineryModel> wineryModels = _wineryCollection.GetAll();
             List<WineModel> bestWineModels = _wineCollection.GetPopular();
+            List<WineModel> randomWines = _wineCollection.GetRandom();
             List<List<TasteTagModel>> bestTasteTags = _tasteTagCollection.GetPopularWinesTags(); 
 
-            ExplorerViewModel explorerViewModel = new(wineModels, wineryModels, bestWineModels, bestTasteTags);
+            ExplorerViewModel explorerViewModel = new(wineModels, wineryModels, bestWineModels, bestTasteTags, randomWines);
 
             return View(explorerViewModel);
         }

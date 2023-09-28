@@ -7,7 +7,7 @@
     .best-wines-container > div,
     .popular-wines-container > div {
         background-color: #171717;
-        background-size: 100% 100%;
+        background-size: 101% 100%;
         background-repeat: no-repeat;
         width: 16%;
         height: 13em;
@@ -37,7 +37,8 @@
         margin-top: auto;
     }
 
-        .best-wines-container h1:hover {
+        .best-wines-container h1:hover, 
+        .popular-wines-container h1:hover{
             overflow: visible;
             white-space: normal;
         }

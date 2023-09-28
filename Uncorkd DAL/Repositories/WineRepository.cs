@@ -91,5 +91,33 @@ namespace Uncorkd_DAL.DALs
             }
             return wineDTOs;
         }
+
+        public List<WineDTO> GetRandom()
+        {
+            List<WineDTO> wineDTOs = new List<WineDTO>();
+
+            using (MySqlConnection con = Connector.MakeConnection())
+            {
+                con.Open();
+                MySqlCommand cmd = new MySqlCommand("SELECT * FROM `wine` ORDER BY RAND() LIMIT 5", con);
+                MySqlDataReader reader = cmd.ExecuteReader();
+
+                while (reader.Read())
+                {
+                    WineDTO wineDTO = new WineDTO()
+                    {
+                        Id = reader.GetInt32("id"),
+                        Name = reader.GetString("name"),
+                        Description = reader.GetString("description"),
+                        Image_URL = reader.GetString("image_url"),
+                        Check_ins = reader.GetInt32("check_ins"),
+                        Winery_id = reader.GetInt32("winery_id"),
+                    };
+                    wineDTOs.Add(wineDTO);
+                }
+                con.Close();
+            }
+            return wineDTOs;
+        }
     }
 }
