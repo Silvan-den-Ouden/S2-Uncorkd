@@ -10,6 +10,18 @@ namespace Uncorkd_DAL.DALs
 {
     public class WineryRepository
     {
+        public WineryDTO CreateDTO(MySqlDataReader reader)
+        {
+            WineryDTO wineryDTO = new WineryDTO()
+            {
+                Id = reader.GetInt32("id"),
+                Name = reader.GetString("name"),
+                Description = reader.GetString("description"),
+            };
+
+            return wineryDTO;
+        }
+
         public List<WineryDTO> GetAll()
         {
             List<WineryDTO> wineryDTOs = new List<WineryDTO>();
@@ -21,12 +33,7 @@ namespace Uncorkd_DAL.DALs
                 MySqlDataReader reader = cmd.ExecuteReader();
 
                 while(reader.Read()) {
-                    WineryDTO wineryDTO = new WineryDTO()
-                    {
-                        Id = reader.GetInt32("id"),
-                        Name = reader.GetString("name"),
-                        Description = reader.GetString("description"),
-                    };
+                    WineryDTO wineryDTO = CreateDTO(reader);
                     wineryDTOs.Add(wineryDTO);
                 }
 
@@ -34,7 +41,6 @@ namespace Uncorkd_DAL.DALs
             }
 
         }
-
 
         public WineryDTO GetWithID(int ID)
         {
@@ -49,9 +55,7 @@ namespace Uncorkd_DAL.DALs
 
                 while(reader.Read())
                 {
-                    wineryDTO.Id = reader.GetInt32("id");
-                    wineryDTO.Name = reader.GetString("name");
-                    wineryDTO.Description = reader.GetString("description");
+                    wineryDTO = CreateDTO(reader);
                 }
 
                 con.Close();

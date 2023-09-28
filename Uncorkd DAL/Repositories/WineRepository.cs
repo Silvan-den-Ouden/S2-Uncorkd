@@ -10,6 +10,21 @@ namespace Uncorkd_DAL.DALs
 {
     public class WineRepository
     {
+        public WineDTO CreateDTO(MySqlDataReader reader)
+        {
+            WineDTO wineDTO = new WineDTO()
+            {
+                Id = reader.GetInt32("id"),
+                Name = reader.GetString("name"),
+                Description = reader.GetString("description"),
+                Image_URL = reader.GetString("image_url"),
+                Check_ins = reader.GetInt32("check_ins"),
+                Winery_id = reader.GetInt32("winery_id"),
+            };
+
+            return wineDTO;
+        }
+
         public List<WineDTO> GetAll() {
             List<WineDTO> wineDTOs = new List<WineDTO>();
 
@@ -21,15 +36,7 @@ namespace Uncorkd_DAL.DALs
 
                 while (reader.Read())
                 {
-                    WineDTO wineDTO = new WineDTO()
-                    {
-                        Id = reader.GetInt32("id"),
-                        Name = reader.GetString("name"),
-                        Description = reader.GetString("description"),
-                        Image_URL = reader.GetString("image_url"),
-                        Check_ins = reader.GetInt32("check_ins"),
-                        Winery_id = reader.GetInt32("winery_id"),
-                    };
+                    WineDTO wineDTO = CreateDTO(reader);
                     wineDTOs.Add(wineDTO);
                 }
                 con.Close();
@@ -51,12 +58,7 @@ namespace Uncorkd_DAL.DALs
 
                 while (reader.Read())
                 {
-                    wineDTO.Id = reader.GetInt32("id");
-                    wineDTO.Name = reader.GetString("name");
-                    wineDTO.Description = reader.GetString("description");
-                    wineDTO.Image_URL = reader.GetString("image_url");
-                    wineDTO.Check_ins = reader.GetInt32("check_ins");
-                    wineDTO.Winery_id = reader.GetInt32("winery_id");
+                    wineDTO = CreateDTO(reader);
                 }
                 con.Close();
             }
@@ -76,15 +78,7 @@ namespace Uncorkd_DAL.DALs
 
                 while (reader.Read())
                 {
-                    WineDTO wineDTO = new WineDTO()
-                    {
-                        Id = reader.GetInt32("id"),
-                        Name = reader.GetString("name"),
-                        Description = reader.GetString("description"),
-                        Image_URL = reader.GetString("image_url"),
-                        Check_ins = reader.GetInt32("check_ins"),
-                        Winery_id = reader.GetInt32("winery_id"),
-                    };
+                    WineDTO wineDTO = CreateDTO(reader);
                     wineDTOs.Add(wineDTO);
                 }
                 con.Close();
@@ -104,15 +98,7 @@ namespace Uncorkd_DAL.DALs
 
                 while (reader.Read())
                 {
-                    WineDTO wineDTO = new WineDTO()
-                    {
-                        Id = reader.GetInt32("id"),
-                        Name = reader.GetString("name"),
-                        Description = reader.GetString("description"),
-                        Image_URL = reader.GetString("image_url"),
-                        Check_ins = reader.GetInt32("check_ins"),
-                        Winery_id = reader.GetInt32("winery_id"),
-                    };
+                    WineDTO wineDTO = CreateDTO(reader);
                     wineDTOs.Add(wineDTO);
                 }
                 con.Close();

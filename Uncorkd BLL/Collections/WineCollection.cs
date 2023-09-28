@@ -43,16 +43,17 @@ namespace Uncorkd_BLL.Collections
 
             return wineModels;
         }
-
+        
         public List<WineModel> TransformDTOs(List<WineDTO> wineDTOs)
         {
             List<WineModel> wineModels = new List<WineModel>();
+            string defaultWine = "https://i.ibb.co/KXygvP6/Default-Wine-512.png";
 
             foreach (WineDTO wineDTO in wineDTOs)
             {
                 if (wineDTO.Image_URL == "")
                 {
-                    wineDTO.Image_URL = "https://i.ibb.co/TPBCGCC/Default-Wine.png";
+                    wineDTO.Image_URL = defaultWine;
                 }
 
                 WineModel wineModel = new WineModel()

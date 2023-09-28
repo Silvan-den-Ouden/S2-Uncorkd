@@ -10,6 +10,17 @@ namespace Uncorkd_DAL.DALs
 {
     public class TasteTagRepository
     {
+        public TasteTagDTO CreateDTO(MySqlDataReader reader)
+        {
+            TasteTagDTO TasteTagDTO = new TasteTagDTO()
+            {
+                Id = reader.GetInt32("id"),
+                TagName = reader.GetString("tag_name"),
+            };
+
+            return TasteTagDTO;
+        }
+
         public List<TasteTagDTO> GetFromWineID(int wineID)
         {
             List<TasteTagDTO> tasteTagDTOs = new List<TasteTagDTO>();
@@ -23,11 +34,7 @@ namespace Uncorkd_DAL.DALs
 
                 while (reader.Read())
                 {
-                    TasteTagDTO tasteTagDTO = new TasteTagDTO()
-                    {
-                        Id = reader.GetInt32("id"),
-                        TagName = reader.GetString("tag_name"),
-                    };
+                    TasteTagDTO tasteTagDTO = CreateDTO(reader);
                     tasteTagDTOs.Add(tasteTagDTO);
                 }
             }
