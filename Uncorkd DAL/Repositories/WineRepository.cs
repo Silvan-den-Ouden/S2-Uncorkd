@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.Common;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -28,7 +29,7 @@ namespace Uncorkd_DAL.DALs
 
         private double GetStars(int ID)
         {
-            double stars = 0;
+            double? stars = null;
 
             using (MySqlConnection con = Connector.MakeConnection())
             {
@@ -39,11 +40,14 @@ namespace Uncorkd_DAL.DALs
 
                 while (reader.Read())
                 {
-                    stars = reader.GetDouble("stars");
+                    if (!reader.IsDBNull(reader.GetOrdinal("stars")))
+                    {
+                        stars = reader.GetDouble("stars");
+                    }
                 }
             }
 
-            return stars;
+            return stars ?? -1;
         }
 
         public List<WineDTO> GetAll() {

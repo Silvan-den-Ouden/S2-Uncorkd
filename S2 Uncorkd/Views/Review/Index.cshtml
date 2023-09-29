@@ -1,0 +1,74 @@
+﻿
+@{
+    ViewData["Title"] = "Index";
+}
+
+<div class="thumbnail">
+    <div class="imagecontainer">
+        <img src="@Model.WineModel.Image_URL" />
+    </div>
+    
+    <h1>@Model.WineModel.Name</h1>
+    <h5>@Model.WineryModel.Name</h5>
+</div>
+
+<label for="slidercontainer">Rating</label>
+<p id="sliderValue">TEMP</p>
+<div class="slidecontainer">
+    <input type="range" min="1" max="20" value="10" class="slider" id="myRange">
+</div>
+
+<label for="tasteTags" onclick="expandFlavors()">Flavor Profile ></label>
+<div>
+    <div id="tasteTags" onchange="handleRadioChange(event)">
+        <div>
+            <label>
+                <input type="checkbox" name="category" id="wineRadio" value="wine"><span>Tag1</span>
+            </label>
+        </div>
+        <div>
+            <label>
+                <input type="checkbox" name="category" id="wineryRadio" value="winery"><span>Tag2</span>
+            </label>
+        </div>
+        <div>
+            <label>
+                <input type="checkbox" name="category" id="wineRadio" value="wine"><span>Tag3</span>
+            </label>
+        </div>
+        <div>
+            <label>
+                <input type="checkbox" name="category" id="wineryRadio" value="winery"><span>Tag4</span>
+            </label>
+        </div>
+        <div>
+            <label>
+                <input type="checkbox" name="category" id="wineryRadio" value="winery"><span>Tag5</span>
+            </label>
+        </div>
+    </div>
+</div>
+
+<div>
+    <input type="button" value="CHECK-IN">
+</div>
+
+<script>
+    // Get the slider element
+    var slider = document.getElementById("myRange");
+
+    // Get the paragraph element where you want to display the slider value
+    var sliderValueText = document.getElementById("sliderValue");
+
+    // Update the paragraph element with the initial slider value
+    sliderValueText.textContent = (slider.value / 4).toFixed(2);
+
+    // Add an event listener to update the paragraph element when the slider value changes
+    slider.addEventListener("input", function () {
+        sliderValueText.textContent = (slider.value / 4).toFixed(2);
+    });
+
+    function expandFlavors(){
+        console.log("haha dit doet nog niks")
+    }
+</script>

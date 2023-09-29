@@ -38,12 +38,23 @@ namespace Uncorkd_BLL.Collections
                     Image_URL = wineDTO.Image_URL,
                     Check_ins = wineDTO.Check_ins,
                     Winery_id = wineDTO.Winery_id,
-                    Stars = wineDTO.Stars.ToString("F"),
+                    Stars = GetStars(wineDTO.Stars)
                 };
                 wineModels.Add(wineModel);
             }
             return wineModels;
         }
+
+        public string GetStars(double stars)
+        {
+            if (stars > 0)
+            {
+                return (Math.Round(stars * 4) / 4).ToString("F");
+            }
+
+            return "???";
+        }
+            
         public List<WineModel> GetAll()
         {
             List<WineModel> wineModels = TransformDTOs(_wineDAL.GetAll());

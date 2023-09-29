@@ -1,8 +1,8 @@
 ﻿.cat {
     margin-right: 19px;
-    background-color: #104068;
+    background-color: #FF85AF;
     border-radius: 4px;
-    border: 1px solid #fff;
+    box-shadow: 1px;
     overflow: hidden;
     float: left;
     user-select: none;
@@ -27,10 +27,10 @@
     display: none;
     color: #fff;
 }
-           
-.cat label input + span {
-    color: #ffffff;
-}
+
+    .cat label input + span {
+        color: #000000;
+    }
 
 .cat input:checked + span {
     color: #ffffff;
@@ -39,5 +39,5 @@
 
 .wine input:checked + span,
 .winery input:checked + span {
-    background-color: #F75A1B;
+    background-color: #840032;
 }

@@ -10,7 +10,7 @@ namespace Uncorkd_DAL.DALs
 {
     internal class Connector
     {
-        private static readonly string connectionString = "Server=127.0.0.1,3306;Database=uncorkd;Uid=root;";
+        private static readonly string connectionString = "Server=127.0.0.1,3306;Database=uncorkd;Uid=root;Pooling=false;";
 
         public static MySqlConnection MakeConnection()
         {
