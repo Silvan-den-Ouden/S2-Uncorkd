@@ -38,6 +38,7 @@ namespace Uncorkd_BLL.Collections
                     Image_URL = wineDTO.Image_URL,
                     Check_ins = wineDTO.Check_ins,
                     Winery_id = wineDTO.Winery_id,
+                    Stars = wineDTO.Stars.ToString("F"),
                 };
                 wineModels.Add(wineModel);
             }

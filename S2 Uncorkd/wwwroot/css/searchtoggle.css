@@ -10,14 +10,14 @@
 
 .cat label {
     float: left;
-    line-height: 3.0em;
-    width: 8.0em;
-    height: 3.0em;
+    line-height: 1em;
+    width: 5em;
+    height: 2em;
 }
 
 .cat label span {
     text-align: center;
-    padding: 3px 0;
+    padding: .5em;
     display: block;
     cursor: pointer;
 }
@@ -29,7 +29,7 @@
 }
            
 .cat label input + span {
-    color: #fff;
+    color: #ffffff;
 }
 
 .cat input:checked + span {

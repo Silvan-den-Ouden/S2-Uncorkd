@@ -57,8 +57,6 @@ namespace Uncorkd_DAL.DALs
                 {
                     wineryDTO = CreateDTO(reader);
                 }
-
-                con.Close();
             }
 
             return wineryDTO;

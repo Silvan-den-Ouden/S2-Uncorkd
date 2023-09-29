@@ -14,6 +14,7 @@ namespace Uncorkd_BLL.Models
         public string Image_URL { get; set; }
         public int Check_ins { get; set; }
         public int Winery_id { get; set;}
+        public string Stars { get; set; }
 
         public WineModel()
         {

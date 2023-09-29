@@ -20,9 +20,30 @@ namespace Uncorkd_DAL.DALs
                 Image_URL = reader.GetString("image_url"),
                 Check_ins = reader.GetInt32("check_ins"),
                 Winery_id = reader.GetInt32("winery_id"),
+                Stars = GetStars(reader.GetInt32("id")),
             };
 
             return wineDTO;
+        }
+
+        private double GetStars(int ID)
+        {
+            double stars = 0;
+
+            using (MySqlConnection con = Connector.MakeConnection())
+            {
+                con.Open();
+                MySqlCommand cmd = new MySqlCommand("SELECT AVG(`rating`/4) AS `stars` FROM `review` WHERE `wine_id` = @ID", con);
+                cmd.Parameters.AddWithValue("@ID", ID);
+                MySqlDataReader reader = cmd.ExecuteReader();
+
+                while (reader.Read())
+                {
+                    stars = reader.GetDouble("stars");
+                }
+            }
+
+            return stars;
         }
 
         public List<WineDTO> GetAll() {
@@ -39,7 +60,6 @@ namespace Uncorkd_DAL.DALs
                     WineDTO wineDTO = CreateDTO(reader);
                     wineDTOs.Add(wineDTO);
                 }
-                con.Close();
             }
 
             return wineDTOs;
@@ -60,7 +80,6 @@ namespace Uncorkd_DAL.DALs
                 {
                     wineDTO = CreateDTO(reader);
                 }
-                con.Close();
             }
 
             return wineDTO;
@@ -81,7 +100,6 @@ namespace Uncorkd_DAL.DALs
                     WineDTO wineDTO = CreateDTO(reader);
                     wineDTOs.Add(wineDTO);
                 }
-                con.Close();
             }
             return wineDTOs;
         }
@@ -101,7 +119,6 @@ namespace Uncorkd_DAL.DALs
                     WineDTO wineDTO = CreateDTO(reader);
                     wineDTOs.Add(wineDTO);
                 }
-                con.Close();
             }
             return wineDTOs;
         }
