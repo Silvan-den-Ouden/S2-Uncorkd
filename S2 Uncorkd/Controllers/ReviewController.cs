@@ -18,5 +18,19 @@ namespace S2_Uncorkd.Controllers
             ReviewViewModel reviewViewModel = new(wineModel, wineryModel);
             return View(reviewViewModel);
         }
+
+        [HttpGet]
+        public IActionResult SendData(int sliderValue)
+        {
+            // Perform any necessary operations here
+
+
+            // Create an anonymous object to hold the sliderValue
+            var responseData = new { sliderValue };
+
+            // Return it as JSON with appropriate content type
+            return Json(responseData);
+        }
+
     }
 }

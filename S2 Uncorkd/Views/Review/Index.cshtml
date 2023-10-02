@@ -23,34 +23,34 @@
     <div id="tasteTags" onchange="handleRadioChange(event)">
         <div>
             <label>
-                <input type="checkbox" name="category" id="wineRadio" value="wine"><span>Tag1</span>
+                <input type="checkbox" name="category" id="wineRadio" value="tag1"><span>Tag1</span>
             </label>
         </div>
         <div>
             <label>
-                <input type="checkbox" name="category" id="wineryRadio" value="winery"><span>Tag2</span>
+                <input type="checkbox" name="category" id="wineryRadio" value="tag2"><span>Tag2</span>
             </label>
         </div>
         <div>
             <label>
-                <input type="checkbox" name="category" id="wineRadio" value="wine"><span>Tag3</span>
+                <input type="checkbox" name="category" id="wineRadio" value="tag3"><span>Tag3</span>
             </label>
         </div>
         <div>
             <label>
-                <input type="checkbox" name="category" id="wineryRadio" value="winery"><span>Tag4</span>
+                <input type="checkbox" name="category" id="wineryRadio" value="tag4"><span>Tag4</span>
             </label>
         </div>
         <div>
             <label>
-                <input type="checkbox" name="category" id="wineryRadio" value="winery"><span>Tag5</span>
+                <input type="checkbox" name="category" id="wineryRadio" value="tag5"><span>Tag5</span>
             </label>
         </div>
     </div>
 </div>
 
 <div>
-    <input type="button" value="CHECK-IN">
+    <input type="button" value="CHECK-IN" onclick="sendData()">
 </div>
 
 <script>
@@ -70,5 +70,23 @@
 
     function expandFlavors(){
         console.log("haha dit doet nog niks")
+    }
+
+    function sendData(){
+        var sliderValue = slider.value;
+        console.log("valie:", sliderValue);
+
+        $.ajax({
+            url: '@Url.Action("SendData", "Review")',
+            type: 'GET',
+            data: { sliderValue: sliderValue },
+            success: function (data) {
+                console.log(data.sliderValue); // This should log the sliderValue correctly
+            },
+            error: function (error) {
+                console.log("error", error);
+            }
+        });
+
     }
 </script>
