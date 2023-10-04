@@ -20,15 +20,12 @@ namespace S2_Uncorkd.Controllers
             return View(reviewViewModel);
         }
 
-        public IActionResult SendData(int sliderValue, int wineId)
+        public IActionResult SendData(int sliderValue, int wineId, string tasteTags)
         {
-            // Perform any necessary operations here
-            _reviewCollection.Create(2, wineId, sliderValue);
+            _reviewCollection.Create(2, wineId, sliderValue, tasteTags);
 
-            // Create an anonymous object to hold the sliderValue
-            var responseData = new { sliderValue };
+            var responseData = new { tasteTags };
 
-            // Return it as JSON with appropriate content type
             return Json(responseData);
         }
 

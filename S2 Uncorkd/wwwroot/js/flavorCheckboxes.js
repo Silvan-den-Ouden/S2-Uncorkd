@@ -4,16 +4,16 @@
 
 function handleCheckboxChange() {
     const checkboxes = document.querySelectorAll('input[name="category"]');
-    const selectedTags = [];
+    const selectedTagsArray = [];
 
     checkboxes.forEach(checkbox => {
         if (checkbox.checked) {
-            selectedTags.push(checkbox.value);
+            selectedTagsArray.push(checkbox.value);
         }
     });
 
     const selectedTagsElement = document.getElementById('selectedTags');
-    selectedTagsElement.textContent = selectedTags.join(', ');
+    selectedTagsElement.textContent = selectedTagsArray.join(', ');
 }
 
 const checkboxes = document.querySelectorAll('input[name="category"]');

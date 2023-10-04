@@ -6,9 +6,16 @@
     <div class="imagecontainer">
         <img src="@Model.WineModel.Image_URL" />
     </div>
-    
-    <h1>@Model.WineModel.Name</h1>
-    <h5>@Model.WineryModel.Name</h5>
+    <div class="text-container">
+        <h1>@Model.WineModel.Name</h1>
+        <h2>@Model.WineryModel.Name</h2>
+    </div>
+</div>
+
+
+<div class="commentInput">
+   @* <input type="text" placeholder="How was it? Leave a note">*@
+    <textarea id="comment" maxlength="255" autofocus="autofocus" placeholder="How was it? leave a note"></textarea>
 </div>
 
 <div class="slidecontainer">
@@ -56,6 +63,10 @@
     <input type="button" value="CHECK-IN" onclick="sendData(@Model.WineModel.Id)">
 </div>
 
+<link rel="stylesheet" href="~/css/thumbnailReviewPage.css">
+<link rel="stylesheet" href="~/css/commentReviewPage.css">
+
 <script src="~/js/checkInButton.js"></script>
 <script src="~/js/flavorCheckBoxes.js"></script>
 <script src="~/js/ratingSlider.js"></script>
+

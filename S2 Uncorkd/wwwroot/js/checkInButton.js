@@ -1,10 +1,11 @@
 ﻿function sendData(wineId) {
     var sliderValue = slider.value;
+    var tasteTags = document.getElementById("selectedTags").textContent;
 
     $.ajax({
-        url: '@Url.Action("SendData", "Review")',
+        url: '/Review/SendData',
         type: 'GET',
-        data: { sliderValue: sliderValue, wineId: wineId },
+        data: { sliderValue: sliderValue, wineId: wineId, tasteTags: tasteTags },
         success: function (data) {
             console.log(data);
             location.href = '/profile/reviews';

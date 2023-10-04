@@ -1,0 +1,38 @@
+﻿.thumbnail {
+    display: flex;
+    align-items: flex-start;
+    margin-bottom: 20px;
+}
+
+.imagecontainer {
+    flex: 0 0 auto; /* Don't grow or shrink */
+    margin-right: 10px; /* Adjust the margin as needed */
+}
+
+img {
+    width: 150px;
+    height: 150px;
+    max-width: 100%; /* Ensure the image doesn't exceed its container */
+}
+
+.text-container {
+    flex: 1; /* Allow the text container to grow and take remaining space */
+    display: flex;
+    flex-direction: column; /* Stack the h1 and h5 vertically */
+    align-items: flex-start; /* Align items to the top of the container */
+}
+
+h1,
+h2 {
+    margin-bottom: 10px; /* Remove default margin for headings */
+}
+
+h1{
+    font-size: 64px;
+}
+
+h2{
+    font-size: 32px;
+}
+
+    
