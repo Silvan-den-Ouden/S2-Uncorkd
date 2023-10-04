@@ -1,17 +1,11 @@
 ﻿@{
     ViewData["Title"] = "Explore";
 }
-
-<link rel="stylesheet" href="~/css/searchbar.css" />
-<link rel="stylesheet" href="~/css/searchtoggle.css" />
-<link rel="stylesheet" href="~/css/explore-flexboxes.css" />
-<script src="~/js/searchbar.js"></script>
-    
+   
 <body>
     <h1>Explore</h1>
 
     <input type="text" id="mySearch" onkeyup="searchBar()" onclick="displayMenuButtons()" placeholder="Search.." title="Type in a category">
-    <br /><br />
 
     <div id="menuButtons" onchange="handleRadioChange(event)"  style="display: none;">
         <div class="cat wine">
@@ -44,7 +38,7 @@
 
     <div id="flexboxes" display="block">
         <label for="best-wines-container">Best wines (technically most rated wines but my naming is all fucked)</label>
-        <div class="best-wines-container">
+        <div id="best-wines-container" class="best-wines-container">
             @for(int i = 0; i < Model.BestWines.Count; i++)
             {
                 <div onclick="location.href='Wine?id=@Model.BestWines[i].Id'"
@@ -61,7 +55,7 @@
             }
         </div>
         <label for="popular-wines-container">I'm feeling lucky</label>
-        <div class="popular-wines-container">
+        <div id="popular-wines-container" class="popular-wines-container">
             @for (int i = 0; i < Model.RandomWines.Count; i++)
             {
                 <div onclick="location.href='Wine?id=@Model.RandomWines[i].Id'"
@@ -80,3 +74,9 @@
     </div>
 
 </body>
+
+
+<link rel="stylesheet" href="~/css/searchbar.css" />
+<link rel="stylesheet" href="~/css/searchtoggle.css" />
+<link rel="stylesheet" href="~/css/explore-flexboxes.css" />
+<script src="~/js/searchbar.js"></script>

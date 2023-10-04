@@ -1,10 +1,12 @@
 ﻿var selectedMenu;
+const currentMenu = document.getElementById(selectedMenu);
+const flexbox = document.getElementById("flexboxes");
+const menuButtons = document.getElementById("menuButtons");
+
 
 function searchBar() {
     var input, filter, ul, li, a, i;
     input = document.getElementById("mySearch");
-    const flexbox = document.getElementById("flexboxes");
-    const menuButtons = document.getElementById("menuButtons");
    
     filter = input.value.toUpperCase();
 
@@ -44,18 +46,12 @@ function searchBar() {
 }
 
 function displayMenuButtons() {
-    const menuButtons = document.getElementById("menuButtons");
-    const flexbox = document.getElementById("flexboxes");
-
     flexbox.style.display = "none";
     menuButtons.style.display = "block";
 }
 
 function handleRadioChange(event) {
     const selectedValue = event.target.value;
-    const currentMenu = document.getElementById(selectedMenu);
-    const flexbox = document.getElementById("flexboxes");
-    const menuButtons = document.getElementById("menuButtons");
 
     // Hide all elements from previous (current) menu
     if (currentMenu) {

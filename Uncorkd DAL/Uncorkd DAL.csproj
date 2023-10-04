@@ -94,6 +94,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Repositories\Connector.cs" />
+    <Compile Include="Repositories\ReviewRepository.cs" />
     <Compile Include="Repositories\TasteTagRepository.cs" />
     <Compile Include="Repositories\WineryRepository.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

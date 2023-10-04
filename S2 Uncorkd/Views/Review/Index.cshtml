@@ -1,5 +1,4 @@
-﻿
-@{
+﻿@{
     ViewData["Title"] = "Index";
 }
 
@@ -12,81 +11,51 @@
     <h5>@Model.WineryModel.Name</h5>
 </div>
 
-<label for="slidercontainer">Rating</label>
-<p id="sliderValue">TEMP</p>
 <div class="slidecontainer">
+    <label for="myRange">Rating</label>
+    <p id="sliderValue">Theres something wrong with the slider if you're seeing this</p>
+
     <input type="range" min="1" max="20" value="10" class="slider" id="myRange">
 </div>
 
-<label for="tasteTags" onclick="expandFlavors()">Flavor Profile ></label>
 <div>
-    <div id="tasteTags" onchange="handleRadioChange(event)">
+    <label for="tasteTags" onclick="expandFlavors()">Flavor Profile ></label>
+
+    <div id="tasteTags">
         <div>
             <label>
-                <input type="checkbox" name="category" id="wineRadio" value="tag1"><span>Tag1</span>
+                <input type="checkbox" name="category" value="1"><span>Aromatic</span>
             </label>
         </div>
         <div>
             <label>
-                <input type="checkbox" name="category" id="wineryRadio" value="tag2"><span>Tag2</span>
+                <input type="checkbox" name="category" value="2"><span>Balanced</span>
             </label>
         </div>
         <div>
             <label>
-                <input type="checkbox" name="category" id="wineRadio" value="tag3"><span>Tag3</span>
+                <input type="checkbox" name="category" value="3"><span>Bitter</span>
             </label>
         </div>
         <div>
             <label>
-                <input type="checkbox" name="category" id="wineryRadio" value="tag4"><span>Tag4</span>
+                <input type="checkbox" name="category" value="4"><span>Bold</span>
             </label>
         </div>
         <div>
             <label>
-                <input type="checkbox" name="category" id="wineryRadio" value="tag5"><span>Tag5</span>
+                <input type="checkbox" name="category" value="5"><span>Buttery</span>
             </label>
         </div>
     </div>
+    <p>Selected tags: <span id="selectedTags"></span></p>
+
 </div>
 
 <div>
-    <input type="button" value="CHECK-IN" onclick="sendData()">
+    <input type="button" value="CHECK-IN" onclick="sendData(@Model.WineModel.Id)">
 </div>
 
-<script>
-    // Get the slider element
-    var slider = document.getElementById("myRange");
-
-    // Get the paragraph element where you want to display the slider value
-    var sliderValueText = document.getElementById("sliderValue");
-
-    // Update the paragraph element with the initial slider value
-    sliderValueText.textContent = (slider.value / 4).toFixed(2);
-
-    // Add an event listener to update the paragraph element when the slider value changes
-    slider.addEventListener("input", function () {
-        sliderValueText.textContent = (slider.value / 4).toFixed(2);
-    });
-
-    function expandFlavors(){
-        console.log("haha dit doet nog niks")
-    }
-
-    function sendData(){
-        var sliderValue = slider.value;
-        console.log("valie:", sliderValue);
-
-        $.ajax({
-            url: '@Url.Action("SendData", "Review")',
-            type: 'GET',
-            data: { sliderValue: sliderValue },
-            success: function (data) {
-                console.log(data.sliderValue); // This should log the sliderValue correctly
-            },
-            error: function (error) {
-                console.log("error", error);
-            }
-        });
-
-    }
-</script>
+<script src="~/js/checkInButton.js"></script>
+<script src="~/js/flavorCheckBoxes.js"></script>
+<script src="~/js/ratingSlider.js"></script>

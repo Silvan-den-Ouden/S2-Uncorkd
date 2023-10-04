@@ -41,9 +41,11 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Collections\ReviewCollection.cs" />
     <Compile Include="Collections\TasteTagCollection.cs" />
     <Compile Include="Collections\WineCollection.cs" />
     <Compile Include="Collections\WineryCollection.cs" />
+    <Compile Include="Models\ReviewModel.cs" />
     <Compile Include="Models\TasteTagModel.cs" />
     <Compile Include="Models\WineModel.cs" />
     <Compile Include="Models\WineryModel.cs" />
