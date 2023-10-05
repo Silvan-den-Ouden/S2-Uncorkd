@@ -4,7 +4,7 @@
     margin-bottom: 20px;
 }
 
-.imagecontainer {
+.image-container {
     flex: 0 0 auto; /* Don't grow or shrink */
     margin-right: 10px; /* Adjust the margin as needed */
 }
@@ -24,7 +24,8 @@ img {
 
 h1,
 h2 {
-    margin-bottom: 10px; /* Remove default margin for headings */
+    margin-bottom: 0.5em; /* Remove default margin for headings */
+    line-height: 70%;
 }
 
 h1{

@@ -3,7 +3,7 @@
 }
 
 <div class="thumbnail">
-    <div class="imagecontainer">
+    <div class="image-container">
         <img src="@Model.WineModel.Image_URL" />
     </div>
     <div class="text-container">
@@ -14,57 +14,63 @@
 
 
 <div class="commentInput">
-   @* <input type="text" placeholder="How was it? Leave a note">*@
     <textarea id="comment" maxlength="255" autofocus="autofocus" placeholder="How was it? leave a note"></textarea>
 </div>
 
-<div class="slidecontainer">
-    <label for="myRange">Rating</label>
-    <p id="sliderValue">Theres something wrong with the slider if you're seeing this</p>
-
-    <input type="range" min="1" max="20" value="10" class="slider" id="myRange">
+<div class="slide-container">
+    <div class="title-container">
+        <h3>Rating</h3>
+    </div>
+    <div class="number-container">
+        <h3 id="sliderValue">Theres something wrong with the slider if you're seeing this</h3>
+    </div>
 </div>
+<input type="range" id="myRange" class="slider" min="1" max="20" value="10">
 
-<div>
-    <label for="tasteTags" onclick="expandFlavors()">Flavor Profile ></label>
+<div class="tastetag-container">
+    <h3 onclick="expandFlavors()">Flavor Profile ></h3>
 
     <div id="tasteTags">
-        <div>
+        <div class="cat">
             <label>
                 <input type="checkbox" name="category" value="1"><span>Aromatic</span>
             </label>
         </div>
-        <div>
+        <div class="cat">
             <label>
                 <input type="checkbox" name="category" value="2"><span>Balanced</span>
             </label>
         </div>
-        <div>
+        <div class="cat">
             <label>
                 <input type="checkbox" name="category" value="3"><span>Bitter</span>
             </label>
         </div>
-        <div>
+        <div class="cat">
             <label>
                 <input type="checkbox" name="category" value="4"><span>Bold</span>
             </label>
         </div>
-        <div>
+        <div class="cat">
             <label>
                 <input type="checkbox" name="category" value="5"><span>Buttery</span>
             </label>
         </div>
     </div>
+    <div hidden="hidden">
     <p>Selected tags: <span id="selectedTags"></span></p>
-
+    </div>
 </div>
 
-<div>
-    <input type="button" value="CHECK-IN" onclick="sendData(@Model.WineModel.Id)">
+<br /><br />
+<div class="check-in-button">
+    <input type="button" class="button" value="CHECK-IN" onclick="sendData(@Model.WineModel.Id)">
 </div>
 
 <link rel="stylesheet" href="~/css/thumbnailReviewPage.css">
-<link rel="stylesheet" href="~/css/commentReviewPage.css">
+<link rel="stylesheet" href="~/css/bodyReviewPage.css">
+<link rel="stylesheet" href="~/css/tastetagsReviewPage.css">
+
 
 <script src="~/js/checkInButton.js"></script>
 <script src="~/js/flavorCheckBoxes.js"></script>
