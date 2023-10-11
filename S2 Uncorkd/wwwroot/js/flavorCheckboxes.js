@@ -1,6 +1,26 @@
-﻿function expandFlavors() {
-    console.log("haha dit doet nog niks")
+﻿var expanded = false;
+
+function expandFlavors() {
+    var tags = document.querySelectorAll(".cat");
+
+    if (!expanded) {
+        for (var i = 0; i < 5; i++) {
+            tags[i].style.display = "block";
+        }
+        for (var i = 5; i < tags.length; i++) {
+            tags[i].style.display = "none";
+        }
+        expanded = true;
+    } else {
+        for (var i = 5; i < tags.length; i++) {
+            tags[i].style.display = "block";
+        }
+        expanded = false;
+    }
 }
+
+expandFlavors();
+
 
 function handleCheckboxChange() {
     const checkboxes = document.querySelectorAll('input[name="category"]');
