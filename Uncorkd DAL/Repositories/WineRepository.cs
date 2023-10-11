@@ -56,7 +56,7 @@ namespace Uncorkd_DAL.DALs
             using (MySqlConnection con = Connector.MakeConnection())
             {
                 con.Open();
-                MySqlCommand cmd = new MySqlCommand("SELECT * FROM `wine`", con);
+                MySqlCommand cmd = new MySqlCommand("SELECT wine.*, COUNT(review.id) AS `check_ins` FROM wine JOIN review ON wine.id = review.wine_id GROUP BY wine.id;", con);
                 MySqlDataReader reader = cmd.ExecuteReader();
 
                 while (reader.Read())
@@ -76,7 +76,7 @@ namespace Uncorkd_DAL.DALs
             using (MySqlConnection con = Connector.MakeConnection())
             {
                 con.Open();
-                MySqlCommand cmd = new MySqlCommand("SELECT * FROM `wine` WHERE `id` = @ID", con);
+                MySqlCommand cmd = new MySqlCommand("SELECT wine.*, COUNT(review.id) AS `check_ins` FROM wine JOIN review ON wine.id = review.wine_id WHERE wine.`id` = @ID GROUP BY wine.id", con);
                 cmd.Parameters.AddWithValue("@ID", ID);
                 MySqlDataReader reader = cmd.ExecuteReader();
 
@@ -96,7 +96,7 @@ namespace Uncorkd_DAL.DALs
             using (MySqlConnection con = Connector.MakeConnection())
             {
                 con.Open();
-                MySqlCommand cmd = new MySqlCommand("SELECT * FROM `wine` ORDER BY `check_ins` DESC LIMIT 5", con);
+                MySqlCommand cmd = new MySqlCommand("SELECT `wine`.*, COUNT(`review`.id) AS `check_ins` FROM `wine` JOIN `review` ON `wine`.id = `review`.wine_id GROUP BY `wine`.id ORDER BY `check_ins` DESC LIMIT 5", con);
                 MySqlDataReader reader = cmd.ExecuteReader();
 
                 while (reader.Read())
@@ -115,7 +115,7 @@ namespace Uncorkd_DAL.DALs
             using (MySqlConnection con = Connector.MakeConnection())
             {
                 con.Open();
-                MySqlCommand cmd = new MySqlCommand("SELECT * FROM `wine` ORDER BY RAND() LIMIT 5", con);
+                MySqlCommand cmd = new MySqlCommand("SELECT wine.*, COUNT(review.id) AS `check_ins` FROM wine JOIN review ON wine.id = review.wine_id GROUP BY wine.id ORDER BY RAND() LIMIT 5;", con);
                 MySqlDataReader reader = cmd.ExecuteReader();
 
                 while (reader.Read())

@@ -37,8 +37,8 @@
     </div>
 
     <div id="flexboxes" display="block">
-        <label for="best-wines-container">Best wines (technically most rated wines but my naming is all fucked)</label>
-        <div id="best-wines-container" class="best-wines-container">
+        <label for="popular-wines-container">Popular wines</label>
+        <div id="popular-wines-container" class="popular-wines-container">
             @for(int i = 0; i < Model.BestWines.Count; i++)
             {
                 <div onclick="location.href='Wine?id=@Model.BestWines[i].Id'"
@@ -54,8 +54,8 @@
                 </div>
             }
         </div>
-        <label for="popular-wines-container">I'm feeling lucky (without proper labelling hihi)</label>
-        <div id="popular-wines-container" class="popular-wines-container">
+        <label for="random-wines-container">I'm feeling lucky</label>
+        <div id="random-wines-container" class="random-wines-container">
             @for (int i = 0; i < Model.RandomWines.Count; i++)
             {
                 <div onclick="location.href='Wine?id=@Model.RandomWines[i].Id'"

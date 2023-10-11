@@ -1,10 +1,10 @@
-﻿.best-wines-container,
+﻿.random-wines-container,
 .popular-wines-container {
     display: flex;
     flex-wrap: wrap;
 }
 
-    .best-wines-container > div,
+    .random-wines-container > div,
     .popular-wines-container > div {
         background-color: #171717;
         background-size: 101% 100%;
@@ -21,7 +21,7 @@
         position: relative;
     }
 
-    .best-wines-container h1,
+    .random-wines-container h1,
     .popular-wines-container h1 {
         -webkit-text-stroke: black 1.5px;
         white-space: nowrap;
@@ -37,13 +37,13 @@
         margin-top: auto;
     }
 
-        .best-wines-container h1:hover, 
-        .popular-wines-container h1:hover{
+        .random-wines-container h1:hover,
+        .popular-wines-container h1:hover {
             overflow: visible;
             white-space: normal;
         }
 
-    .best-wines-container h2,
+    .random-wines-container h2,
     .popular-wines-container h2 {
         font-size: 18px;
         padding-top: .5rem;
@@ -53,7 +53,7 @@
         color: white;
     }
 
-    .best-wines-container h3,
+    .random-wines-container h3,
     .popular-wines-container h3 {
         font-size: 18px;
         padding-top: .5rem;
