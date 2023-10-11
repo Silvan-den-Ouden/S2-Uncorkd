@@ -21,6 +21,24 @@ namespace Uncorkd_DAL.DALs
             return TasteTagDTO;
         }
 
+        public List<TasteTagDTO> GetAll() {
+            List<TasteTagDTO> tasteTagDTOs = new List<TasteTagDTO>();
+
+            using (MySqlConnection con = Connector.MakeConnection())
+            {
+                con.Open();
+                MySqlCommand cmd = new MySqlCommand("SELECT * FROM `tastetag`", con);
+                MySqlDataReader reader = cmd.ExecuteReader();
+
+                while (reader.Read())
+                {
+                    TasteTagDTO tasteTagDTO = CreateDTO(reader);
+                    tasteTagDTOs.Add(tasteTagDTO);
+                }
+            }
+            return tasteTagDTOs;
+        }
+
         public List<TasteTagDTO> GetFromWineID(int wineID)
         {
             List<TasteTagDTO> tasteTagDTOs = new List<TasteTagDTO>();

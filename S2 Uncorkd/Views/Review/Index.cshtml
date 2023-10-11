@@ -30,35 +30,19 @@
 <div class="tastetag-container">
     <h3 onclick="expandFlavors()">Flavor Profile ></h3>
 
-    <div id="tasteTags">
-        <div class="cat">
-            <label>
-                <input type="checkbox" name="category" value="1"><span>Aromatic</span>
-            </label>
-        </div>
-        <div class="cat">
-            <label>
-                <input type="checkbox" name="category" value="2"><span>Balanced</span>
-            </label>
-        </div>
-        <div class="cat">
-            <label>
-                <input type="checkbox" name="category" value="3"><span>Bitter</span>
-            </label>
-        </div>
-        <div class="cat">
-            <label>
-                <input type="checkbox" name="category" value="4"><span>Bold</span>
-            </label>
-        </div>
-        <div class="cat">
-            <label>
-                <input type="checkbox" name="category" value="5"><span>Buttery</span>
-            </label>
-        </div>
+    <div class="tastetags" id="tasteTags">
+        @foreach (var tasteTag in Model.TasteTags)
+        {
+            <div class="cat" style="display: none;">
+                <label>
+                    <input type="checkbox" name="category" value="@tasteTag.Id"><span>@tasteTag.TagName</span>
+                </label>
+            </div>
+        }
     </div>
+
     <div hidden="hidden">
-    <p>Selected tags: <span id="selectedTags"></span></p>
+        <p>Selected tags: <span id="selectedTags"></span></p>
     </div>
 </div>
 

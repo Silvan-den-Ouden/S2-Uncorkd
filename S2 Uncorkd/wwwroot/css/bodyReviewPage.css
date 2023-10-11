@@ -60,7 +60,7 @@ input[type="range"] {
 
 .check-in-button {
     position: absolute;
-    bottom: 10%;
+    top: 75vh;
     right: 10%;
 }
 

@@ -37,11 +37,15 @@ namespace Uncorkd_BLL.Collections
             return reviewModels;
         }
 
-        public void Create(int user_id, int wine_id, int rating, string tasteTags)
+        public void Create(int user_id, int wine_id, int rating, string tasteTags, string comment)
         {
             string[] tasteTagsArray = tasteTags.Split(',');
+            if (tasteTagsArray[0] == "0")
+            {
+                tasteTagsArray = Array.Empty<string>();
+            }
 
-            _reviewRepository.Create(user_id, wine_id, rating, tasteTagsArray);
+            _reviewRepository.Create(user_id, wine_id, rating, tasteTagsArray, comment);
         }
 
     }

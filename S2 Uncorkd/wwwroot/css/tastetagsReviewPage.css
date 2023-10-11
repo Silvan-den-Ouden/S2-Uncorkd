@@ -47,3 +47,16 @@
 #tasteTags input:checked + span {
     background-color: #840032;
 }
+
+.tastetags{
+    color: red;
+    width: 50%;
+    margin-bottom: 50px;
+}
+
+#tasteTags{
+    width: 50%;
+    height: 1000px;
+    margin-bottom: 50px;
+    color:red;
+}

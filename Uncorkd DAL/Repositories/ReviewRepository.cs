@@ -24,16 +24,17 @@ namespace Uncorkd_DAL.Repositories
             return reviewDTO;
         }
 
-        public void Create(int user_id, int wine_id, int rating, string[] tasteTags)
+        public void Create(int user_id, int wine_id, int rating, string[] tasteTags, string comment)
         {
             using (MySqlConnection con = Connector.MakeConnection())
             {
                 con.Open();
 
-                MySqlCommand insertReviewCmd = new MySqlCommand("INSERT INTO `review` (user_id, wine_id, rating) VALUES (@userId, @wineId, @rating);", con);
+                MySqlCommand insertReviewCmd = new MySqlCommand("INSERT INTO `review` (user_id, wine_id, rating, comment) VALUES (@userId, @wineId, @rating, @comment);", con);
                 insertReviewCmd.Parameters.AddWithValue("@userId", user_id);
                 insertReviewCmd.Parameters.AddWithValue("@wineId", wine_id);
                 insertReviewCmd.Parameters.AddWithValue("@rating", rating);
+                insertReviewCmd.Parameters.AddWithValue("@comment", comment);
                 insertReviewCmd.ExecuteNonQuery();
 
                 long reviewId = insertReviewCmd.LastInsertedId;
