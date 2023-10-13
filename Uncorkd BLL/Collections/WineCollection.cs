@@ -3,19 +3,18 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using Uncorkd_DAL.DALs;
+using Uncorkd_DAL.Repositories;
 using Uncorkd_BLL.Models;
 using Uncorkd_DTO.DTOs;
-using static System.Net.WebRequestMethods;
 
 namespace Uncorkd_BLL.Collections
 {
     public class WineCollection
     {
-        private readonly WineRepository _wineDAL;
+        private readonly WineRepository _wineRepository;
 
         public WineCollection() {
-            _wineDAL = new WineRepository();
+            _wineRepository = new WineRepository();
         }
 
         public List<WineModel> TransformDTOs(List<WineDTO> wineDTOs)
@@ -57,13 +56,13 @@ namespace Uncorkd_BLL.Collections
             
         public List<WineModel> GetAll()
         {
-            List<WineModel> wineModels = TransformDTOs(_wineDAL.GetAll());
+            List<WineModel> wineModels = TransformDTOs(_wineRepository.GetAll());
             return wineModels;
         }
 
         public WineModel GetWithID(int id)
         {
-            List<WineDTO> wineDTOs = new List<WineDTO>() { _wineDAL.GetWithID(id) };
+            List<WineDTO> wineDTOs = new List<WineDTO>() { _wineRepository.GetWithID(id) };
             List<WineModel> wineModels = TransformDTOs(wineDTOs);
 
             WineModel wineModel = wineModels[0];
@@ -73,14 +72,14 @@ namespace Uncorkd_BLL.Collections
 
         public List<WineModel> GetPopular()
         {
-            List<WineModel> wineModels = TransformDTOs(_wineDAL.GetPopular());
+            List<WineModel> wineModels = TransformDTOs(_wineRepository.GetPopular());
             
             return wineModels;
         }
 
         public List<WineModel> GetRandom()
         {
-            List<WineModel> wineModels = TransformDTOs (_wineDAL.GetRandom());
+            List<WineModel> wineModels = TransformDTOs (_wineRepository.GetRandom());
 
             return wineModels;
         }

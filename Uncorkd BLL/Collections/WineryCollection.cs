@@ -4,17 +4,17 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Uncorkd_BLL.Models;
-using Uncorkd_DAL.DALs;
+using Uncorkd_DAL.Repositories;
 using Uncorkd_DTO.DTOs;
 
 namespace Uncorkd_BLL.Collections
 {
     public class WineryCollection
     {
-        private readonly WineryRepository _wineryDAL;
+        private readonly WineryRepository _wineryRepository;
 
         public WineryCollection() {
-            _wineryDAL = new WineryRepository();
+            _wineryRepository = new WineryRepository();
         }
 
         public List<WineryModel> TransformDTOs(List<WineryDTO> wineryDTOs)
@@ -36,13 +36,13 @@ namespace Uncorkd_BLL.Collections
 
         public List<WineryModel> GetAll()
         {
-            List<WineryModel> wineryModels = TransformDTOs(_wineryDAL.GetAll());
+            List<WineryModel> wineryModels = TransformDTOs(_wineryRepository.GetAll());
 
             return wineryModels;
         }
 
         public WineryModel GetWithID(int id) {
-            List<WineryDTO> wineryDTOs = new List<WineryDTO>() { _wineryDAL.GetWithID(id) };
+            List<WineryDTO> wineryDTOs = new List<WineryDTO>() { _wineryRepository.GetWithID(id) };
             List<WineryModel> wineryModels = TransformDTOs(wineryDTOs);
 
             WineryModel wineryModel = wineryModels[0];

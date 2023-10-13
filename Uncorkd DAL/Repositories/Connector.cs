@@ -6,7 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 using MySql.Data.MySqlClient;
 
-namespace Uncorkd_DAL.DALs
+namespace Uncorkd_DAL.Repositories
 {
     internal class Connector
     {

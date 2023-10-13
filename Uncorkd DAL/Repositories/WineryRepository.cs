@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 using MySql.Data.MySqlClient;
 using Uncorkd_DTO.DTOs;
 
-namespace Uncorkd_DAL.DALs
+namespace Uncorkd_DAL.Repositories
 {
     public class WineryRepository
     {

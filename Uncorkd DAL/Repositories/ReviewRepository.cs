@@ -4,7 +4,6 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using MySql.Data.MySqlClient;
-using Uncorkd_DAL.DALs;
 using Uncorkd_DTO.DTOs;
 
 namespace Uncorkd_DAL.Repositories
@@ -24,6 +23,26 @@ namespace Uncorkd_DAL.Repositories
                 DateTime = reader.GetDateTime("datetime"),
             };
 
+            return reviewDTO;
+        }
+
+        public ReviewDTO GetWithID(int id)
+        {
+            ReviewDTO reviewDTO = new ReviewDTO();
+
+            using(MySqlConnection con = Connector.MakeConnection())
+            {
+                con.Open();
+                MySqlCommand cmd = new MySqlCommand("SELECT * FROM `review` WHERE id = @ID", con);
+                cmd.Parameters.AddWithValue("@ID", id);
+
+                MySqlDataReader reader = cmd.ExecuteReader();
+
+                while (reader.Read())
+                {
+                    reviewDTO = CreateDTO(reader);
+                }
+            }
             return reviewDTO;
         }
 

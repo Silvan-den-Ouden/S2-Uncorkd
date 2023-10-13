@@ -3,21 +3,20 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using Uncorkd_DAL.DALs;
+using Uncorkd_DAL.Repositories;
 using Uncorkd_BLL.Models;
 using Uncorkd_DTO.DTOs;
-using System.Runtime.Remoting.Messaging;
 
 namespace Uncorkd_BLL.Collections
 {
     public class TasteTagCollection
     {
-        private readonly TasteTagRepository _tasteTagDAL;
+        private readonly TasteTagRepository _tasteTagRepository;
         private readonly WineCollection _wineCollection;
 
         public TasteTagCollection()
         {
-            _tasteTagDAL = new TasteTagRepository();
+            _tasteTagRepository = new TasteTagRepository();
             _wineCollection = new WineCollection();
         }
 
@@ -40,14 +39,14 @@ namespace Uncorkd_BLL.Collections
 
         public List<TasteTagModel> GetAll()
         {
-            List<TasteTagModel> tasteTagModels = TransformDTOs(_tasteTagDAL.GetAll());
+            List<TasteTagModel> tasteTagModels = TransformDTOs(_tasteTagRepository.GetAll());
 
             return tasteTagModels;
         }
 
         public List<TasteTagModel> GetFromWineID(int wineID)
         {
-            List<TasteTagModel> tasteTagModels = TransformDTOs(_tasteTagDAL.GetFromWineID(wineID));
+            List<TasteTagModel> tasteTagModels = TransformDTOs(_tasteTagRepository.GetFromWineID(wineID));
 
             return tasteTagModels;
         }
