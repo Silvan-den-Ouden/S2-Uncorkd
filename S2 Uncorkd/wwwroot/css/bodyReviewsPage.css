@@ -1,0 +1,17 @@
+﻿.flex-grid {
+    display: flex;
+    flex-wrap: wrap;
+    height: 500px;
+}
+
+.grid-item {
+    flex: 1 1 calc(50% - 10px);
+    background: #F90;
+    border-top: solid 1px #000;
+    margin: 0 10px 10px 0;
+}
+
+    .grid-item:nth-child(odd) {
+        background: #F00;
+        flex: 0 0 calc(50%-20px);
+    }

@@ -20,7 +20,7 @@ namespace S2_Uncorkd.Controllers
         public IActionResult Reviews(int id)
         {
             ReviewModel review = _reviewCollection.GetWithID(id);
-            WineModel wine = _wineCollection.GetWithID(review.Wine_Id);
+            WineModel wine = _wineCollection.GetWithID(review.Wine_id);
             WineryModel winery = _wineryCollection.GetWithID(wine.Winery_id);
             List<TasteTagModel> tags = _tasteTagCollection.GetWithReviewID(review.Id); 
 

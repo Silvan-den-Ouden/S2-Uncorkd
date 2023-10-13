@@ -27,11 +27,11 @@ namespace Uncorkd_BLL.Collections
                 ReviewModel reviewModel = new ReviewModel()
                 {
                     Id = reviewDTO.Id,
-                    User_Id = reviewDTO.User_Id,
-                    Wine_Id = reviewDTO.Wine_Id,
+                    User_id = reviewDTO.User_id,
+                    Wine_id = reviewDTO.Wine_id,
                     Rating = reviewDTO.Rating,
                     Comment = reviewDTO.Comment,
-                    Image_url = reviewDTO.Image_url,
+                    Image_URL = reviewDTO.Image_URL,
                     DateTime = reviewDTO.DateTime,
                 };
                 reviewModels.Add(reviewModel);
