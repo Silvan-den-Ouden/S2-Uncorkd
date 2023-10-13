@@ -59,5 +59,25 @@ namespace Uncorkd_DAL.Repositories
             return tasteTagDTOs;
         }
 
+        public List<TasteTagDTO> GetFromReviewID(int reviewID)
+        {
+            List<TasteTagDTO> tasteTagDTOs = new List<TasteTagDTO>();
+
+            using (MySqlConnection con = Connector.MakeConnection())
+            {
+                con.Open();
+                MySqlCommand cmd = new MySqlCommand("SELECT tastetag.id, tastetag.tag_name\r\nFROM `tastetag`\r\nJOIN `review_to_tastetag` rtt ON tastetag.id = rtt.tag_id\r\nJOIN `review` ON rtt.review_id = review.id\r\nWHERE review.id = @reviewID;", con);
+                cmd.Parameters.AddWithValue("@reviewID", reviewID);
+                MySqlDataReader reader = cmd.ExecuteReader();
+
+                while (reader.Read())
+                {
+                    TasteTagDTO tasteTagDTO = CreateDTO(reader);
+                    tasteTagDTOs.Add(tasteTagDTO);
+                }
+            }
+            return tasteTagDTOs;
+        }
+
     }
 }

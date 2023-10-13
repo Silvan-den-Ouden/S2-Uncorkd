@@ -5,3 +5,10 @@
 
 <h1>Reviews</h1>
 
+<h2>@Model.Wine.Name</h2>
+<h2>@Model.Winery.Name</h2>
+@foreach(var tag in Model.Tags)
+{
+    <h3>@tag.TagName</h3>
+}
+

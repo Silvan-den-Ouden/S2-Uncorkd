@@ -40,7 +40,7 @@ namespace Uncorkd_BLL.Collections
             return reviewModels;
         }
 
-        public ReviewModel GetWithId(int id)
+        public ReviewModel GetWithID(int id)
         {
             List<ReviewDTO> reviewDTOs = new List<ReviewDTO>() { _reviewRepository.GetWithID(id) };
             List<ReviewModel> reviewModels = TransformDTOs(reviewDTOs);
@@ -48,8 +48,6 @@ namespace Uncorkd_BLL.Collections
             ReviewModel reviewModel = reviewModels[0];
 
             return reviewModel;
-
-
         }
 
         public void Create(int user_id, int wine_id, int rating, string tasteTags, string comment)

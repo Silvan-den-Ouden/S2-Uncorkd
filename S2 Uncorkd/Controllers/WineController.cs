@@ -17,7 +17,7 @@ namespace S2_Uncorkd.Controllers
         {
             WineModel wineModel = _wineCollection.GetWithID(ID);
             WineryModel wineryModel = _wineryCollection.GetWithID(wineModel.Winery_id);
-            List<TasteTagModel> tasteTagModels = _tasteTagCollection.GetFromWineID(wineModel.Id);
+            List<TasteTagModel> tasteTagModels = _tasteTagCollection.GetWithWineID(wineModel.Id);
 
             WineViewModel wineViewModel = new(wineModel, wineryModel, tasteTagModels);
 
