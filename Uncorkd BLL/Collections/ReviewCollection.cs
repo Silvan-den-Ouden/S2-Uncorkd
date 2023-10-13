@@ -30,6 +30,9 @@ namespace Uncorkd_BLL.Collections
                     User_Id = reviewDTO.User_Id,
                     Wine_Id = reviewDTO.Wine_Id,
                     Rating = reviewDTO.Rating,
+                    Comment = reviewDTO.Comment,
+                    Image_url = reviewDTO.Image_url,
+                    DateTime = reviewDTO.DateTime,
                 };
                 reviewModels.Add(reviewModel);
             }

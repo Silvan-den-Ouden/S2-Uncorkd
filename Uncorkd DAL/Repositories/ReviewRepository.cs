@@ -19,6 +19,9 @@ namespace Uncorkd_DAL.Repositories
                 User_Id = reader.GetInt32("user_id"),
                 Wine_Id = reader.GetInt32("wine_id"),
                 Rating = reader.GetInt32("rating"),
+                Comment = reader.GetString("comment"),
+                Image_url = reader.GetString("image_url"),
+                DateTime = reader.GetDateTime("datetime"),
             };
 
             return reviewDTO;
