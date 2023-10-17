@@ -65,14 +65,20 @@ img {
         text-overflow: ellipsis;
     }
 
-/*.dot {
-    height: 25px;
-    width: 25px;
-    background-color: #bbb;
-    border-radius: 50%;
-    display: inline-block;
+
+.rating-container {
+    margin: 0 0 0 10px;
+    white-space: nowrap; 
 }
-*/
+
+    .rating-container .dot,
+    .rating-container p {
+        display: inline-block;
+        margin: 0 0 10px 0;
+        font-size: 20px;
+        line-height: 0;
+        vertical-align: middle;
+    }
 
 .dot {
     background-color: gray;
@@ -86,6 +92,14 @@ img {
     background-color: green;
 }
 
+.quarter-filled {
+    background: linear-gradient(to right, green 33%, gray 0%);
+}
+
 .half-filled {
-    background: linear-gradient(to right, green 50%, gray 50%); 
+    background: linear-gradient(to right, green 50%, gray 0%); 
+}
+
+.three-quarter-filled {
+    background: linear-gradient(to right, green 66%, gray 0%);
 }
