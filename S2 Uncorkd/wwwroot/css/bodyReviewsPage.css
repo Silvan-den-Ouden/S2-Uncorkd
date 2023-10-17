@@ -7,29 +7,34 @@
 .review {
     flex: 1 1 calc(50% - 20px);
     max-width: calc(50% - 20px);
-    background: #F90;
-    border-top: solid 1px #000;
-    margin: 0 20px 10px 0;
+    height: 310px;
+    background: #FFEBF2;
+    border: solid 1px #000;
+    margin: 0 20px 20px 0;
+    overflow: hidden;
 }
 
     .review:nth-child(odd) {
-        background: #F00;
         flex: 0 0 calc(50%-20px);
     }
 
 .thumbnail-container {
     display: flex;
+    white-space: nowrap;
 }
 
     .thumbnail-container h2 {
+        padding-bottom: 70px;
+        max-height: 60px;
         font-size: 50px;
         font-weight: bold;
         margin-top: 5px;
+        text-overflow: ellipsis;
     }
 
     .thumbnail-container h3 {
         line-height: 0;
-        margin-top: 10px;
+        margin-top: 5px;
     }
 
 .image-container {
@@ -58,17 +63,29 @@ img {
 
     .comment-container h3 {
         font-size: 24px;
+        height: 120px;
         display: -webkit-box;
-        -webkit-line-clamp: 3;
+        -webkit-line-clamp: 4;
         -webkit-box-orient: vertical;
         overflow: hidden;
         text-overflow: ellipsis;
     }
 
 
+.tags-container {
+    height: 22px;
+    max-height: 22px;
+    margin: 0 0 10px 10px;
+
+}
+.tags-container h4 {
+    display: inline-block;
+    vertical-align: middle;
+    font-size: 18px;
+}
+
 .rating-container {
     margin: 0 0 0 10px;
-    white-space: nowrap; 
 }
 
     .rating-container .dot,
