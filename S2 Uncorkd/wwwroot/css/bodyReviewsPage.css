@@ -2,13 +2,14 @@
     display: flex;
     flex-wrap: wrap;
     height: 500px;
+    color: #606060;
 }
 
 .review {
     flex: 1 1 calc(50% - 20px);
     max-width: calc(50% - 20px);
     height: 310px;
-    background: #FFEBF2;
+    background: var(--main-washed-pink);
     border: solid 1px #000;
     margin: 0 20px 20px 0;
     overflow: hidden;
@@ -29,11 +30,12 @@
         font-size: 50px;
         font-weight: bold;
         margin-top: 5px;
-        text-overflow: ellipsis;
+        color: #A3003F;
     }
 
     .thumbnail-container h3 {
         line-height: 0;
+        font-size: 32px;
         margin-top: 5px;
     }
 
@@ -56,33 +58,36 @@ img {
 }
 
 .comment-container {
-    margin: 0 0 0 10px;
+    margin: 15px 0 0 10px;
     max-height: 120px;
     width: calc(100% - 10px);
 }
 
     .comment-container h3 {
-        font-size: 24px;
-        height: 120px;
+        font-size: 20px;
+        height: 100px;
         display: -webkit-box;
         -webkit-line-clamp: 4;
         -webkit-box-orient: vertical;
         overflow: hidden;
         text-overflow: ellipsis;
+        font-weight: 400;
     }
 
 
 .tags-container {
     height: 22px;
     max-height: 22px;
-    margin: 0 0 10px 10px;
+    margin: 0 0 15px 10px;
+}
 
-}
-.tags-container h4 {
-    display: inline-block;
-    vertical-align: middle;
-    font-size: 18px;
-}
+    .tags-container h4 {
+        display: inline-block;
+        vertical-align: middle;
+        font-size: 18px;
+        font-weight: 700;
+        margin: 0 20px 0 0;
+    }
 
 .rating-container {
     margin: 0 0 0 10px;
@@ -93,30 +98,35 @@ img {
         display: inline-block;
         margin: 0 0 10px 0;
         font-size: 20px;
+        font-weight: bold;  
         line-height: 0;
         vertical-align: middle;
     }
 
+    .rating-container p{
+        margin-left: 10px;
+    }
+
 .dot {
-    background-color: gray;
+    background-color: var(--main-light-gray);
     width: 25px;
     height: 25px;
     display: inline-block;
-    border-radius: 50%; 
+    border-radius: 50%;
 }
 
 .star-filled {
-    background-color: green;
+    background-color: var(--main-light-green);
 }
 
 .quarter-filled {
-    background: linear-gradient(to right, green 33%, gray 0%);
+    background: linear-gradient(to right, var(--main-light-green) 33%, var(--main-light-gray) 0%);
 }
 
 .half-filled {
-    background: linear-gradient(to right, green 50%, gray 0%); 
+    background: linear-gradient(to right, var(--main-light-green) 50%, var(--main-light-gray) 0%);
 }
 
 .three-quarter-filled {
-    background: linear-gradient(to right, green 66%, gray 0%);
+    background: linear-gradient(to right, var(--main-light-green) 66%, var(--main-light-gray) 0%);
 }

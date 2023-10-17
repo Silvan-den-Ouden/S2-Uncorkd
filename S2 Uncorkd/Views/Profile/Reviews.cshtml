@@ -3,7 +3,7 @@
     ViewData["Title"] = "Reviews";
 }
 
-<h1>Reviews</h1>
+<h1><b>Username</b>'s recent check-ins</h1>
 
 <div class="flex-grid">
     @for(int i = 0; i++ < 4;){
@@ -21,9 +21,9 @@
                 <h3>@Model.Review.Comment</h3>
             </div>
             <div class="tags-container">
-                @foreach (var tag in Model.Tags)
+                @for (int j = 0; j < Math.Min(Model.Tags.Count, 5); j++)
                 {
-                    <h4>@tag.TagName</h4>
+                    <h4>@Model.Tags[j].TagName</h4>
                 }
             </div>
             <div class="rating-container">
@@ -38,4 +38,5 @@
 </div>
 
 <link rel="stylesheet" href="~/css/bodyReviewsPage.css">
+<link rel="stylesheet" href="~/css/colorpalette.css">
 
