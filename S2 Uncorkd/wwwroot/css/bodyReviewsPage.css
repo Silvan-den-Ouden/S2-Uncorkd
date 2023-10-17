@@ -3,6 +3,7 @@
     flex-wrap: wrap;
     height: 500px;
     color: #606060;
+    margin-bottom: 9em;
 }
 
 .review {
@@ -13,6 +14,7 @@
     border: solid 1px #000;
     margin: 0 20px 20px 0;
     overflow: hidden;
+    position: relative;
 }
 
     .review:nth-child(odd) {
@@ -93,20 +95,6 @@ img {
     margin: 0 0 0 10px;
 }
 
-    .rating-container .dot,
-    .rating-container p {
-        display: inline-block;
-        margin: 0 0 10px 0;
-        font-size: 20px;
-        font-weight: bold;  
-        line-height: 0;
-        vertical-align: middle;
-    }
-
-    .rating-container p{
-        margin-left: 10px;
-    }
-
 .dot {
     background-color: var(--main-light-gray);
     width: 25px;
@@ -130,3 +118,26 @@ img {
 .three-quarter-filled {
     background: linear-gradient(to right, var(--main-light-green) 70%, var(--main-light-gray) 0%);
 }
+
+    .rating-container .dot,
+    .rating-container p {
+        display: inline-block;
+        margin: 0 0 10px 0;
+        font-size: 20px;
+        font-weight: bold;  
+        line-height: 0;
+        vertical-align: middle;
+    }
+
+    .rating-container p{
+        margin-left: 10px;
+    }
+
+.review-date {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    margin: 0 10px 0 0;
+}
+
+

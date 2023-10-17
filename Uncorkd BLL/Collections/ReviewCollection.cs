@@ -32,7 +32,7 @@ namespace Uncorkd_BLL.Collections
                     Stars = (double)reviewDTO.Rating / 4,
                     Comment = reviewDTO.Comment,
                     Image_URL = reviewDTO.Image_URL,
-                    DateTime = reviewDTO.DateTime,
+                    Review_Date = reviewDTO.Review_Date,
                 };
                 reviewModels.Add(reviewModel);
             }

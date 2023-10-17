@@ -14,7 +14,7 @@ namespace Uncorkd_DTO.DTOs
         public int Rating { get; set; }
         public string Comment { get; set; }
         public string Image_URL { get; set; }
-        public DateTime DateTime { get; set; }
+        public DateTime Review_Date { get; set; }
 
         public ReviewDTO() { }
     }

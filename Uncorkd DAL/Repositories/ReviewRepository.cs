@@ -20,7 +20,7 @@ namespace Uncorkd_DAL.Repositories
                 Rating = reader.GetInt32("rating"),
                 Comment = reader.GetString("comment"),
                 Image_URL = reader.GetString("image_url"),
-                DateTime = reader.GetDateTime("datetime"),
+                Review_Date = reader.GetDateTime("review_date"),
             };
 
             return reviewDTO;
@@ -53,7 +53,7 @@ namespace Uncorkd_DAL.Repositories
             using(MySqlConnection con = Connector.MakeConnection())
             {
                 con.Open();
-                MySqlCommand cmd = new MySqlCommand("SELECT * FROM `review` WHERE user_id = @user_id LIMIT 4", con);
+                MySqlCommand cmd = new MySqlCommand("SELECT * FROM `review` WHERE user_id = @user_id ORDER BY `review_date` LIMIT 4", con);
                 cmd.Parameters.AddWithValue("@user_id", user_id);
                 MySqlDataReader reader = cmd.ExecuteReader();
 
