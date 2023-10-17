@@ -29,7 +29,7 @@ namespace Uncorkd_BLL.Collections
                     Id = reviewDTO.Id,
                     User_id = reviewDTO.User_id,
                     Wine_id = reviewDTO.Wine_id,
-                    Rating = reviewDTO.Rating,
+                    Stars = (double)reviewDTO.Rating / 4,
                     Comment = reviewDTO.Comment,
                     Image_URL = reviewDTO.Image_URL,
                     DateTime = reviewDTO.DateTime,

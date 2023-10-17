@@ -1,20 +1,51 @@
 ﻿
 @{
-    ViewData["Title"] = "Reviews"; 
+    ViewData["Title"] = "Reviews";
 }
 
 <h1>Reviews</h1>
 
 <div class="flex-grid">
     @for(int i = 0; i++ < 4;){
-        <div class="grid-item">
-            <h2>@Model.Wine.Name</h2>
-            <h2>@Model.Winery.Name</h2>
-            @foreach (var tag in Model.Tags)
-            {
-                <h3>@tag.TagName</h3>
-            }
+        <div class="review">
+            <div class="thumbnail-container">
+                <div class="image-container">
+                    <img src="@Model.Wine.Image_URL">
+                </div>
+                <div class="wine-info-container">
+                    <h2>@Model.Wine.Name</h2>
+                    <h3>@Model.Winery.Name</h3>
+                </div>
+            </div>
+            <div class="comment-container">
+                <h3>@Model.Review.Comment</h3>
+            </div>
+            <div>
+                <div>
+                    <div>
+                        @for (int j = 1; j <= Math.Floor(Model.Review.Stars); j++)
+                        {
+                            <span class="dot star-filled" id="dot@j"></span>
+                        }
+                        @if (@Model.Review.Stars % 1 == 0.5)
+                        {
+                            <span class="dot star-filled half-filled" id="dot@Math.Ceiling(@Model.Review.Stars)"></span>
+                        }
+                        @for (int j = (int)Math.Ceiling(@Model.Review.Stars) + 1; j <= 5; j++)
+                        {
+                            <span class="dot" id="dot@j"></span>
+                        }
+                    </div>
+                </div>
 
+                @Model.Review.Stars
+            </div>
+            @*<div class="tags-conatiner">
+                @foreach (var tag in Model.Tags)
+                {
+                    <h4>@tag.TagName</h4>
+                }
+            </div>*@
         </div>
     }
 </div>
