@@ -50,6 +50,13 @@ namespace Uncorkd_BLL.Collections
             return reviewModel;
         }
 
+        public List<ReviewModel> GetWithUserID(int user_id)
+        {
+            List<ReviewModel> reviewModels = TransformDTOs(_reviewRepository.GetWithUserID(user_id));
+
+            return reviewModels;
+        }
+
         public void Create(int user_id, int wine_id, int rating, string tasteTags, string comment)
         {
             string[] tasteTagsArray = tasteTags.Split(',');

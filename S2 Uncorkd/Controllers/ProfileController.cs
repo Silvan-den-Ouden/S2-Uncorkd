@@ -17,16 +17,37 @@ namespace S2_Uncorkd.Controllers
             return View();
         }
 
-        public IActionResult Reviews(int id)
+        public IActionResult Reviews(int user_id)
         {
-            ReviewModel review = _reviewCollection.GetWithID(id);
-            WineModel wine = _wineCollection.GetWithID(review.Wine_id);
-            WineryModel winery = _wineryCollection.GetWithID(wine.Winery_id);
-            List<TasteTagModel> tags = _tasteTagCollection.GetWithReviewID(review.Id); 
+            List<ReviewModel> reviews = _reviewCollection.GetWithUserID(user_id);
+            List<WineModel> wines = new();
+            List<WineryModel> wineries = new();
+            List<List<TasteTagModel>> tasteTags = new();
+            foreach (ReviewModel review in reviews)
+            {
+                WineModel wine = _wineCollection.GetWithID(review.Wine_id);
+                WineryModel winery = _wineryCollection.GetWithID(wine.Winery_id);
+                List<TasteTagModel> tags = _tasteTagCollection.GetWithReviewID(review.Id);
+                wines.Add(wine);
+                wineries.Add(winery);
+                tasteTags.Add(tags);
+            }
 
-            ReviewsViewModel reviewsViewModel = new(review, wine, winery, tags);
+            ReviewsViewModel reviewsViewModel = new(reviews, wines, wineries, tasteTags);
 
             return View(reviewsViewModel);
         }
+
+        //public IActionResult Reviews(int review_id)
+        //{
+        //    ReviewModel review = _reviewCollection.GetWithID(review_id);
+        //    WineModel wine = _wineCollection.GetWithID(review.Wine_id);
+        //    WineryModel winery = _wineryCollection.GetWithID(wine.Winery_id);
+        //    List<TasteTagModel> tags = _tasteTagCollection.GetWithReviewID(review.Id); 
+
+        //    ReviewsViewModel reviewsViewModel = new(review, wine, winery, tags);
+
+        //    return View(reviewsViewModel);
+        //}
     }
 }

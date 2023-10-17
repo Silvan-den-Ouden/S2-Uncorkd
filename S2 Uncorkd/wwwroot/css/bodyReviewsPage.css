@@ -120,7 +120,7 @@ img {
 }
 
 .quarter-filled {
-    background: linear-gradient(to right, var(--main-light-green) 33%, var(--main-light-gray) 0%);
+    background: linear-gradient(to right, var(--main-light-green) 30%, var(--main-light-gray) 0%);
 }
 
 .half-filled {
@@ -128,5 +128,5 @@ img {
 }
 
 .three-quarter-filled {
-    background: linear-gradient(to right, var(--main-light-green) 66%, var(--main-light-gray) 0%);
+    background: linear-gradient(to right, var(--main-light-green) 70%, var(--main-light-gray) 0%);
 }

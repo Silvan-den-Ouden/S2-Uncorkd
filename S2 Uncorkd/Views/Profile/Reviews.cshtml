@@ -1,11 +1,52 @@
 ﻿
 @{
     ViewData["Title"] = "Reviews";
+    int i = 0;
 }
 
 <h1><b>Username</b>'s recent check-ins</h1>
 
 <div class="flex-grid">
+    @foreach(var reveiw in Model.Reviews)
+    {
+        <div class="review">
+            <div class="thumbnail-container">
+                <div class="image-container">
+                    <img src="@Model.Wines[i].Image_URL">
+                </div>
+                <div class="wine-info-container">
+                    <h2>@Model.Wines[i].Name</h2>
+                    <h3>@Model.Wineries[i].Name</h3>
+                </div>
+            </div>
+            <div class="comment-container">
+                <h3>@Model.Reviews[i].Comment</h3>
+            </div>
+            <div class="tags-container">
+                @if (Model.TasteTags[i].Count > 0)
+                {
+                    for (int j = 0; j < Math.Min(Model.TasteTags[i].Count, 5); j++)
+                    {
+                        <h4>@Model.TasteTags[i][j].TagName</h4>
+                    }
+                } else
+                {
+                    <h4>No tags given</h4>
+                }
+            </div>
+            <div class="rating-container">
+                @for (int j = 1; j <= 5; j++)
+                {
+                    <span class="dot @((j <= Model.Reviews[i].Stars) ? "star-filled" : "") @((j == Math.Ceiling(Model.Reviews[i].Stars) && Model.Reviews[i].Stars % 1 > 0) ? "quarter-filled" : "") @((j == Math.Ceiling(Model.Reviews[i].Stars) && Model.Reviews[i].Stars % 1 == 0.5) ? "half-filled" : "") @((j == Math.Ceiling(Model.Reviews[i].Stars) && Model.Reviews[i].Stars % 1 == 0.75) ? "three-quarter-filled" : "")"></span>
+                }
+                <p>@Model.Reviews[i].Stars</p>
+            </div>
+        </div>
+        i++;
+    }
+</div>
+
+@*<div class="flex-grid">
     @for(int i = 0; i++ < 4;){
         <div class="review">
             <div class="thumbnail-container">
@@ -35,7 +76,7 @@
             </div>
         </div>
     }
-</div>
+</div>*@
 
 <link rel="stylesheet" href="~/css/bodyReviewsPage.css">
 <link rel="stylesheet" href="~/css/colorpalette.css">

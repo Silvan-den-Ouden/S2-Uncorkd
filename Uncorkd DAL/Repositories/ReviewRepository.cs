@@ -46,6 +46,26 @@ namespace Uncorkd_DAL.Repositories
             return reviewDTO;
         }
 
+        public List<ReviewDTO> GetWithUserID(int user_id)
+        {
+            List<ReviewDTO> reviewDTOs = new List<ReviewDTO>();
+
+            using(MySqlConnection con = Connector.MakeConnection())
+            {
+                con.Open();
+                MySqlCommand cmd = new MySqlCommand("SELECT * FROM `review` WHERE user_id = @user_id LIMIT 4", con);
+                cmd.Parameters.AddWithValue("@user_id", user_id);
+                MySqlDataReader reader = cmd.ExecuteReader();
+
+                while (reader.Read())
+                {
+                    ReviewDTO reviewDTO = CreateDTO(reader);
+                    reviewDTOs.Add(reviewDTO);
+                }
+            }
+            return reviewDTOs;
+        }
+
         public void Create(int user_id, int wine_id, int rating, string[] tasteTags, string comment)
         {
             using (MySqlConnection con = Connector.MakeConnection())
