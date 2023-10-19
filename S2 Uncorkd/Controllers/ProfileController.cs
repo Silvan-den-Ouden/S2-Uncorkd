@@ -33,7 +33,7 @@ namespace S2_Uncorkd.Controllers
                 tasteTags.Add(tags);
             }
 
-            ReviewsViewModel reviewsViewModel = new(reviews, wines, wineries, tasteTags);
+            ReviewsViewModel reviewsViewModel = new(reviews, wines, wineries, tasteTags, page);
 
             return View(reviewsViewModel);
         }

@@ -49,37 +49,10 @@
     }
 </div>
 
-@*<div class="flex-grid">
-    @for(int i = 0; i++ < 4;){
-        <div class="review">
-            <div class="thumbnail-container">
-                <div class="image-container">
-                    <img src="@Model.Wine.Image_URL">
-                </div>
-                <div class="wine-info-container">
-                    <h2>@Model.Wine.Name</h2>
-                    <h3>@Model.Winery.Name</h3>
-                </div>
-            </div>
-            <div class="comment-container">
-                <h3>@Model.Review.Comment</h3>
-            </div>
-            <div class="tags-container">
-                @for (int j = 0; j < Math.Min(Model.Tags.Count, 5); j++)
-                {
-                    <h4>@Model.Tags[j].TagName</h4>
-                }
-            </div>
-            <div class="rating-container">
-                @for (int j = 1; j <= 5; j++)
-                {
-                    <span class="dot @((j <= Model.Review.Stars) ? "star-filled" : "") @((j == Math.Ceiling(Model.Review.Stars) && Model.Review.Stars % 1 > 0) ? "quarter-filled" : "") @((j == Math.Ceiling(Model.Review.Stars) && Model.Review.Stars % 1 == 0.5) ? "half-filled" : "") @((j == Math.Ceiling(Model.Review.Stars) && Model.Review.Stars % 1 == 0.75) ? "three-quarter-filled" : "")"></span>
-                }
-                <p>@Model.Review.Stars</p>
-            </div>
-        </div>
-    }
-</div>*@
+<div class="navigate-buttons">
+    <input type="button" value="<" onclick="location.href='/profile/reviews?user_id=1&page=@(Model.PageNumber - 1)'"/>
+    <input type="button" value=">" onclick="location.href='/profile/reviews?user_id=1&page=@(Model.PageNumber + 1)'"/>
+</div>
 
 <link rel="stylesheet" href="~/css/bodyReviewsPage.css">
 <link rel="stylesheet" href="~/css/colorpalette.css">
