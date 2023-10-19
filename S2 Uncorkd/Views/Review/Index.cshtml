@@ -4,11 +4,11 @@
 
 <div class="thumbnail">
     <div class="image-container">
-        <img src="@Model.WineModel.Image_URL" />
+        <img src="@Model.Wine.Image_URL" />
     </div>
     <div class="text-container">
-        <h1>@Model.WineModel.Name</h1>
-        <h2>@Model.WineryModel.Name</h2>
+        <h1>@Model.Wine.Name</h1>
+        <h2>@Model.Winery.Name</h2>
     </div>
 </div>
 
@@ -48,7 +48,7 @@
 
 <br /><br />
 <div class="check-in-button">
-    <input type="button" class="button" value="CHECK-IN" onclick="sendData(@Model.WineModel.Id)">
+    <input type="button" class="button" value="CHECK-IN" onclick="sendData(@Model.Wine.Id)">
 </div>
 
 <link rel="stylesheet" href="~/css/thumbnailReviewPage.css">

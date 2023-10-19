@@ -45,16 +45,17 @@ namespace Uncorkd_DAL.Repositories
             }
             return reviewDTO;
         }
-
-        public List<ReviewDTO> GetWithUserID(int user_id)
+        
+        public List<ReviewDTO> GetWithUserID(int user_id, int offset)
         {
             List<ReviewDTO> reviewDTOs = new List<ReviewDTO>();
 
             using(MySqlConnection con = Connector.MakeConnection())
             {
                 con.Open();
-                MySqlCommand cmd = new MySqlCommand("SELECT * FROM `review` WHERE user_id = @user_id ORDER BY `review_date` LIMIT 4", con);
+                MySqlCommand cmd = new MySqlCommand("SELECT * FROM `review` WHERE user_id = @user_id ORDER BY `review_date` LIMIT @offset, 4", con);
                 cmd.Parameters.AddWithValue("@user_id", user_id);
+                cmd.Parameters.AddWithValue("@offset", offset);
                 MySqlDataReader reader = cmd.ExecuteReader();
 
                 while (reader.Read())

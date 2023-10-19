@@ -17,9 +17,9 @@ namespace S2_Uncorkd.Controllers
             return View();
         }
 
-        public IActionResult Reviews(int user_id)
+        public IActionResult Reviews(int user_id, int page)
         {
-            List<ReviewModel> reviews = _reviewCollection.GetWithUserID(user_id);
+            List<ReviewModel> reviews = _reviewCollection.GetWithUserID(user_id, page);
             List<WineModel> wines = new();
             List<WineryModel> wineries = new();
             List<List<TasteTagModel>> tasteTags = new();

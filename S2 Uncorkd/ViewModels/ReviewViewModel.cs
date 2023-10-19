@@ -4,14 +4,14 @@ namespace S2_Uncorkd.ViewModels
 {
     public class ReviewViewModel
     {
-        public WineModel WineModel { get; set; }
-        public WineryModel WineryModel { get; set; }
+        public WineModel Wine { get; set; }
+        public WineryModel Winery { get; set; }
         public List<TasteTagModel> TasteTags { get; set; }
 
-        public ReviewViewModel(WineModel _wineModel, WineryModel _wineryModel, List<TasteTagModel> tasteTags)
+        public ReviewViewModel(WineModel _wine, WineryModel _winery, List<TasteTagModel> tasteTags)
         {
-            WineModel = _wineModel;
-            WineryModel = _wineryModel;
+            Wine = _wine;
+            Winery = _winery;
             TasteTags = tasteTags;
         }
     }

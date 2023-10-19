@@ -9,7 +9,6 @@ namespace S2_Uncorkd.ViewModels
         public List<WineryModel> Wineries { get; set; }
         public List<List<TasteTagModel>> TasteTags { get; set; }
 
-
         public ReviewsViewModel(List<ReviewModel> _reviews, List<WineModel> _wines, List<WineryModel> _wineries, List<List<TasteTagModel>> _tasteTags) {
             Reviews = _reviews;
             Wines = _wines;

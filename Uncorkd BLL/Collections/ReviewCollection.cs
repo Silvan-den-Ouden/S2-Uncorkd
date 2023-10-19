@@ -50,9 +50,10 @@ namespace Uncorkd_BLL.Collections
             return reviewModel;
         }
 
-        public List<ReviewModel> GetWithUserID(int user_id)
+        public List<ReviewModel> GetWithUserID(int user_id, int page_number)
         {
-            List<ReviewModel> reviewModels = TransformDTOs(_reviewRepository.GetWithUserID(user_id));
+            int offset = page_number * 4 - 4;
+            List<ReviewModel> reviewModels = TransformDTOs(_reviewRepository.GetWithUserID(user_id, offset));
 
             return reviewModels;
         }
