@@ -11,6 +11,7 @@
 
 <div class="tastetag-container">
     <h3 onclick="expandFlavors()">Flavor Profile ></h3>
+    <h3 id="selectedTagCount">0/5</h3>
 
     <div class="tastetags" id="tasteTags">
         @foreach (var tasteTag in Model.TasteTags)
@@ -28,6 +29,8 @@
     </div>
 </div>
 
+<input type="button" value="UPLOAD" />
+
 <script src="~/js/flavorCheckBoxesUpload.js"></script>
 
 
@@ -40,7 +43,7 @@
 
 
 <style>
-    input {
+    input[type="text"] {
         outline: 0;
         border-width: 0 0 2px;
         border-color: black;

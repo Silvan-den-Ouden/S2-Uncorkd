@@ -21,7 +21,6 @@ function expandFlavors() {
 
 expandFlavors();
 
-
 function handleCheckboxChange() {
     const checkboxes = document.querySelectorAll('input[name="category"]');
     const selectedTagsArray = [];
@@ -32,8 +31,25 @@ function handleCheckboxChange() {
         }
     });
 
+    if (selectedTagsArray.length >= 5) {
+        //alert("You can select a maximum of 5 tasteTags.");
+        checkboxes.forEach(checkbox => {
+            if (!selectedTagsArray.includes(checkbox.value)) {
+                checkbox.disabled = true;
+            }
+        });
+    } else {
+        checkboxes.forEach(checkbox => {
+            checkbox.disabled = false;
+        });
+    }
+
     const selectedTagsElement = document.getElementById('selectedTags');
     selectedTagsElement.textContent = selectedTagsArray.join(', ');
+
+    const selectedTagCountElement = document.getElementById('selectedTagCount');
+    selectedTagCountElement.textContent = selectedTagsArray.length + "/5";
+
 }
 
 const checkboxes = document.querySelectorAll('input[name="category"]');

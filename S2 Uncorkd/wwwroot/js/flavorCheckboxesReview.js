@@ -21,7 +21,6 @@ function expandFlavors() {
 
 expandFlavors();
 
-
 function handleCheckboxChange() {
     const checkboxes = document.querySelectorAll('input[name="category"]');
     const selectedTagsArray = [];
