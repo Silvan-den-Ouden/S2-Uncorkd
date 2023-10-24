@@ -1,0 +1,53 @@
+﻿@{
+    ViewData["Title"] = "Upload";
+}
+
+
+<img src="@Model.Winery.Image_URL" height="100"/>
+<input id="wine-name" type="text" placeholder="Name of wine..." border="0"/>
+<h1>@Model.Winery.Name</h1>
+
+<textarea id="description" maxlength="255" autofocus="autofocus" placeholder="Write a short description for the wine..."></textarea>
+
+<div class="tastetag-container">
+    <h3 onclick="expandFlavors()">Flavor Profile ></h3>
+
+    <div class="tastetags" id="tasteTags">
+        @foreach (var tasteTag in Model.TasteTags)
+        {
+            <div class="cat" style="display: hidden;">
+                <label>
+                    <input type="checkbox" name="category" value="@tasteTag.Id"><span>@tasteTag.TagName</span>
+                </label>
+            </div>
+        }
+    </div>
+
+    <div hidden="hidden">
+        <p>Selected tags: <span id="selectedTags"></span></p>
+    </div>
+</div>
+
+<script src="~/js/flavorCheckBoxesUpload.js"></script>
+
+
+
+
+
+
+
+
+
+
+<style>
+    input {
+        outline: 0;
+        border-width: 0 0 2px;
+        border-color: black;
+    }
+
+        input:focus {
+            border-color: green;
+            outline: 1px dotted #000
+        }
+</style>

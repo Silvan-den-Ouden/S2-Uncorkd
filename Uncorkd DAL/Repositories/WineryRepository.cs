@@ -17,6 +17,7 @@ namespace Uncorkd_DAL.Repositories
                 Id = reader.GetInt32("id"),
                 Name = reader.GetString("name"),
                 Description = reader.GetString("description"),
+                Image_URL = reader.GetString("image_url"),
             };
 
             return wineryDTO;

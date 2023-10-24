@@ -24,5 +24,15 @@ namespace S2_Uncorkd.Controllers
             return View(wineViewModel);
         }
 
+        public IActionResult Upload(int winery_ID)
+        {
+            WineryModel wineryModel = _wineryCollection.GetWithID(winery_ID);
+            List<TasteTagModel> tasteTagModels = _tasteTagCollection.GetAll();
+
+            UploadViewModel uploadViewModel = new(wineryModel, tasteTagModels);
+
+            return View(uploadViewModel);
+        }
+
     }
 }

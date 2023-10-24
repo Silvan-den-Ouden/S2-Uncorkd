@@ -28,6 +28,7 @@ namespace Uncorkd_BLL.Collections
                     Id = wineryDTO.Id,
                     Name = wineryDTO.Name,
                     Description = wineryDTO.Description,
+                    Image_URL = wineryDTO.Image_URL,
                 };
                 wineryModels.Add(wineryModel);
             }
