@@ -34,5 +34,10 @@ namespace S2_Uncorkd.Controllers
             return View(uploadViewModel);
         }
 
+        public void Create(int wineryId, string name, string description, string tasteTags)
+        {
+            _wineCollection.Create(wineryId, name, description, tasteTags);
+        }
+
     }
 }

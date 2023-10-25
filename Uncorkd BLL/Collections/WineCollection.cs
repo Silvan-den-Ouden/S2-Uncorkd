@@ -83,5 +83,16 @@ namespace Uncorkd_BLL.Collections
 
             return wineModels;
         }
+
+        public void Create(int wineryId, string name, string description, string tasteTags)
+        {
+            string[] tasteTagsArray = tasteTags.Split(',');
+            if (tasteTagsArray[0] == "0")
+            {
+                tasteTagsArray = Array.Empty<string>();
+            }
+
+            _wineRepository.Create(wineryId, name, description, tasteTagsArray);
+        }
     }
 }

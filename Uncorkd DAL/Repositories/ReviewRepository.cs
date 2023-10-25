@@ -86,7 +86,7 @@ namespace Uncorkd_DAL.Repositories
                 {
                     foreach (string tastetagId in tasteTags)
                     {
-                        MySqlCommand insertTastetagCmd = new MySqlCommand("INSERT INTO `review_to_tastetag` (review_id, tastetag_id) VALUES (@reviewId, @tastetagId);", con);
+                        MySqlCommand insertTastetagCmd = new MySqlCommand("INSERT INTO `review_to_tastetag` (review_id, tag_id) VALUES (@reviewId, @tastetagId);", con);
                         insertTastetagCmd.Parameters.AddWithValue("@reviewId", reviewId);
                         insertTastetagCmd.Parameters.AddWithValue("@tastetagId", tastetagId);
                         insertTastetagCmd.ExecuteNonQuery();

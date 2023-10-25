@@ -16,8 +16,6 @@
     </div>
 </div>
 
-
-
 <textarea id="description" maxlength="255" placeholder="Write a short description for the wine..."></textarea>
 
 <div class="tastetag-container">
@@ -42,19 +40,8 @@
 </div>
 
 <div class="upload-button">
-    <input type="button" class="button" value="UPLOAD" />
+    <input type="button" class="button" value="UPLOAD" onclick="uploadWine(@Model.Winery.Id)"/>
 </div>
 
 <script src="~/js/flavorCheckBoxesUpload.js"></script>
-
-
-
-
-
-
-
-
-
-<style>
-
-</style>
+<script src="~/js/uploadButton.js"></script>
