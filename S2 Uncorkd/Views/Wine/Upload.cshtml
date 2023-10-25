@@ -2,16 +2,26 @@
     ViewData["Title"] = "Upload";
 }
 
+<link rel="stylesheet" href="~/css/tastetagsReviewPage.css">
+<link rel="stylesheet" href="~/css/thumbnailReviewPage.css">
+<link rel="stylesheet" href="~/css/bodyUploadPage.css">
 
-<img src="@Model.Winery.Image_URL" height="100"/>
-<input id="wine-name" type="text" placeholder="Name of wine..." border="0"/>
-<h1>@Model.Winery.Name</h1>
+<div class="thumbnail">
+    <div class="image-container">
+        <img src="@Model.Winery.Image_URL" />
+    </div>
+    <div class="text-container">
+        <input id="wine-name" type="text" autofocus="autofocus" placeholder="Name of wine..." maxlength="32" />
+        <h2>@Model.Winery.Name</h2>
+    </div>
+</div>
 
-<textarea id="description" maxlength="255" autofocus="autofocus" placeholder="Write a short description for the wine..."></textarea>
+
+
+<textarea id="description" maxlength="255" placeholder="Write a short description for the wine..."></textarea>
 
 <div class="tastetag-container">
-    <h3 onclick="expandFlavors()">Flavor Profile ></h3>
-    <h3 id="selectedTagCount">0/5</h3>
+    <h3 id="expandFlavors" onclick="expandFlavors()">Flavor Profile ></h3>
 
     <div class="tastetags" id="tasteTags">
         @foreach (var tasteTag in Model.TasteTags)
@@ -24,12 +34,16 @@
         }
     </div>
 
+    <h3 id="selectedTagCount">0/5</h3>
+
     <div hidden="hidden">
         <p>Selected tags: <span id="selectedTags"></span></p>
     </div>
 </div>
 
-<input type="button" value="UPLOAD" />
+<div class="upload-button">
+    <input type="button" class="button" value="UPLOAD" />
+</div>
 
 <script src="~/js/flavorCheckBoxesUpload.js"></script>
 
@@ -41,16 +55,6 @@
 
 
 
-
 <style>
-    input[type="text"] {
-        outline: 0;
-        border-width: 0 0 2px;
-        border-color: black;
-    }
 
-        input:focus {
-            border-color: green;
-            outline: 1px dotted #000
-        }
 </style>

@@ -1,0 +1,45 @@
+﻿input[type="text"] {
+    outline: 0;
+    border-width: 0 0 2px;
+    border-color: black;
+    font-size: 58px;
+    margin-bottom: 0.2em;
+    line-height: 70%;
+    width: 43%;
+}
+
+input:focus {
+    border-color: green;
+}
+
+#description {
+    width: 50%;
+    height: 105px;
+    resize: none;
+    margin-bottom: 20px;
+}
+
+.upload-button {
+    position: absolute;
+    top: 75vh;
+    right: 10%;
+}
+
+.button {
+    background-color: #4CAF50;
+    border: 2px solid #4CAF50;
+    border-radius: 40px;
+    color: #FFFFFF;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 32px;
+    transition-duration: 0.4s;
+}
+
+    .button:hover {
+        background-color: #FFFFFF;
+        color: #000000;
+        border: 2px solid #4CAF50;
+    }

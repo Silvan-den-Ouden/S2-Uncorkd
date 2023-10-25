@@ -17,7 +17,7 @@
         data: { sliderValue: sliderValue, wineId: wineId, tasteTags: tasteTags, comment: comment },
         success: function (data) {
             console.log(data);
-            location.href = '/profile/reviews';
+            location.href = '/profile/reviews?user_id=' + 1 + "&page=1";
         },
         error: function (error) {
             console.log("error", error);

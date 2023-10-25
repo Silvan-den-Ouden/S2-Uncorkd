@@ -2,6 +2,7 @@
 
 function expandFlavors() {
     var tags = document.querySelectorAll(".cat");
+    const selectedTagCountElement = document.getElementById('expandFlavors');
 
     if (!expanded) {
         for (var i = 0; i < 10; i++) {
@@ -10,11 +11,15 @@ function expandFlavors() {
         for (var i = 10; i < tags.length; i++) {
             tags[i].style.display = "none";
         }
+        selectedTagCountElement.textContent = "Flavor Profile >";
+
         expanded = true;
     } else {
         for (var i = 10; i < tags.length; i++) {
             tags[i].style.display = "block";
         }
+        selectedTagCountElement.textContent = "Flavor Profile v";
+
         expanded = false;
     }
 }
