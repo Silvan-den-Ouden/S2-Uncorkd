@@ -4,6 +4,9 @@
     int i = 0;
 }
 
+<link rel="stylesheet" href="~/css/bodyReviewsPage.css">
+<link rel="stylesheet" href="~/css/colorpalette.css">
+
 <h1><b>Username</b>'s recent check-ins</h1>
 
 <div class="flex-grid">
@@ -53,7 +56,4 @@
     <input type="button" value="<" onclick="location.href='/profile/reviews?user_id=1&page=@(Model.PageNumber - 1)'"/>
     <input type="button" value=">" onclick="location.href='/profile/reviews?user_id=1&page=@(Model.PageNumber + 1)'"/>
 </div>
-
-<link rel="stylesheet" href="~/css/bodyReviewsPage.css">
-<link rel="stylesheet" href="~/css/colorpalette.css">
 

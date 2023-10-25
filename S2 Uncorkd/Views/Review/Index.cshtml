@@ -2,6 +2,10 @@
     ViewData["Title"] = "Index";
 }
 
+<link rel="stylesheet" href="~/css/thumbnailReviewPage.css">
+<link rel="stylesheet" href="~/css/bodyReviewPage.css">
+<link rel="stylesheet" href="~/css/tastetagsReviewPage.css">
+
 <div class="thumbnail">
     <div class="image-container">
         <img src="@Model.Wine.Image_URL" />
@@ -50,11 +54,6 @@
 <div class="check-in-button">
     <input type="button" class="button" value="CHECK-IN" onclick="sendData(@Model.Wine.Id)">
 </div>
-
-<link rel="stylesheet" href="~/css/thumbnailReviewPage.css">
-<link rel="stylesheet" href="~/css/bodyReviewPage.css">
-<link rel="stylesheet" href="~/css/tastetagsReviewPage.css">
-
 
 <script src="~/js/checkInButton.js"></script>
 <script src="~/js/flavorCheckBoxesReview.js"></script>
