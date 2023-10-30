@@ -43,3 +43,30 @@ input:focus {
         color: #000000;
         border: 2px solid #4CAF50;
     }
+
+.image-container {
+    position: relative;
+    top: 0;
+    left: 0;
+}
+
+.winery-icon {
+    position: relative;
+    top: 0;
+    left: 0;
+    border: 1px solid #000000;
+}
+
+.upload-image-icon {
+    position: absolute;
+    top: 40px;
+    left: 40px;
+    height: 80px;
+    width: 80px;
+    opacity: 0.8;
+    border: 0;
+}
+
+img:hover {
+    cursor: pointer;
+}

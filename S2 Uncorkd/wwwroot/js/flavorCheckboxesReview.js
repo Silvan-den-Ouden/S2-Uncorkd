@@ -2,6 +2,10 @@
 
 function expandFlavors() {
     var tags = document.querySelectorAll(".cat");
+    const selectedTagCountElement = document.getElementById("expandFlavors");
+    const moreButton = document.getElementById("moreButton");
+    const lessButton = document.getElementById("lessButton");
+
 
     if (!expanded) {
         for (var i = 0; i < 5; i++) {
@@ -10,11 +14,19 @@ function expandFlavors() {
         for (var i = 5; i < tags.length; i++) {
             tags[i].style.display = "none";
         }
+        moreButton.style.display = "block";
+        lessButton.style.display = "none";
+        selectedTagCountElement.textContent = "Flavor Profile >";
+
         expanded = true;
     } else {
         for (var i = 5; i < tags.length; i++) {
             tags[i].style.display = "block";
         }
+        moreButton.style.display = "none";
+        lessButton.style.display = "block";
+        selectedTagCountElement.textContent = "Flavor Profile v";
+
         expanded = false;
     }
 }

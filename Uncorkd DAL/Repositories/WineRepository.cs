@@ -128,16 +128,17 @@ namespace Uncorkd_DAL.Repositories
             return wineDTOs;
         }
 
-        public void Create(int wineryId, string name, string description, string[] tasteTags)
+        public void Create(int wineryId, string name, string description, string[] tasteTags, string image_url)
         {
             using (MySqlConnection con = Connector.MakeConnection())
             {
                 con.Open();
 
-                MySqlCommand createWineCmd = new MySqlCommand("INSERT INTO `wine` (name, description, winery_id) VALUES (@name, @description, @wineryId);", con);
+                MySqlCommand createWineCmd = new MySqlCommand("INSERT INTO `wine` (name, description, winery_id, image_url) VALUES (@name, @description, @wineryId, @image_url);", con);
                 createWineCmd.Parameters.AddWithValue("@name", name);
                 createWineCmd.Parameters.AddWithValue("@description", description);
                 createWineCmd.Parameters.AddWithValue("@wineryId", wineryId);
+                createWineCmd.Parameters.AddWithValue("@image_url", image_url);
                 createWineCmd.ExecuteNonQuery();
 
                 long wineId = createWineCmd.LastInsertedId;

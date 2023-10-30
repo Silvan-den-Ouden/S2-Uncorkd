@@ -7,8 +7,9 @@
 <link rel="stylesheet" href="~/css/bodyUploadPage.css">
 
 <div class="thumbnail">
-    <div class="image-container">
-        <img src="@Model.Winery.Image_URL" />
+    <div class="image-container" onclick="testMethod()">
+        <img class="winery-icon" id="winery-icon" src="@Model.Winery.Image_URL" />
+        <img class="upload-image-icon" id="upload-image-icon" style="display: block" src="https://i.ibb.co/yg2m6YT/afbeelding-2023-10-30-222957448.png" />
     </div>
     <div class="text-container">
         <input id="wine-name" type="text" autofocus="autofocus" placeholder="Name of wine..." maxlength="32" />
@@ -30,6 +31,16 @@
                 </label>
             </div>
         }
+        <div class="cat" id="moreButton" style="display: block;">
+            <label>
+                <input type="button" name="category" onclick="expandFlavors()"><span>More...</span>
+            </label>
+        </div>
+        <div class="cat" id="lessButton" style="display: block;">
+            <label>
+                <input type="button" name="category" onclick="expandFlavors()"><span>Less...</span>
+            </label>
+        </div>
     </div>
 
     <h3 id="selectedTagCount">0/5</h3>
@@ -45,3 +56,18 @@
 
 <script src="~/js/flavorCheckBoxesUpload.js"></script>
 <script src="~/js/uploadButton.js"></script>
+
+<script>
+    function testMethod() {
+        var userInput = prompt("Enter an image url:");
+        var wineryIcon = document.getElementById("winery-icon");
+        var uploadImageIcon = document.getElementById("upload-image-icon");
+
+        if (userInput == null || userInput == "") {
+            alert("Failed to enter image");
+        } else {
+            wineryIcon.src = userInput;
+            uploadImageIcon.style.display = 'none';
+        }
+    }
+</script>

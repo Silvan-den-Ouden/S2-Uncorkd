@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using Uncorkd_DAL.Repositories;
 using Uncorkd_BLL.Models;
 using Uncorkd_DTO.DTOs;
+using static System.Net.WebRequestMethods;
 
 namespace Uncorkd_BLL.Collections
 {
@@ -84,15 +85,19 @@ namespace Uncorkd_BLL.Collections
             return wineModels;
         }
 
-        public void Create(int wineryId, string name, string description, string tasteTags)
+        public void Create(int wineryId, string name, string description, string tasteTags, string image_url)
         {
             string[] tasteTagsArray = tasteTags.Split(',');
             if (tasteTagsArray[0] == "0")
             {
                 tasteTagsArray = Array.Empty<string>();
             }
+            if(image_url == "" || image_url is null)
+            {
+                image_url = "https://i.ibb.co/KXygvP6/Default-Wine-512.png";
+            }
 
-            _wineRepository.Create(wineryId, name, description, tasteTagsArray);
+            _wineRepository.Create(wineryId, name, description, tasteTagsArray, image_url);
         }
     }
 }

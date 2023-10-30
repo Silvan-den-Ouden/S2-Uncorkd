@@ -32,7 +32,7 @@
 <input type="range" id="myRange" class="slider" min="1" max="20" value="10">
 
 <div class="tastetag-container">
-    <h3 onclick="expandFlavors()">Flavor Profile ></h3>
+    <h3 onclick="expandFlavors()" id="expandFlavors">Flavor Profile ></h3>
 
     <div class="tastetags" id="tasteTags">
         @foreach (var tasteTag in Model.TasteTags)
@@ -43,6 +43,16 @@
                 </label>
             </div>
         }
+        <div class="cat" id="moreButton" style="display: block;">
+            <label>
+                <input type="button" name="category" onclick="expandFlavors()"><span>More...</span>
+            </label>
+        </div>
+        <div class="cat" id="lessButton" style="display: block;">
+            <label>
+                <input type="button" name="category" onclick="expandFlavors()"><span>Less...</span>
+            </label>
+        </div>
     </div>
 
     <div hidden="hidden">

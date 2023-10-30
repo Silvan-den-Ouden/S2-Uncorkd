@@ -5,26 +5,27 @@
 }
 
 .image-container {
-    flex: 0 0 auto; /* Don't grow or shrink */
-    margin-right: 10px; /* Adjust the margin as needed */
+    flex: 0 0 auto;
+    margin-right: 10px; 
 }
 
 img {
     width: 150px;
     height: 150px;
-    max-width: 100%; /* Ensure the image doesn't exceed its container */
+    max-width: 100%; 
+    border: 1px solid #000000;
 }
 
 .text-container {
-    flex: 1; /* Allow the text container to grow and take remaining space */
+    flex: 1; 
     display: flex;
-    flex-direction: column; /* Stack the h1 and h5 vertically */
-    align-items: flex-start; /* Align items to the top of the container */
+    flex-direction: column;
+    align-items: flex-start; 
 }
 
 h1,
 h2 {
-    margin-bottom: 0.5em; /* Remove default margin for headings */
+    margin-bottom: 0.5em; 
     line-height: 70%;
 }
 

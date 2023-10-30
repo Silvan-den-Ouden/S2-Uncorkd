@@ -53,7 +53,7 @@ namespace Uncorkd_DAL.Repositories
             using(MySqlConnection con = Connector.MakeConnection())
             {
                 con.Open();
-                MySqlCommand cmd = new MySqlCommand("SELECT * FROM `review` WHERE user_id = @user_id ORDER BY `review_date` LIMIT @offset, 4", con);
+                MySqlCommand cmd = new MySqlCommand("SELECT * FROM `review` WHERE user_id = @user_id ORDER BY `review_date` DESC LIMIT @offset, 4", con);
                 cmd.Parameters.AddWithValue("@user_id", user_id);
                 cmd.Parameters.AddWithValue("@offset", offset);
                 MySqlDataReader reader = cmd.ExecuteReader();
