@@ -14,11 +14,11 @@
         <div class="review">
             <div class="thumbnail-container">
                 <div class="image-container">
-                    <img src="@Model[i].Wines.Image_URL">
+                    <img src="@Model[i].Wine.Image_URL">
                 </div>
                 <div class="wine-info-container">
                     <h2>@Model[i].Wine.Name</h2>
-                    <h3>@Model[i].Winery.Name</h3>
+                    <h3>@Model[i].Wine.Winery.Name</h3>
                 </div>
             </div>
             <div class="comment-container">
@@ -50,8 +50,33 @@
     }
 </div>
 
-@*<div class="navigate-buttons">
-    <input type="button" value="<" onclick="location.href='/profile/reviews?user_id=1&page=@(Model.PageNumber - 1)'"/>
-    <input type="button" value=">" onclick="location.href='/profile/reviews?user_id=1&page=@(Model.PageNumber + 1)'"/>
-</div>*@
+
+<div class="navigate-buttons">
+    <input type="button" value="<" onclick="navigateToPage('prev')" />
+    <input type="button" value=">" onclick="navigateToPage('next')" />
+</div>
+
+<script>
+    function navigateToPage(direction) {
+        var currentPage = parseInt(getParameterByName('page')) || 1;
+        var nextPage = direction === 'prev' ? currentPage - 1 : currentPage + 1;
+
+        if (nextPage > 0) {
+            // Update the URL with the new page number
+            var newUrl = location.href.replace(/([?&])page=\d+/, '$1page=' + nextPage);
+            location.href = newUrl;
+        }
+    }
+
+    function getParameterByName(name) {
+        name = name.replace(/[\[\]]/g, "\\$&");
+        var regex = new RegExp("[?&]" + name + "(=([^&#]*)|&|#|$)"),
+            results = regex.exec(location.search);
+        if (!results) return null;
+        if (!results[2]) return '';
+        return decodeURIComponent(results[2].replace(/\+/g, " "));
+    }
+</script>
+
+
 
