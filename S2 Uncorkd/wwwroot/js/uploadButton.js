@@ -2,6 +2,8 @@
     var tasteTags = document.getElementById("selectedTags").textContent;
     var description = document.getElementById("description").value;
     var name = document.getElementById("wine-name").value;
+    var image_url = document.getElementById("winery-icon").src;
+    
 
     if (name === '') {
         alert("Please enter a name");
@@ -13,7 +15,7 @@
         $.ajax({
             url: '/Wine/Create',
             type: 'GET',
-            data: { wineryId: wineryId, name: name, description: description, tasteTags: tasteTags },
+            data: { wineryId: wineryId, name: name, description: description, tasteTags: tasteTags, image_url: image_url },
             success: function (data) {
                 console.log(data);
                 location.href = '';
