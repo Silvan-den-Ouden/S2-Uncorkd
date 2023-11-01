@@ -14,10 +14,11 @@ namespace S2_Uncorkd.Controllers
         {
             List<WineModel> wineModels = _wineCollection.GetAll();
             List<WineryModel> wineryModels = _wineryCollection.GetAll();
-            List<WineModel> bestWineModels = _wineCollection.GetPopular();
+            List<WineModel> bestWines = _wineCollection.GetBest();
+            List<WineModel> popularWines = _wineCollection.GetPopular();
             List<WineModel> randomWines = _wineCollection.GetRandom();
 
-            ExplorerViewModel explorerViewModel = new(wineModels, wineryModels, bestWineModels, randomWines);
+            ExplorerViewModel explorerViewModel = new(wineModels, wineryModels, bestWines, popularWines, randomWines);
 
             return View(explorerViewModel);
         }

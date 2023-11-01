@@ -41,12 +41,29 @@
     </div>
 
     <div id="flexboxes" display="block">
-        <label for="popular-wines-container">Popular wines</label>
-        <div id="popular-wines-container" class="popular-wines-container">
-            @for(int i = 0; i < Model.BestWines.Count; i++)
+        <label for="best-wines-container">Best wines</label>
+        <div id="best-wines-container" class="wines-container">
+            @for (int i = 0; i < Model.BestWines.Count; i++)
             {
                 <div onclick="location.href='Wine?id=@Model.BestWines[i].Id'"
                      style="background-image: url('@Model.BestWines[i].Image_URL');">
+
+                    <h2>@Model.BestWines[i].Stars</h2>
+                    @for (int j = 0; j < 3; j++)
+                    {
+                        <h3>@Model.BestWines[i].TasteTags[j].TagName</h3>
+                    }
+
+                    <h1>@Model.BestWines[i].Name</h1>
+                </div>
+            }
+        </div>
+        <label for="popular-wines-container">Popular wines</label>
+        <div id="popular-wines-container" class="wines-container">
+            @for(int i = 0; i < Model.PopularWines.Count; i++)
+            {
+                <div onclick="location.href='Wine?id=@Model.PopularWines[i].Id'"
+                     style="background-image: url('@Model.PopularWines[i].Image_URL');">
 
                     <h2>@Model.BestWines[i].Stars</h2>
                     @for(int j = 0; j < 3; j++)
@@ -59,7 +76,7 @@
             }
         </div>
         <label for="random-wines-container">I'm feeling lucky</label>
-        <div id="random-wines-container" class="random-wines-container">
+        <div id="random-wines-container" class="wines-container">
             @for (int i = 0; i < Model.RandomWines.Count; i++)
             {
                 <div onclick="location.href='Wine?id=@Model.RandomWines[i].Id'"

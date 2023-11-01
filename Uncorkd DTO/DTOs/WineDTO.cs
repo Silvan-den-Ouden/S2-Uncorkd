@@ -15,7 +15,6 @@ namespace Uncorkd_DTO.DTOs
         public int Winery_id { get; set;}
         public double Stars { get; set; }
 
-
         public WineDTO() { }
     }
 }

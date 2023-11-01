@@ -89,6 +89,25 @@ namespace Uncorkd_DAL.Repositories
             return wineDTO;
         }
 
+        public List<WineDTO> GetBest()
+        {
+            List<WineDTO> wineDTOs = new List<WineDTO>();
+
+            using (MySqlConnection con = Connector.MakeConnection())
+            {
+                con.Open();
+                MySqlCommand cmd = new MySqlCommand("SELECT `wine`.*, AVG(`rating`/4) AS `stars` FROM `wine` LEFT JOIN `review` ON `wine`.id = `review`.wine_id GROUP BY `wine`.id ORDER BY `stars` DESC LIMIT 5;", con);
+                MySqlDataReader reader = cmd.ExecuteReader();
+
+                while (reader.Read())
+                {
+                    WineDTO wineDTO = CreateDTO(reader);
+                    wineDTOs.Add(wineDTO);
+                }
+            }
+            return wineDTOs;
+        }
+
         public List<WineDTO> GetPopular()
         {
             List<WineDTO> wineDTOs = new List<WineDTO>();

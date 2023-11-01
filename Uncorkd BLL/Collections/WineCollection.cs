@@ -53,7 +53,7 @@ namespace Uncorkd_BLL.Collections
         {
             if (stars > 0)
             {
-                return (Math.Round(stars * 4) / 4).ToString("F");
+                return stars.ToString("F");
             }
 
             return "???";
@@ -73,6 +73,13 @@ namespace Uncorkd_BLL.Collections
             WineModel wineModel = wineModels[0];
             
             return wineModel;
+        }
+
+        public List<WineModel> GetBest()
+        {
+            List<WineModel> wineModels = TransformDTOs(_wineRepository.GetBest());
+
+            return wineModels;
         }
 
         public List<WineModel> GetPopular()
