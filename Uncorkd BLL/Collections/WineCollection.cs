@@ -40,6 +40,7 @@ namespace Uncorkd_BLL.Collections
                     Name = wineDTO.Name,
                     Description = wineDTO.Description,
                     Image_URL = wineDTO.Image_URL,
+                    Check_ins = wineDTO.Check_ins,
                     Winery = _wineryCollection.GetWithID(wineDTO.Id),
                     Stars = GetStars(wineDTO.Stars),
                     TasteTags = _tasteTagCollection.GetWithWineID(wineDTO.Id),

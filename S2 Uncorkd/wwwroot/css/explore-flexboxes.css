@@ -40,10 +40,12 @@
         }
 
     .wines-container h2 {
-        font-size: 18px;
+        font-size: 30px;
         padding-top: .5rem;
         padding-left: .5rem;
         position: absolute;
+        -webkit-text-stroke-width: 0.1px;
+        -webkit-text-stroke-color: black;
         text-shadow: 2px 2px 3px #CCCC00;
         color: white;
     }

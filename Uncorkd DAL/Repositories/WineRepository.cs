@@ -20,6 +20,7 @@ namespace Uncorkd_DAL.Repositories
                 Name = reader.GetString("name"),
                 Description = reader.GetString("description"),
                 Image_URL = reader.GetString("image_url"),
+                Check_ins = GetCheckIns(reader.GetInt32("id")),
                 Winery_id = reader.GetInt32("winery_id"),
                 Stars = GetStars(reader.GetInt32("id")),
             };
@@ -48,6 +49,29 @@ namespace Uncorkd_DAL.Repositories
             }
 
             return stars ?? -1;
+        }
+
+        private int GetCheckIns(int ID)
+        {
+            int? check_ins = null;
+
+            using (MySqlConnection con = Connector.MakeConnection())
+            {
+                con.Open();
+                MySqlCommand cmd = new MySqlCommand("SELECT COUNT(review.id) AS `check_ins` FROM wine LEFT JOIN review ON wine.id = review.wine_id WHERE wine.id = @ID", con);
+                cmd.Parameters.AddWithValue("@ID", ID);
+                MySqlDataReader reader = cmd.ExecuteReader();
+
+                while (reader.Read())
+                {
+                    if (!reader.IsDBNull(reader.GetOrdinal("check_ins")))
+                    {
+                        check_ins = reader.GetInt32("check_ins");
+                    }
+                }
+            }
+
+            return check_ins ?? -1;
         }
 
         public List<WineDTO> GetAll() {

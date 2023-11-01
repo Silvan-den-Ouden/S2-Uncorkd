@@ -43,52 +43,52 @@
     <div id="flexboxes" display="block">
         <label for="best-wines-container">Best wines</label>
         <div id="best-wines-container" class="wines-container">
-            @for (int i = 0; i < Model.BestWines.Count; i++)
+            @foreach (var wine in Model.BestWines)
             {
-                <div onclick="location.href='Wine?id=@Model.BestWines[i].Id'"
-                     style="background-image: url('@Model.BestWines[i].Image_URL');">
+                <div onclick="location.href='Wine?id=@wine.Id'"
+                     style="background-image: url('@wine.Image_URL');">
 
-                    <h2>@Model.BestWines[i].Stars</h2>
+                    <h2>@wine.Stars</h2>
                     @for (int j = 0; j < 3; j++)
                     {
-                        <h3>@Model.BestWines[i].TasteTags[j].TagName</h3>
+                        <h3>@wine.TasteTags[j].TagName</h3>
                     }
 
-                    <h1>@Model.BestWines[i].Name</h1>
+                    <h1>@wine.Name</h1>
                 </div>
             }
         </div>
         <label for="popular-wines-container">Popular wines</label>
         <div id="popular-wines-container" class="wines-container">
-            @for(int i = 0; i < Model.PopularWines.Count; i++)
+            @foreach(var wine in Model.PopularWines)
             {
-                <div onclick="location.href='Wine?id=@Model.PopularWines[i].Id'"
-                     style="background-image: url('@Model.PopularWines[i].Image_URL');">
+                <div onclick="location.href='Wine?id=@wine.Id'"
+                     style="background-image: url('@wine.Image_URL');">
 
-                    <h2>@Model.BestWines[i].Stars</h2>
+                    <h2>@wine.Check_ins</h2>
                     @for(int j = 0; j < 3; j++)
                     {
-                        <h3>@Model.BestWines[i].TasteTags[j].TagName</h3>
+                        <h3>@wine.TasteTags[j].TagName</h3>
                     }                    
                     
-                    <h1>@Model.BestWines[i].Name</h1>
+                    <h1>@wine.Name</h1>
                 </div>
             }
         </div>
         <label for="random-wines-container">I'm feeling lucky</label>
         <div id="random-wines-container" class="wines-container">
-            @for (int i = 0; i < Model.RandomWines.Count; i++)
+            @foreach (var wine in Model.RandomWines)
             {
-                <div onclick="location.href='Wine?id=@Model.RandomWines[i].Id'"
-                     style="background-image: url('@Model.RandomWines[i].Image_URL');">
+                <div onclick="location.href='Wine?id=@wine.Id'"
+                     style="background-image: url('@wine.Image_URL');">
 
-                    <h2>@Model.RandomWines[i].Stars</h2>
+                    <h2>@wine.Stars</h2>
                     @for (int j = 0; j < 3; j++)
                     {
-                        <h3>@Model.RandomWines[i].TasteTags[j].TagName</h3>
+                        <h3>@wine.TasteTags[j].TagName</h3>
                     }
 
-                    <h1>@Model.RandomWines[i].Name</h1>
+                    <h1>@wine.Name</h1>
                 </div>
             }
         </div>
