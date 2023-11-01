@@ -12,12 +12,10 @@ namespace Uncorkd_BLL.Collections
     public class TasteTagCollection
     {
         private readonly TasteTagRepository _tasteTagRepository;
-        private readonly WineCollection _wineCollection;
 
         public TasteTagCollection()
         {
             _tasteTagRepository = new TasteTagRepository();
-            _wineCollection = new WineCollection();
         }
 
         public List<TasteTagModel> TransformDTOs(List<TasteTagDTO> tasteTagDTOs)
@@ -58,29 +56,29 @@ namespace Uncorkd_BLL.Collections
             return tasteTagModels;
         }
 
-        public List<List<TasteTagModel>> GetPopularWinesTags()
-        {
-            List<List<TasteTagModel>> tasteTagModels = new List<List<TasteTagModel>>();
+        //public List<List<TasteTagModel>> GetPopularWinesTags()
+        //{
+        //    List<List<TasteTagModel>> tasteTagModels = new List<List<TasteTagModel>>();
 
-            foreach(var Wine in _wineCollection.GetPopular()) {
-                List<TasteTagModel> tasteTagM = GetWithWineID(Wine.Id);
-                tasteTagModels.Add(tasteTagM);
-            }
+        //    foreach(var Wine in _wineCollection.GetPopular()) {
+        //        List<TasteTagModel> tasteTagM = GetWithWineID(Wine.Id);
+        //        tasteTagModels.Add(tasteTagM);
+        //    }
 
-            return tasteTagModels;
-        }
+        //    return tasteTagModels;
+        //}
 
-        public List<List<TasteTagModel>> GetRandomWinesTags()
-        {
-            List<List<TasteTagModel>> tasteTagModels = new List<List<TasteTagModel>>();
+        //public List<List<TasteTagModel>> GetRandomWinesTags()
+        //{
+        //    List<List<TasteTagModel>> tasteTagModels = new List<List<TasteTagModel>>();
 
-            foreach (var Wine in _wineCollection.GetRandom())
-            {
-                List<TasteTagModel> tasteTagM = GetWithWineID(Wine.Id);
-                tasteTagModels.Add(tasteTagM);
-            }
+        //    foreach (var Wine in _wineCollection.GetRandom())
+        //    {
+        //        List<TasteTagModel> tasteTagM = GetWithWineID(Wine.Id);
+        //        tasteTagModels.Add(tasteTagM);
+        //    }
 
-            return tasteTagModels;
-        }
+        //    return tasteTagModels;
+        //}
     }
 }

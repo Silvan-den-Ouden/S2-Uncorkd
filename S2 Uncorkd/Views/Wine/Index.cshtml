@@ -2,15 +2,15 @@
     ViewData["Title"] = "Index";
 }
 
-<h1>@Model.Wine.Name</h1>
-<p>@Model.Wine.Description</p>
+<h1>@Model.Name</h1>
+<p>@Model.Description</p>
 
-<p>From: @Model.Wine.Winery.Name</p>
+<p>From: @Model.Winery.Name</p>
 
-<p>Tags: @foreach(var tag in Model.Wine.TasteTags)
+<p>Tags: @foreach(var tag in Model.TasteTags)
     {
-        <text>@tag.TasteTags.TagName </text>
+        <text>@tag.TagName </text>
     }
 </p>
 
-<input type="button" value="Review" onclick="location.href='/Review?id=@Model.Wine.Id'">
+<input type="button" value="Review" onclick="location.href='/Review?id=@Model.Id'">
