@@ -55,30 +55,5 @@ namespace Uncorkd_BLL.Collections
 
             return tasteTagModels;
         }
-
-        //public List<List<TasteTagModel>> GetPopularWinesTags()
-        //{
-        //    List<List<TasteTagModel>> tasteTagModels = new List<List<TasteTagModel>>();
-
-        //    foreach(var Wine in _wineCollection.GetPopular()) {
-        //        List<TasteTagModel> tasteTagM = GetWithWineID(Wine.Id);
-        //        tasteTagModels.Add(tasteTagM);
-        //    }
-
-        //    return tasteTagModels;
-        //}
-
-        //public List<List<TasteTagModel>> GetRandomWinesTags()
-        //{
-        //    List<List<TasteTagModel>> tasteTagModels = new List<List<TasteTagModel>>();
-
-        //    foreach (var Wine in _wineCollection.GetRandom())
-        //    {
-        //        List<TasteTagModel> tasteTagM = GetWithWineID(Wine.Id);
-        //        tasteTagModels.Add(tasteTagM);
-        //    }
-
-        //    return tasteTagModels;
-        //}
     }
 }

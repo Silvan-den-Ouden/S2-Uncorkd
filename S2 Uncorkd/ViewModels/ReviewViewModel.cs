@@ -8,10 +8,9 @@ namespace S2_Uncorkd.ViewModels
         //public WineryModel Winery { get; set; }
         public List<TasteTagModel> TasteTags { get; set; }
 
-        public ReviewViewModel(WineModel _wine, /*WineryModel _winery,*/ List<TasteTagModel> tasteTags)
+        public ReviewViewModel(WineModel _wine, List<TasteTagModel> tasteTags)
         {
             Wine = _wine;
-            //Winery = _winery;
             TasteTags = tasteTags;
         }
     }
