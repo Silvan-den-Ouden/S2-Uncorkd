@@ -12,9 +12,9 @@ namespace Uncorkd_DTO.DTOs
         public string Name { get; set; }
         public string Description { get; set; }
         public string Image_URL { get; set; }
-        public int Check_ins { get; set; }
         public int Winery_id { get; set;}
         public double Stars { get; set; }
+
 
         public WineDTO() { }
     }

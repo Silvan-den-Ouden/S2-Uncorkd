@@ -8,18 +8,18 @@ namespace S2_Uncorkd.Controllers
     public class ReviewController : Controller
     {
         private readonly WineCollection _wineCollection = new();
-        private readonly WineryCollection _wineryCollection = new();
+        //private readonly WineryCollection _wineryCollection = new();
         private readonly ReviewCollection _reviewCollection = new();
         private readonly TasteTagCollection _tasteTagCollection = new();
 
         public IActionResult Index(int id)
         {
             WineModel wineModel = _wineCollection.GetWithID(id);
-            WineryModel wineryModel = _wineryCollection.GetWithID(wineModel.Winery_id);
+            //WineryModel wineryModel = _wineryCollection.GetWithID(wineModel.Winery_id);
             List<TasteTagModel> tasteTagModels = _tasteTagCollection.GetAll();
 
 
-            ReviewViewModel reviewViewModel = new(wineModel, wineryModel, tasteTagModels);
+            ReviewViewModel reviewViewModel = new(wineModel, /*wineryModel,*/ tasteTagModels);
             return View(reviewViewModel);
         }
 

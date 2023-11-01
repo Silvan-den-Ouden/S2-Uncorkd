@@ -16,12 +16,12 @@ namespace S2_Uncorkd.Controllers
         public IActionResult Index(int ID)
         {
             WineModel wineModel = _wineCollection.GetWithID(ID);
-            WineryModel wineryModel = _wineryCollection.GetWithID(wineModel.Winery_id);
-            List<TasteTagModel> tasteTagModels = _tasteTagCollection.GetWithWineID(wineModel.Id);
+            //WineryModel wineryModel = _wineryCollection.GetWithID(wineModel.Winery_id);
+            //List<TasteTagModel> tasteTagModels = _tasteTagCollection.GetWithWineID(wineModel.Id);
 
-            WineViewModel wineViewModel = new(wineModel, wineryModel, tasteTagModels);
+            //WineViewModel wineViewModel = new(wineModel, wineryModel, tasteTagModels);
 
-            return View(wineViewModel);
+            return View(wineModel);
         }
 
         public IActionResult Upload(int winery_ID)

@@ -12,21 +12,25 @@ namespace Uncorkd_BLL.Collections
     public class WineCollection
     {
         private readonly WineRepository _wineRepository;
+        private readonly WineryCollection _wineryCollection;
+        private readonly TasteTagCollection _tasteTagCollection;
 
         public WineCollection() {
             _wineRepository = new WineRepository();
+            _wineryCollection = new WineryCollection();
+            _tasteTagCollection = new TasteTagCollection();
         }
 
         public List<WineModel> TransformDTOs(List<WineDTO> wineDTOs)
         {
             List<WineModel> wineModels = new List<WineModel>();
-            string defaultWine = "https://i.ibb.co/KXygvP6/Default-Wine-512.png";
+            string defaultWineImg = "https://i.ibb.co/KXygvP6/Default-Wine-512.png";
 
             foreach (WineDTO wineDTO in wineDTOs)
             {
                 if (wineDTO.Image_URL == "")
                 {
-                    wineDTO.Image_URL = defaultWine;
+                    wineDTO.Image_URL = defaultWineImg;
                 }
 
                 WineModel wineModel = new WineModel()
@@ -35,9 +39,9 @@ namespace Uncorkd_BLL.Collections
                     Name = wineDTO.Name,
                     Description = wineDTO.Description,
                     Image_URL = wineDTO.Image_URL,
-                    Check_ins = wineDTO.Check_ins,
-                    Winery_id = wineDTO.Winery_id,
-                    Stars = GetStars(wineDTO.Stars)
+                    Winery = _wineryCollection.GetWithID(wineDTO.Id),
+                    Stars = GetStars(wineDTO.Stars),
+                    TasteTags = _tasteTagCollection.GetWithWineID(wineDTO.Id),
                 };
                 wineModels.Add(wineModel);
             }
