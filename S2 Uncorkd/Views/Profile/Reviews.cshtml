@@ -1,7 +1,6 @@
 ﻿
 @{
     ViewData["Title"] = "Reviews";
-    int i = 0;
 }
 
 <link rel="stylesheet" href="~/css/bodyReviewsPage.css">
@@ -10,27 +9,27 @@
 <h1><b>Username</b>'s recent check-ins</h1>
 
 <div class="flex-grid">
-    @foreach(var reveiw in Model.Reviews)
+    @for(int i = 0; i < Model.Count; i++)
     {
         <div class="review">
             <div class="thumbnail-container">
                 <div class="image-container">
-                    <img src="@Model.Wines[i].Image_URL">
+                    <img src="@Model[i].Wine.Image_URL">
                 </div>
                 <div class="wine-info-container">
-                    <h2>@Model.Wines[i].Name</h2>
-                    <h3>@Model.Wineries[i].Name</h3>
+                    <h2>@Model[i].Wine.Name</h2>
+                    <h3>@Model[i].Wine.Winery.Name</h3>
                 </div>
             </div>
             <div class="comment-container">
-                <h3>@Model.Reviews[i].Comment</h3>
+                <h3>@Model[i].Comment</h3>
             </div>
             <div class="tags-container">
-                @if (Model.TasteTags[i].Count > 0)
+                @if (Model[i].TasteTags.Count > 0)
                 {
-                    for (int j = 0; j < Math.Min(Model.TasteTags[i].Count, 5); j++)
+                    for (int j = 0; j < Math.Min(Model[i].TasteTags.Count, 5); j++)
                     {
-                        <h4>@Model.TasteTags[i][j].TagName</h4>
+                        <h4>@Model[i].TasteTags[j].TagName</h4>
                     }
                 } else
                 {
@@ -40,20 +39,44 @@
             <div class="rating-container">
                 @for (int j = 1; j <= 5; j++)
                 {
-                    <span class="dot @((j <= Model.Reviews[i].Stars) ? "star-filled" : "") @((j == Math.Ceiling(Model.Reviews[i].Stars) && Model.Reviews[i].Stars % 1 > 0) ? "quarter-filled" : "") @((j == Math.Ceiling(Model.Reviews[i].Stars) && Model.Reviews[i].Stars % 1 == 0.5) ? "half-filled" : "") @((j == Math.Ceiling(Model.Reviews[i].Stars) && Model.Reviews[i].Stars % 1 == 0.75) ? "three-quarter-filled" : "")"></span>
+                    <span class="dot @((j <= Model[i].Stars) ? "star-filled" : "") @((j == Math.Ceiling(Model[i].Stars) && Model[i].Stars % 1 > 0) ? "quarter-filled" : "") @((j == Math.Ceiling(Model[i].Stars) && Model[i].Stars % 1 == 0.5) ? "half-filled" : "") @((j == Math.Ceiling(Model[i].Stars) && Model[i].Stars % 1 == 0.75) ? "three-quarter-filled" : "")"></span>
                 }
-                <p>@Model.Reviews[i].Stars</p>
+                <p>@Model[i].Stars</p>
             </div>
             <div class="review-date">
-                <p>@Model.Reviews[i].Review_Date</p>
+                <p>@Model[i].Review_Date</p>
             </div>
         </div>
-        i++;
     }
 </div>
 
+
 <div class="navigate-buttons">
-    <input type="button" value="<" onclick="location.href='/profile/reviews?user_id=1&page=@(Model.PageNumber - 1)'"/>
-    <input type="button" value=">" onclick="location.href='/profile/reviews?user_id=1&page=@(Model.PageNumber + 1)'"/>
+    <input type="button" value="<" onclick="navigateToPage('prev')" />
+    <input type="button" value=">" onclick="navigateToPage('next')" />
 </div>
+
+<script>
+    function navigateToPage(direction) {
+        var currentPage = parseInt(getParameterByName('page')) || 1;
+        var nextPage = direction === 'prev' ? currentPage - 1 : currentPage + 1;
+
+        if (nextPage > 0) {
+            // Update the URL with the new page number
+            var newUrl = location.href.replace(/([?&])page=\d+/, '$1page=' + nextPage);
+            location.href = newUrl;
+        }
+    }
+
+    function getParameterByName(name) {
+        name = name.replace(/[\[\]]/g, "\\$&");
+        var regex = new RegExp("[?&]" + name + "(=([^&#]*)|&|#|$)"),
+            results = regex.exec(location.search);
+        if (!results) return null;
+        if (!results[2]) return '';
+        return decodeURIComponent(results[2].replace(/\+/g, " "));
+    }
+</script>
+
+
 

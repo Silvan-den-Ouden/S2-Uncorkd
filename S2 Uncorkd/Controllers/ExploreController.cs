@@ -9,7 +9,6 @@ namespace S2_Uncorkd.Controllers
     {
         private readonly WineCollection _wineCollection = new();
         private readonly WineryCollection _wineryCollection = new();
-        private readonly TasteTagCollection _tasteTagCollection = new();
 
         public IActionResult Index()
         {
@@ -17,10 +16,8 @@ namespace S2_Uncorkd.Controllers
             List<WineryModel> wineryModels = _wineryCollection.GetAll();
             List<WineModel> bestWineModels = _wineCollection.GetPopular();
             List<WineModel> randomWines = _wineCollection.GetRandom();
-            List<List<TasteTagModel>> bestTasteTags = _tasteTagCollection.GetPopularWinesTags();
-            List<List<TasteTagModel>> randomTasteTags = _tasteTagCollection.GetRandomWinesTags();
 
-            ExplorerViewModel explorerViewModel = new(wineModels, wineryModels, bestWineModels, randomWines, bestTasteTags, randomTasteTags);
+            ExplorerViewModel explorerViewModel = new(wineModels, wineryModels, bestWineModels, randomWines);
 
             return View(explorerViewModel);
         }

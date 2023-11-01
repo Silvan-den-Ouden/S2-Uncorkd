@@ -2,8 +2,8 @@
     ViewData["Title"] = "Index";
 }
 
-<h1>@Model.Wine.Name</h1>
-<p>@Model.Wine.Description</p>
+<h1>@Model.Name</h1>
+<p>@Model.Description</p>
 
 <p>From: @Model.Winery.Name</p>
 
@@ -13,4 +13,4 @@
     }
 </p>
 
-<input type="button" value="Review" onclick="location.href='/Review?id=@Model.Wine.Id'">
+<input type="button" value="Review" onclick="location.href='/Review?id=@Model.Id'">

@@ -20,7 +20,6 @@ namespace Uncorkd_DAL.Repositories
                 Name = reader.GetString("name"),
                 Description = reader.GetString("description"),
                 Image_URL = reader.GetString("image_url"),
-                Check_ins = reader.GetInt32("check_ins"),
                 Winery_id = reader.GetInt32("winery_id"),
                 Stars = GetStars(reader.GetInt32("id")),
             };
