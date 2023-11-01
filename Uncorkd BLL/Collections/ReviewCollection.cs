@@ -12,10 +12,14 @@ namespace Uncorkd_BLL.Collections
     public class ReviewCollection
     {
         private readonly ReviewRepository _reviewRepository;
+        private readonly WineCollection _wineCollection;
+        private readonly TasteTagCollection _tasteTagCollection;
 
         public ReviewCollection()
         {
             _reviewRepository = new ReviewRepository();
+            _wineCollection = new WineCollection();
+            _tasteTagCollection = new TasteTagCollection();
         }
 
         public List<ReviewModel> TransformDTOs(List<ReviewDTO> reviewDTOs)
@@ -28,11 +32,12 @@ namespace Uncorkd_BLL.Collections
                 {
                     Id = reviewDTO.Id,
                     User_id = reviewDTO.User_id,
-                    Wine_id = reviewDTO.Wine_id,
+                    Wine = _wineCollection.GetWithID(reviewDTO.Wine_id),
                     Stars = (double)reviewDTO.Rating / 4,
                     Comment = reviewDTO.Comment,
                     Image_URL = reviewDTO.Image_URL,
                     Review_Date = reviewDTO.Review_Date,
+                    TasteTags = _tasteTagCollection.GetWithReviewID(reviewDTO.Id),
                 };
                 reviewModels.Add(reviewModel);
             }
