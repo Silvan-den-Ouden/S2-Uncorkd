@@ -58,8 +58,8 @@
                 </div>
             }
         </div>
-        <label for="popular-wines-container">Popular wines</label>
-        <div id="popular-wines-container" class="wines-container">
+        <label for="popular-wines-container" hidden>Popular wines</label>
+        <div id="popular-wines-container" class="wines-container" hidden>
             @foreach(var wine in Model.PopularWines)
             {
                 <div onclick="location.href='Wine?id=@wine.Id'"

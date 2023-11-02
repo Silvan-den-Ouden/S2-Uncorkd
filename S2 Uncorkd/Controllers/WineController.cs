@@ -25,9 +25,19 @@ namespace S2_Uncorkd.Controllers
             WineryModel wineryModel = _wineryCollection.GetWithID(winery_ID);
             List<TasteTagModel> tasteTagModels = _tasteTagCollection.GetAll();
 
-            UploadViewModel uploadViewModel = new(wineryModel, tasteTagModels);
+            UploadWineViewModel uploadViewModel = new(wineryModel, tasteTagModels);
 
             return View(uploadViewModel);
+        }
+
+        public IActionResult Update(int wine_ID)
+        {
+            WineModel wineModel = _wineCollection.GetWithID(wine_ID);
+            List<TasteTagModel> tasteTagModels = _tasteTagCollection.GetAll();
+
+            UpdateWineViewModel updateViewModel = new(wineModel,tasteTagModels);
+
+            return View(updateViewModel);
         }
 
         public void Create(int wineryId, string name, string description, string tasteTags, string image_url)

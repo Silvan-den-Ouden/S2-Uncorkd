@@ -2,12 +2,12 @@
 
 namespace S2_Uncorkd.ViewModels
 {
-    public class UploadViewModel
+    public class UploadWineViewModel
     {
         public WineryModel Winery { get; set; }
         public List<TasteTagModel> TasteTags { get; set; }
 
-        public UploadViewModel(WineryModel _winery, List<TasteTagModel> _tasteTags)
+        public UploadWineViewModel(WineryModel _winery, List<TasteTagModel> _tasteTags)
         {
             Winery = _winery;
             TasteTags = _tasteTags;

@@ -1,5 +1,6 @@
 ﻿@{
-    ViewData["Title"] = "Upload";
+    ViewData["Title"] = "Update";
+    bool isChecked = false;
 }
 
 <link rel="stylesheet" href="~/css/tastetagsReviewPage.css">
@@ -8,16 +9,16 @@
 
 <div class="thumbnail">
     <div class="image-container" onclick="testMethod()">
-        <img class="winery-icon" id="winery-icon" src="@Model.Winery.Image_URL" />
+        <img class="winery-icon" id="winery-icon" src="@Model.Wine.Image_URL" />
         <img class="upload-image-icon" id="upload-image-icon" style="display: block" src="https://i.ibb.co/yg2m6YT/afbeelding-2023-10-30-222957448.png" />
     </div>
     <div class="text-container">
-        <input id="wine-name" type="text" autofocus placeholder="Name of wine..." maxlength="32" />
-        <h2>@Model.Winery.Name</h2>
+        <input id="wine-name" type="text" placeholder="Name of wine..." value="@Model.Wine.Name" maxlength="32" />
+        <h2>@Model.Wine.Winery.Name</h2>
     </div>
 </div>
 
-<textarea id="description" maxlength="255" placeholder="Write a short description for the wine..."></textarea>
+<textarea id="description" maxlength="255" placeholder="Write a short description for the wine...">@Model.Wine.Description</textarea>
 
 <div class="tastetag-container">
     <h3 id="expandFlavors" onclick="expandFlavors()">Flavor Profile ></h3>
@@ -25,12 +26,26 @@
     <div class="tastetags" id="tasteTags">
         @foreach (var tasteTag in Model.TasteTags)
         {
-            <div class="cat" style="display: hidden;">
+            <div class="cat">
                 <label>
-                    <input type="checkbox" name="category" value="@tasteTag.Id">
-                    <span>@tasteTag.TagName</span>
+                    @foreach (var wineTasteTag in Model.Wine.TasteTags)
+                    {
+                        if (wineTasteTag.Id == tasteTag.Id)
+                        {
+                            <input type="checkbox" name="category" checked value="@tasteTag.Id">
+                            <span>@tasteTag.TagName</span>
+                            isChecked = true;
+                            break;
+                        }
+                    }
+                    @if(!isChecked)
+                    {
+                        <input type="checkbox" name="category" value="@tasteTag.Id">
+                        <span>@tasteTag.TagName</span>
+                    }
                 </label>
             </div>
+            isChecked = false;
         }
 
         <div class="cat" id="moreButton" style="display: block;">
@@ -53,7 +68,7 @@
 </div>
 
 <div class="upload-button">
-    <input type="button" class="button" value="UPLOAD" onclick="uploadWine(@Model.Winery.Id)"/>
+    <input type="button" class="button" value="UPLOAD" @*onclick="uploadWine(@Model.Winery.Id)"*@ />
 </div>
 
 <script src="~/js/flavorCheckBoxesUpload.js"></script>
