@@ -1,9 +1,9 @@
-﻿function uploadWine(wineryId) {
+﻿function updateWine(wine_id) {
     var tasteTags = document.getElementById("selectedTags").textContent;
     var description = document.getElementById("description").value;
     var name = document.getElementById("wine-name").value;
     var image_url = document.getElementById("winery-icon").src;
-    
+
 
     if (name === '') {
         alert("Please enter a name");
@@ -13,9 +13,9 @@
         alert("Please select 5 taste tags");
     } else {
         $.ajax({
-            url: '/Wine/CreateWine',
+            url: '/Wine/UpdateWine',
             type: 'GET',
-            data: { wineryId: wineryId, name: name, description: description, tasteTags: tasteTags, image_url: image_url },
+            data: { wineId: wine_id, name: name, description: description, tasteTags: tasteTags, image_url: image_url },
             success: function (data) {
                 console.log(data);
                 location.href = '';

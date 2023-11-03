@@ -40,10 +40,14 @@ namespace S2_Uncorkd.Controllers
             return View(updateViewModel);
         }
 
-        public void Create(int wineryId, string name, string description, string tasteTags, string image_url)
+        public void CreateWine(int wineryId, string name, string description, string tasteTags, string image_url)
         {
             _wineCollection.Create(wineryId, name, description, tasteTags, image_url);
         }
 
+        public void UpdateWine(int wineId, string name, string description, string tasteTags, string image_url)
+        {
+            _wineCollection.Update(wineId, name, description, tasteTags, image_url);
+        }
     }
 }

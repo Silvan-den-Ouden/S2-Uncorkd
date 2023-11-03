@@ -111,5 +111,20 @@ namespace Uncorkd_BLL.Collections
 
             _wineRepository.Create(wineryId, name, description, tasteTagsArray, image_url);
         }
+
+        public void Update(int wineId, string name, string description, string tasteTags, string image_url)
+        {
+            string[] tasteTagsArray = tasteTags.Split(',');
+            if (tasteTagsArray[0] == "0")
+            {
+                tasteTagsArray = Array.Empty<string>();
+            }
+            if (image_url == "" || image_url is null)
+            {
+                image_url = "https://i.ibb.co/KXygvP6/Default-Wine-512.png";
+            }
+
+            _wineRepository.Update(wineId, name, description, tasteTagsArray, image_url);
+        }
     }
 }

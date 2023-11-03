@@ -197,5 +197,36 @@ namespace Uncorkd_DAL.Repositories
                 }
             }
         }
+
+        public void Update(int wineId, string name, string description, string[] tasteTags, string image_url)
+        {
+            using (MySqlConnection con = Connector.MakeConnection())
+            {
+                con.Open();
+
+                MySqlCommand updateWineCmd = new MySqlCommand("UPDATE `wine` SET name = @name, description = @description, image_url = @image_url WHERE id = @ID;", con);
+                updateWineCmd.Parameters.AddWithValue("@name", name);
+                updateWineCmd.Parameters.AddWithValue("@description", description);
+                updateWineCmd.Parameters.AddWithValue("@image_url", image_url);
+                updateWineCmd.Parameters.AddWithValue("@ID", wineId);
+                updateWineCmd.ExecuteNonQuery();
+
+                MySqlCommand deleteTasteTagsCmd = new MySqlCommand("DELETE FROM `wine_to_tastetag` WHERE wine_id = @wineId;", con);
+                deleteTasteTagsCmd.Parameters.AddWithValue("@wineId", wineId);
+                deleteTasteTagsCmd.ExecuteNonQuery();
+
+                if (tasteTags != null && tasteTags.Length > 0)
+                {
+                    foreach (string tastetagId in tasteTags)
+                    {
+                        MySqlCommand insertTastetagCmd = new MySqlCommand("INSERT INTO `wine_to_tastetag` (wine_id, tag_id) VALUES (@wineId, @tastetagId);", con);
+                        insertTastetagCmd.Parameters.AddWithValue("@wineId", wineId);
+                        insertTastetagCmd.Parameters.AddWithValue("@tastetagId", tastetagId);
+                        insertTastetagCmd.ExecuteNonQuery();
+                    }
+                }
+            }
+        }
+
     }
 }
