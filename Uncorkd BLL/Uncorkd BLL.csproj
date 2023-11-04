@@ -47,6 +47,7 @@
     <Compile Include="Collections\WineryCollection.cs" />
     <Compile Include="Models\ReviewModel.cs" />
     <Compile Include="Models\TasteTagModel.cs" />
+    <Compile Include="Models\UserModel.cs" />
     <Compile Include="Models\WineModel.cs" />
     <Compile Include="Models\WineryModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
