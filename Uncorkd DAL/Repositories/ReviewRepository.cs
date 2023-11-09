@@ -95,6 +95,36 @@ namespace Uncorkd_DAL.Repositories
             }
         }
 
+        public void Delete(int reviewId)
+        {
+            using (MySqlConnection con = Connector.MakeConnection())
+            {
+                con.Open();
+
+                using (MySqlTransaction transaction = con.BeginTransaction())
+                {
+                    try
+                    {
+                        // Delete taste tags associated with the review
+                        MySqlCommand deleteTastetagsCmd = new MySqlCommand("DELETE FROM `review_to_tastetag` WHERE review_id = @reviewId;", con, transaction);
+                        deleteTastetagsCmd.Parameters.AddWithValue("@reviewId", reviewId);
+                        deleteTastetagsCmd.ExecuteNonQuery();
+
+                        // Delete the review
+                        MySqlCommand deleteReviewCmd = new MySqlCommand("DELETE FROM `review` WHERE id = @reviewId;", con, transaction);
+                        deleteReviewCmd.Parameters.AddWithValue("@reviewId", reviewId);
+                        deleteReviewCmd.ExecuteNonQuery();
+
+                        transaction.Commit(); 
+                    }
+                    catch (Exception ex)
+                    {
+                        transaction.Rollback();
+                        Console.WriteLine("Error deleting review: " + ex.Message);
+                    }
+                }
+            }
+        }
 
     }
 }

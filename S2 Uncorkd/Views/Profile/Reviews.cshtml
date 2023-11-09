@@ -17,8 +17,13 @@
                     <img src="@Model[i].Wine.Image_URL">
                 </div>
                 <div class="wine-info-container">
-                    <h2>@Model[i].Wine.Name</h2>
+                    <h2 onclick="location.href='/Wine?id=@Model[i].Wine.Id'">@Model[i].Wine.Name</h2>
                     <h3>@Model[i].Wine.Winery.Name</h3>
+                </div>
+                <div class="kebab-menu" onclick="kebabTrigger(@Model[i].Wine.Id, @Model[i].Id)">
+                    <div class="kebab-menu-item"></div>
+                    <div class="kebab-menu-item"></div>
+                    <div class="kebab-menu-item"></div>
                 </div>
             </div>
             <div class="comment-container">
@@ -55,6 +60,8 @@
     <input type="button" value="<" onclick="navigateToPage('prev')" />
     <input type="button" value=">" onclick="navigateToPage('next')" />
 </div>
+
+<script src="~/js/reviewsKebab.js"></script>
 
 <script>
     function navigateToPage(direction) {

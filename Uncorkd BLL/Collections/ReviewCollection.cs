@@ -74,5 +74,10 @@ namespace Uncorkd_BLL.Collections
             _reviewRepository.Create(user_id, wine_id, rating, tasteTagsArray, comment);
         }
 
+        public void Delete(int reviewId)
+        {
+            _reviewRepository.Delete(reviewId);
+        }
+
     }
 }

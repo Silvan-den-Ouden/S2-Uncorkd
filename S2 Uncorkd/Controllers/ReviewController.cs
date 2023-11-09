@@ -30,5 +30,10 @@ namespace S2_Uncorkd.Controllers
             return Json(responseData);
         }
 
+        public void DeleteReview(int reviewId)
+        {
+            _reviewCollection.Delete(reviewId);
+        }
+
     }
 }

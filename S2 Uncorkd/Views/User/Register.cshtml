@@ -36,7 +36,6 @@
         } else if (password === '') {
             alert("Please enter a password");
         } else {
-            // Assuming you have a server-side endpoint to handle the registration
             $.ajax({
                 url: '/YourRegistrationEndpoint', // Replace with the actual URL
                 type: 'POST',
@@ -47,15 +46,14 @@
                 },
                 success: function (data) {
                     console.log("Registration successful:", data);
-                    // Redirect or perform other actions as needed
+                    location.href = '/Home';
                 },
                 error: function (error) {
+                    alert("An error occured. Please try again later.")
                     console.log("Registration error:", error);
-                    // Handle the error appropriately
                 }
             });
         }
     }
-
 </script>
 
