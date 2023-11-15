@@ -2,16 +2,227 @@
     ViewData["Title"] = "Index";
 }
 
-<h1>@Model.Name</h1>
-<p>@Model.Description</p>
-
-<p>From: @Model.Winery.Name</p>
-
-<p>Tags: @foreach(var tag in Model.TasteTags)
-    {
-        <text>@tag.TagName </text>
+<style>
+    .thumbnail {
+        display: flex;
+        align-items: flex-start;
+        margin-bottom: 20px;
     }
-</p>
 
-<input type="button" value="Review" onclick="location.href='/Review?id=@Model.Id'">
+    .thumbnail .image-container {
+        flex: 0 0 auto;
+        margin-right: 10px;
+    }
+
+    .thumbnail .image-container img {
+        width: 150px;
+        height: 150px;
+        max-width: 100%;
+        border: 1px solid #000000;
+    }
+
+    .thumbnail .text-container {
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .thumbnail .text-container h1 {
+        margin-bottom: 0.5em;
+        line-height: 70%;
+        font-size: 64px;
+    }
+
+    .thumbnail .text-container h2 {
+        margin-bottom: 0.5em;
+        line-height: 70%;
+        font-size: 32px;
+    }
+
+    .information-container {
+        padding-top: 20px;
+        margin-bottom: 60px;
+    }
+
+    .information-container h2 {
+        padding-bottom: 10px;
+        font-size: 24px;
+    }
+
+    .button {
+        background-color: #4CAF50;
+        border: 2px solid #4CAF50;
+        border-radius: 10px;
+        color: #FFFFFF;
+        padding: 2px 32px;
+        text-align: center;
+        text-decoration: none;
+        display: inline-block;
+        font-size: 18px;
+        transition-duration: 0.4s;
+    }
+
+        .button:hover {
+            background-color: #FFFFFF;
+            color: #000000;
+            border: 2px solid #4CAF50;
+        }
+
+    .tags-container {
+        height: 22px;
+        max-height: 22px;
+    }
+
+        .tags-container h4 {
+            display: inline-block;
+            vertical-align: middle;
+            font-size: 18px;
+            margin: 0 10px 0 0;
+
+            padding: 10px;
+            background-color: #FF85AF;
+            border-radius: 100px;
+            box-shadow: 1px;
+            overflow: hidden;
+        }
+
+    .unnamed-container {
+        display: flex;
+    }
+
+    .check-ins-container {
+        width: 50%;
+        margin-right: 5%;
+        border: solid 1px black;
+        /*background-color: yellow;*/
+    }
+
+    table {
+        width: 100%;
+    }
+
+    th, td {
+        padding: 12px;
+        text-align: left;
+        border-bottom: 1px solid #ddd;
+        text-align: right;
+    }
+
+    th {
+        background-color: #f2f2f2;
+    }
+
+    tr:hover {
+        background-color: #f5f5f5;
+    }
+
+    /* Style the hidden column */
+    th:first-child {
+        width: 10%;
+        font-size: 0;
+    }
+
+    td:nth-child(1){
+        text-align: left;
+        font-weight: bold;
+    }
+
+    /* Style the rating column */
+    td:nth-child(3) {
+        font-weight: bold;
+    }
+
+    .winery-container {
+        display: grid;
+        grid-template-columns: 3fr 1fr;
+        grid-template-rows: auto;
+        gap: 0px; /* Adjust the gap as needed */
+        width: 35%;
+        border: solid 1px black;
+        padding: 5px;
+    }
+
+    .winery-container .text-container {
+            grid-column: 1;
+            grid-row: 1;
+    }
+
+    .winery-container .image-container {
+            grid-column: 2;
+            grid-row: 1;
+        width: 100px;
+        height: 100px;
+    }
+
+    .winery-container img {
+        max-width: 100%; /* Ensure the image doesn't exceed its container */
+    }
+
+        .winery-container h4 {
+            grid-column: 1 / span 2; /* Span across both columns */
+            grid-row: 2;
+            font-size: 18px;
+        }
+</style>
+
+<div class="thumbnail">
+    <div class="image-container">
+        <img src="@Model.Image_URL" />
+    </div>
+    <div class="text-container">
+        <h1>@Model.Name</h1>
+        <h2>@Model.Winery.Name</h2>
+        <input class="button" type="button" value="CHECK-IN" onclick="location.href='/Review?id=@Model.Id'">
+    </div>
+</div>
+
+<div class="information-container">
+    <h2>@Model.Description</h2>
+    <div class="tags-container">
+        @foreach (var tag in Model.TasteTags)
+        {
+            <h4>@tag.TagName </h4>
+        }
+    </div>
+</div>
+
+<div class="unnamed-container">
+    <div class="check-ins-container">
+        <table>
+            <tr>
+                <th>Group</th>
+                <th>Check-ins</th>
+                <th>Average Rating</th>
+            </tr>
+            <tr>
+                <td>You</td>
+                <td>3</td>
+                <td>****/*****</td>
+            </tr>
+            <tr>
+                <td>Friends</td>
+                <td>21</td>
+                <td>***/*****</td>
+            </tr>
+            <tr>
+                <td>Everyone</td>
+                <td>5065</td>
+                <td>****/*****</td>
+            </tr>
+        </table>
+    </div>
+    <div class="winery-container">
+        <div class="text-container">
+            <h2>Winery info:</h2>
+            <h3>@Model.Winery.Name</h3>
+        </div>
+        <div class="image-container">
+            <img src="@Model.Winery.Image_URL" />
+        </div>
+        <h4>@Model.Winery.Description</h4>
+
+    </div>
+</div>
+
 <input type="button" value="Update" onclick="location.href='/Wine/Update?wine_id=@Model.Id'">
