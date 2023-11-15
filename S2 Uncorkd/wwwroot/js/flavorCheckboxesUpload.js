@@ -30,7 +30,7 @@ function expandFlavors() {
     }
 }
 
-expandFlavors();
+expandFlavors(); expandFlavors();
 
 function handleCheckboxChange() {
     const checkboxes = document.querySelectorAll('input[name="category"]');

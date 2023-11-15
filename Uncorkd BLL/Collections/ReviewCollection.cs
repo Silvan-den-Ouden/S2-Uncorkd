@@ -74,6 +74,17 @@ namespace Uncorkd_BLL.Collections
             _reviewRepository.Create(user_id, wine_id, rating, tasteTagsArray, comment);
         }
 
+        public void Update(int user_id, int review_id, int rating, string tasteTags, string comment)
+        {
+            string[] tasteTagsArray = tasteTags.Split(',');
+            if (tasteTagsArray[0] == "0")
+            {
+                tasteTagsArray = Array.Empty<string>();
+            }
+
+            _reviewRepository.Update(user_id, review_id, rating, tasteTagsArray, comment);
+        }
+
         public void Delete(int reviewId)
         {
             _reviewRepository.Delete(reviewId);

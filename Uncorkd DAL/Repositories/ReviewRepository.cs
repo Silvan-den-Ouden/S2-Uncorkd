@@ -95,6 +95,37 @@ namespace Uncorkd_DAL.Repositories
             }
         }
 
+        public void Update(int user_id, int review_id, int rating, string[] tasteTags, string comment)
+        {
+            using (MySqlConnection con = Connector.MakeConnection())
+            {
+                con.Open();
+
+                MySqlCommand updateReviewCmd = new MySqlCommand("UPDATE `review` SET user_id = @userId, rating = @rating, comment = @comment WHERE id = @reviewId;", con);
+                updateReviewCmd.Parameters.AddWithValue("@userId", user_id);
+                updateReviewCmd.Parameters.AddWithValue("@rating", rating);
+                updateReviewCmd.Parameters.AddWithValue("@comment", comment);
+                updateReviewCmd.Parameters.AddWithValue("@reviewId", review_id);
+                updateReviewCmd.ExecuteNonQuery();
+
+                MySqlCommand deleteTagsCmd = new MySqlCommand("DELETE FROM `review_to_tastetag` WHERE review_id = @reviewId;", con);
+                deleteTagsCmd.Parameters.AddWithValue("@reviewId", review_id);
+                deleteTagsCmd.ExecuteNonQuery();
+
+                if (tasteTags != null && tasteTags.Length > 0)
+                {
+                    foreach (string tastetagId in tasteTags)
+                    {
+                        MySqlCommand insertTastetagCmd = new MySqlCommand("INSERT INTO `review_to_tastetag` (review_id, tag_id) VALUES (@reviewId, @tastetagId);", con);
+                        insertTastetagCmd.Parameters.AddWithValue("@reviewId", review_id);
+                        insertTastetagCmd.Parameters.AddWithValue("@tastetagId", tastetagId);
+                        insertTastetagCmd.ExecuteNonQuery();
+                    }
+                }
+            }
+        }
+
+
         public void Delete(int reviewId)
         {
             using (MySqlConnection con = Connector.MakeConnection())

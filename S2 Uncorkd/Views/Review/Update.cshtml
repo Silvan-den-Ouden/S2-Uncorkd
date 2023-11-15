@@ -3,34 +3,45 @@
     bool isChecked = false;
 }
 
-<link rel="stylesheet" href="~/css/tastetagsReviewPage.css">
 <link rel="stylesheet" href="~/css/thumbnailReviewPage.css">
-<link rel="stylesheet" href="~/css/bodyUploadPage.css">
+<link rel="stylesheet" href="~/css/bodyReviewPage.css">
+<link rel="stylesheet" href="~/css/tastetagsReviewPage.css">
 
 <div class="thumbnail">
-    <div class="image-container" onclick="testMethod()">
-        <img class="winery-icon" id="winery-icon" src="@Model.Wine.Image_URL" />
-        <img class="upload-image-icon" id="upload-image-icon" style="display: block" src="https://i.ibb.co/yg2m6YT/afbeelding-2023-10-30-222957448.png" />
+    <div class="image-container">
+        <img src="@Model.Wine.Image_URL" />
     </div>
     <div class="text-container">
-        <input id="wine-name" type="text" placeholder="Name of wine..." value="@Model.Wine.Name" maxlength="32" />
+        <h1>@Model.Wine.Name</h1>
         <h2>@Model.Wine.Winery.Name</h2>
     </div>
 </div>
 
-<textarea id="description" maxlength="255" placeholder="Write a short description for the wine...">@Model.Wine.Description</textarea>
+<div class="commentInput">
+    <textarea id="comment" maxlength="255" autofocus="autofocus" placeholder="How was it? leave a note">@Model.Review.Comment</textarea>
+</div>
+
+<div class="slide-container">
+    <div class="title-container">
+        <h3>Rating</h3>
+    </div>
+    <div class="number-container">
+        <h3 id="sliderValue">Theres something wrong with the slider if you're seeing this</h3>
+    </div>
+</div>
+<input type="range" id="myRange" draggable="false" class="slider" min="1" max="20" value="@(Model.Review.Stars * 4)">
 
 <div class="tastetag-container">
-    <h3 id="expandFlavors" onclick="expandFlavors()">Flavor Profile ></h3>
+    <h3 onclick="expandFlavors()" id="expandFlavors">Flavor Profile ></h3>
 
     <div class="tastetags" id="tasteTags">
         @foreach (var tasteTag in Model.TasteTags)
         {
             <div class="cat">
                 <label>
-                    @foreach (var wineTasteTag in Model.Wine.TasteTags)
+                    @foreach (var reviewTasteTag in Model.Review.TasteTags)
                     {
-                        if (wineTasteTag.Id == tasteTag.Id)
+                        if (reviewTasteTag.Id == tasteTag.Id)
                         {
                             <input type="checkbox" name="category" checked value="@tasteTag.Id">
                             <span>@tasteTag.TagName</span>
@@ -38,7 +49,7 @@
                             break;
                         }
                     }
-                    @if(!isChecked)
+                    @if (!isChecked)
                     {
                         <input type="checkbox" name="category" value="@tasteTag.Id">
                         <span>@tasteTag.TagName</span>
@@ -47,7 +58,6 @@
             </div>
             isChecked = false;
         }
-
         <div class="cat" id="moreButton" style="display: block;">
             <label>
                 <input type="button" name="category" onclick="expandFlavors()"><span>More...</span>
@@ -60,31 +70,17 @@
         </div>
     </div>
 
-    <h3 id="selectedTagCount">0/5</h3>
-
     <div hidden="hidden">
         <p>Selected tags: <span id="selectedTags"></span></p>
     </div>
 </div>
 
-<div class="upload-button">
-    <input type="button" class="button" value="UPDATE" onclick="updateWine(@Model.Wine.Id)" />
+<br />
+<br />
+<div class="check-in-button">
+    <input type="button" class="button" value="UPDATE" onclick="updateData(@Model.Review.Id)">
 </div>
 
+<script src="~/js/checkInButton.js"></script>
 <script src="~/js/flavorCheckBoxesUpload.js"></script>
-<script src="~/js/updateWineButton.js"></script>
-
-<script>
-    function testMethod() {
-        var userInput = prompt("Enter an image url:");
-        var wineryIcon = document.getElementById("winery-icon");
-        var uploadImageIcon = document.getElementById("upload-image-icon");
-
-        if (userInput == null || userInput == "") {
-            alert("Failed to enter image");
-        } else {
-            wineryIcon.src = userInput;
-            uploadImageIcon.style.display = 'none';
-        }
-    }
-</script>
+<script src="~/js/ratingSlider.js"></script>

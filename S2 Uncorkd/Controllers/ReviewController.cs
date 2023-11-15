@@ -21,6 +21,16 @@ namespace S2_Uncorkd.Controllers
             return View(reviewViewModel);
         }
 
+        public IActionResult Update(int id)
+        {
+            ReviewModel reviewModel = _reviewCollection.GetWithID(id);
+            WineModel wineModel = _wineCollection.GetWithID(reviewModel.Wine.Id);
+            List<TasteTagModel> tasteTagModels = _tasteTagCollection.GetAll();
+
+            ReviewViewModel reviewViewModel = new(wineModel, reviewModel, tasteTagModels);
+            return View(reviewViewModel);
+        }
+
         public IActionResult SendData(int sliderValue, int wineId, string tasteTags, string comment)
         {
             _reviewCollection.Create(2, wineId, sliderValue, tasteTags, comment);
@@ -28,6 +38,11 @@ namespace S2_Uncorkd.Controllers
             var responseData = new { tasteTags };
 
             return Json(responseData);
+        }
+
+        public void UpdateReview(int sliderValue, int reviewId, string tasteTags, string comment)
+        {
+            _reviewCollection.Update(2, reviewId, sliderValue, tasteTags, comment);
         }
 
         public void DeleteReview(int reviewId)
