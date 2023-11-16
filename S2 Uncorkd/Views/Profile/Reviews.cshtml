@@ -46,7 +46,7 @@
                 {
                     <span class="dot @((j <= Model[i].Stars) ? "star-filled" : "") @((j == Math.Ceiling(Model[i].Stars) && Model[i].Stars % 1 > 0) ? "quarter-filled" : "") @((j == Math.Ceiling(Model[i].Stars) && Model[i].Stars % 1 == 0.5) ? "half-filled" : "") @((j == Math.Ceiling(Model[i].Stars) && Model[i].Stars % 1 == 0.75) ? "three-quarter-filled" : "")"></span>
                 }
-                <p>@Model[i].Stars</p>
+                <p>@Model[i].Stars.ToString("0.00")</p>
             </div>
             <div class="review-date">
                 <p>@Model[i].Review_Date</p>
