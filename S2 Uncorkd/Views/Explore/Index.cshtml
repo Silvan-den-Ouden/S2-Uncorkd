@@ -26,18 +26,24 @@
     </div>
 
     <div>
-        <ul id="wineMenu" style="display: none;">
+        <div id="wineMenu" style="display: none;">
             @foreach (var wine in Model.Wines)
             {
-                <li onclick="location.href='/Wine?id=@wine.Id'"><a>@wine.Name</a></li>
+                <div id="wine-container" class="wine-container" onclick="location.href='/Wine?id=@wine.Id'">
+                    <img src="@wine.Image_URL">
+                    <a>@wine.Name</a>
+                </div>
             }
-        </ul>
-        <ul id="wineryMenu" style="display: none;">
+        </div>
+        <div id="wineryMenu" style="display: none;">
             @foreach (var winery in Model.Wineries)
             {
-                <li onclick="location.href='/Winery?id=@winery.Id'"><a>@winery.Name</a></li>
+                <div id="winery-container" class="winery-container" onclick="location.href='/Winery?id=@winery.Id'">
+                    <img src="@winery.Image_URL">
+                    <a>@winery.Name</a>
+                </div>
             }
-        </ul>
+        </div>
     </div>
 
     <div id="flexboxes" display="block">

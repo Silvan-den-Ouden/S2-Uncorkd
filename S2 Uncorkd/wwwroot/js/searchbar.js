@@ -1,45 +1,42 @@
-﻿var selectedMenu;
-const currentMenu = document.getElementById(selectedMenu);
+﻿var selectedMenu = "wineMenu";
+const input = document.getElementById("mySearch");
 const flexbox = document.getElementById("flexboxes");
 const menuButtons = document.getElementById("menuButtons");
 
-
 function searchBar() {
-    var input, filter, ul, li, a, i;
-    input = document.getElementById("mySearch");
-   
-    filter = input.value.toUpperCase();
+    var filter = input.value.toUpperCase();
+    var container = document.getElementById(selectedMenu);
 
-    if (selectedMenu == null) {
-        selectedMenu = "wineMenu";
+    if (!container) {
+        console.error("Container not found. Check if the ID is correct.");
+        return;
     }
 
-    ul = document.getElementById(selectedMenu);
-    li = ul.getElementsByTagName("li");
+    var items = container.getElementsByTagName("div");
 
     // Only display search bar when typing innit
     if (filter == "") {
-        ul.style.display = "none";
+        container.style.display = "none";
         menuButtons.style.display = "none";
         flexbox.style.display = "block";
     } else {
-        ul.style.display = "block";
+        container.style.display = "block";
         menuButtons.style.display = "block";
         flexbox.style.display = "none";
     }
 
     // Hide items that don't match search query unless searching for #
     if (filter == "#") {
-        for (i = 0; i < li.length; i++) {
-            li[i].style.display = "block";
+        for (i = 0; i < items.length; i++) {
+            items[i].style.display = "block";
         }
     } else {
-        for (i = 0; i < li.length; i++) {
-            a = li[i].getElementsByTagName("a")[0];
+        for (i = 0; i < items.length; i++) {
+            a = items[i].getElementsByTagName("a")[0];
             if (a.innerHTML.toUpperCase().indexOf(filter) > -1) {
-                li[i].style.display = "block";
+                items[i].style.display = "block";
             } else {
-                li[i].style.display = "none";
+                items[i].style.display = "none";
             }
         }
     }
@@ -52,10 +49,11 @@ function displayMenuButtons() {
 
 function handleRadioChange(event) {
     const selectedValue = event.target.value;
+    const currentMenu = document.getElementById(selectedMenu);
 
     // Hide all elements from previous (current) menu
     if (currentMenu) {
-        const currentItems = currentMenu.getElementsByTagName("li");
+        const currentItems = currentMenu.getElementsByTagName("div");
         for (let i = 0; i < currentItems.length; i++) {
             currentItems[i].style.display = "none";
         }
