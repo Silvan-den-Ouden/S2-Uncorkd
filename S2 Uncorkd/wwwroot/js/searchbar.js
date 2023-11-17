@@ -6,13 +6,15 @@ const menuButtons = document.getElementById("menuButtons");
 function searchBar() {
     var filter = input.value.toUpperCase();
     var container = document.getElementById(selectedMenu);
+    var a;
 
     if (!container) {
         console.error("Container not found. Check if the ID is correct.");
         return;
     }
 
-    var items = container.getElementsByTagName("div");
+    var viewContainer = container.getElementsByClassName("search-container");
+    var items = container.getElementsByClassName("information-container");
 
     // Only display search bar when typing innit
     if (filter == "") {
@@ -28,15 +30,15 @@ function searchBar() {
     // Hide items that don't match search query unless searching for #
     if (filter == "#") {
         for (i = 0; i < items.length; i++) {
-            items[i].style.display = "block";
+            viewContainer[i].style.display = "block";
         }
     } else {
         for (i = 0; i < items.length; i++) {
             a = items[i].getElementsByTagName("a")[0];
             if (a.innerHTML.toUpperCase().indexOf(filter) > -1) {
-                items[i].style.display = "block";
+                viewContainer[i].style.display = "block";
             } else {
-                items[i].style.display = "none";
+                viewContainer[i].style.display = "none";
             }
         }
     }

@@ -29,16 +29,25 @@
         <div id="wineMenu" style="display: none;">
             @foreach (var wine in Model.Wines)
             {
-                <div id="wine-container" class="wine-container" onclick="location.href='/Wine?id=@wine.Id'">
-                    <img src="@wine.Image_URL">
-                    <a>@wine.Name</a>
+                <div id="wine-container" class="search-container" onclick="location.href='/Wine?id=@wine.Id'">
+                    <div class="img-container">
+                        <img src="@wine.Image_URL"> 
+                    </div>
+                    <div class="information-container">
+                        <a>@wine.Name</a>
+                        <h3>@wine.Winery.Name</h3>
+                        @foreach(var tag in wine.TasteTags)
+                        {
+                            <h4>@tag.TagName</h4>
+                        }
+                    </div>
                 </div>
             }
         </div>
         <div id="wineryMenu" style="display: none;">
             @foreach (var winery in Model.Wineries)
             {
-                <div id="winery-container" class="winery-container" onclick="location.href='/Winery?id=@winery.Id'">
+                <div id="winery-container" class="search-container" onclick="location.href='/Winery?id=@winery.Id'">
                     <img src="@winery.Image_URL">
                     <a>@winery.Name</a>
                 </div>

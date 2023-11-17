@@ -9,28 +9,50 @@
 
 #wineMenu,
 #wineryMenu {
-    list-style-type: none;
     padding: 0;
-    margin-top: 4.5rem;
+    margin-top: 80px;
 }
 
-#wineMenu li,
-#wineryMenu li {
-    padding: 10px;
-    background-color: #f9f9f9;
-    border: 1px solid #ddd;
-    border-radius: 5px;
-    margin-top: 5px;
-}
-
-#wineMenu li a,
-#wineryMenu li a {
-    text-decoration: none;
-    color: #333;
-}
-
-#wineMenu li:hover,
-#wineryMenu li:hover {
-    background-color: #e5e5e5;
+.search-container {
     cursor: pointer;
+    margin-bottom: 20px;
+    width: 90%;
+    height: 220px;
+    background-color: lightgray;
+    border-radius: 10px
 }
+
+    .search-container .img-container {
+        float: left;
+        margin-right: 10px;
+        width: 220px;
+        margin: 0;
+    }
+
+    .search-container .information-container {
+        float: left;
+        margin-top: 10px;
+        margin-bottom: 10px;
+    }
+
+    .search-container img {
+        margin: 10px;
+        width: 200px;
+        height: 200px;
+        max-width: 100%;
+        border: 1px solid #000000;
+        border-radius: 10px;
+    }
+
+    .search-container .information-container a {
+        font-size: 40px;
+        font-weight: bold;
+    }
+
+    .search-container .information-container h4 {
+        display: inline-block;
+        vertical-align: middle;
+        font-size: 18px;
+        font-weight: 400;
+        margin: 0 20px 0 0;
+    }
