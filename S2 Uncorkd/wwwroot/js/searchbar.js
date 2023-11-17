@@ -55,7 +55,7 @@ function handleRadioChange(event) {
 
     // Hide all elements from previous (current) menu
     if (currentMenu) {
-        const currentItems = currentMenu.getElementsByTagName("div");
+        const currentItems = currentMenu.getElementsByClassName("search-container");
         for (let i = 0; i < currentItems.length; i++) {
             currentItems[i].style.display = "none";
         }

@@ -14,6 +14,7 @@
             height: 150px;
             max-width: 100%;
             border: 1px solid #000000;
+            border-radius: 10px;
         }
 
     .thumbnail .text-container {
@@ -89,6 +90,7 @@
     width: 50%;
     margin-right: 5%;
     border: solid 1px black;
+    border-radius: 10px;
     /*background-color: yellow;*/
 }
 
@@ -101,6 +103,7 @@ th, td {
     text-align: left;
     border-bottom: 1px solid #ddd;
     text-align: right;
+    border-radius: 10px;
 }
 
 th {
@@ -173,6 +176,7 @@ td:nth-child(3) {
     gap: 0px; /* Adjust the gap as needed */
     width: 35%;
     border: solid 1px black;
+    border-radius: 10px;
     padding: 5px;
 }
 
@@ -189,7 +193,9 @@ td:nth-child(3) {
     }
 
     .winery-container img {
-        max-width: 100%; /* Ensure the image doesn't exceed its container */
+        max-width: 100%;
+        border-radius: 10px;
+        margin-top: 10px;
     }
 
     .winery-container h4 {

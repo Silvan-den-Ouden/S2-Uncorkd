@@ -11,50 +11,6 @@
 
     <input type="text" id="mySearch" onkeyup="searchBar()" onclick="displayMenuButtons()" placeholder="Search.." title="Type in a category">
 
-    <div id="menuButtons" onchange="handleRadioChange(event)"  style="display: none;">
-        <div class="cat wine">
-            <label>
-                <input type="radio" name="category" id="wineRadio" value="wine" checked="checked"><span>Wine</span>
-            </label>
-        </div>
-
-        <div class="cat winery">
-            <label>
-                <input type="radio" name="category" id="wineryRadio" value="winery"><span>Winery</span>
-            </label>
-        </div>
-    </div>
-
-    <div>
-        <div id="wineMenu" style="display: none;">
-            @foreach (var wine in Model.Wines)
-            {
-                <div id="wine-container" class="search-container" onclick="location.href='/Wine?id=@wine.Id'">
-                    <div class="img-container">
-                        <img src="@wine.Image_URL"> 
-                    </div>
-                    <div class="information-container">
-                        <a>@wine.Name</a>
-                        <h3>@wine.Winery.Name</h3>
-                        @foreach(var tag in wine.TasteTags)
-                        {
-                            <h4>@tag.TagName</h4>
-                        }
-                    </div>
-                </div>
-            }
-        </div>
-        <div id="wineryMenu" style="display: none;">
-            @foreach (var winery in Model.Wineries)
-            {
-                <div id="winery-container" class="search-container" onclick="location.href='/Winery?id=@winery.Id'">
-                    <img src="@winery.Image_URL">
-                    <a>@winery.Name</a>
-                </div>
-            }
-        </div>
-    </div>
-
     <div id="flexboxes" display="block">
         <label for="best-wines-container">Best wines</label>
         <div id="best-wines-container" class="wines-container">
@@ -104,6 +60,54 @@
                     }
 
                     <h1>@wine.Name</h1>
+                </div>
+            }
+        </div>
+    </div>
+
+    <div id="menuButtons" onchange="handleRadioChange(event)" style="display: none;">
+        <div class="cat wine">
+            <label>
+                <input type="radio" name="category" id="wineRadio" value="wine" checked="checked"><span>Wine</span>
+            </label>
+        </div>
+
+        <div class="cat winery">
+            <label>
+                <input type="radio" name="category" id="wineryRadio" value="winery"><span>Winery</span>
+            </label>
+        </div>
+    </div>
+
+    <div>
+        <div id="wineMenu" style="display: none;">
+            @foreach (var wine in Model.Wines)
+            {
+                <div id="wine-container" class="search-container" onclick="location.href='/Wine?id=@wine.Id'">
+                    <div class="img-container">
+                        <img src="@wine.Image_URL">
+                    </div>
+                    <div class="information-container">
+                        <a>@wine.Name</a>
+                        <h3>@wine.Winery.Name</h3>
+                        @foreach (var tag in wine.TasteTags)
+                        {
+                            <h4>@tag.TagName</h4>
+                        }
+                    </div>
+                </div>
+            }
+        </div>
+        <div id="wineryMenu" style="display: none;">
+            @foreach (var winery in Model.Wineries)
+            {
+                <div id="winery-container" class="search-container" onclick="location.href='/Winery?id=@winery.Id'">
+                    <div class="img-container">
+                        <img src="@winery.Image_URL">
+                    </div>
+                    <div class="information-container">
+                        <a>@winery.Name</a>
+                    </div>
                 </div>
             }
         </div>

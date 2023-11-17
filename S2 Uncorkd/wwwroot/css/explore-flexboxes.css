@@ -17,6 +17,7 @@
         cursor: pointer;
         user-select: none;
         position: relative;
+        border-radius: 10px;
     }
 
     .wines-container h1 {
