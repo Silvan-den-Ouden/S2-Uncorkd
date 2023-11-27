@@ -33,7 +33,8 @@ namespace S2_Uncorkd.Controllers
 
         public IActionResult SendData(int sliderValue, int wineId, string tasteTags, string comment)
         {
-            _reviewCollection.Create(2, wineId, sliderValue, tasteTags, comment);
+            //_reviewCollection.Create(2, wineId, sliderValue, tasteTags, comment);
+            bool test = _reviewCollection.Create(2, 1, 5, "1, 2", "test");
 
             var responseData = new { tasteTags };
 

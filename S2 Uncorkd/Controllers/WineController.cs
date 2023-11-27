@@ -33,6 +33,13 @@ namespace S2_Uncorkd.Controllers
         public IActionResult Update(int wine_ID)
         {
             WineModel wineModel = _wineCollection.GetWithID(wine_ID);
+
+            // TIMO feedback:
+            if (wineModel == null)
+            {
+                return NotFound();
+            }
+
             List<TasteTagModel> tasteTagModels = _tasteTagCollection.GetAll();
 
             UpdateWineViewModel updateViewModel = new(wineModel,tasteTagModels);
@@ -47,6 +54,12 @@ namespace S2_Uncorkd.Controllers
 
         public void UpdateWine(int wineId, string name, string description, string tasteTags, string image_url)
         {
+            // TIMO feedback: Hoe werkt dat nou, een PUT of een POST?
+            // TIMO feedback: fix de kebab ofzo
+            // TIMO feedback: Wat als wine niet bestaat?
+            // collect.getbyid(...bla)
+            // if (wineModel == null) DePleurisBreektUit();
+            // wineModel.Update(name, description, tasteTags, image_url, wineRepository);
             _wineCollection.Update(wineId, name, description, tasteTags, image_url);
         }
     }

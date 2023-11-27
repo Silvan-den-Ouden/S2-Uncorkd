@@ -80,7 +80,7 @@ namespace Uncorkd_DAL.Repositories
             using (MySqlConnection con = Connector.MakeConnection())
             {
                 con.Open();
-                MySqlCommand cmd = new MySqlCommand("SELECT wine.*, COUNT(review.id) AS `check_ins` FROM wine LEFT JOIN review ON wine.id = review.wine_id GROUP BY wine.id;", con);
+                MySqlCommand cmd = new MySqlCommand("SELECT wine.*, COUNT(review.id) AS `check_ins` FROM wine LEFT JOIN review ON wine.id = review.wine_id WHERE wine.id <> 99 GROUP BY wine.id;", con);
                 MySqlDataReader reader = cmd.ExecuteReader();
 
                 while (reader.Read())
@@ -158,7 +158,7 @@ namespace Uncorkd_DAL.Repositories
             using (MySqlConnection con = Connector.MakeConnection())
             {
                 con.Open();
-                MySqlCommand cmd = new MySqlCommand("SELECT wine.*, COUNT(review.id) AS `check_ins` FROM wine LEFT JOIN review ON wine.id = review.wine_id GROUP BY wine.id ORDER BY RAND() LIMIT 5;", con);
+                MySqlCommand cmd = new MySqlCommand("SELECT wine.*, COUNT(review.id) AS `check_ins` FROM wine LEFT JOIN review ON wine.id = review.wine_id WHERE wine.id <> 99 GROUP BY wine.id ORDER BY RAND() LIMIT 5;", con);
                 MySqlDataReader reader = cmd.ExecuteReader();
 
                 while (reader.Read())
