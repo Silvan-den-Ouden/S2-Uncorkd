@@ -1,4 +1,4 @@
-﻿    using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Razor.TagHelpers;
 using S2_Uncorkd.ViewModels;
 using Uncorkd_BLL.Collections;
@@ -9,25 +9,25 @@ namespace S2_Uncorkd.Controllers
 {
     public class WineController : Controller
     {
-        private readonly WineCollection _wineCollection = new();
-        private readonly WineryCollection _wineryCollection = new();
-        private readonly TasteTagCollection _tasteTagCollection = new();
+        private readonly static WineRepository _wineRepository = new();
+        private readonly static WineryRepository _wineryRepository = new();
+        private readonly static TasteTagRepository _tasteTagRepository = new();
 
-        private readonly WineRepository _wineRepository = new();
-        private readonly WineryRepository _wineryRepository = new();
-        private readonly TasteTagRepository _tasteTagRepository = new();
+        private readonly static TasteTagCollection _tasteTagCollection = new(_tasteTagRepository);
+        private readonly static WineryCollection _wineryCollection = new(_wineryRepository);
+        private readonly static WineCollection _wineCollection = new(_wineryCollection, _tasteTagCollection, _wineRepository);
 
         public IActionResult Index(int ID)
         {
-            WineModel wineModel = _wineCollection.GetWithID(ID, _wineRepository, _wineryRepository, _tasteTagRepository);
+            WineModel wineModel = _wineCollection.GetWithID(ID);
        
             return View(wineModel);
         }
 
         public IActionResult Upload(int winery_ID)
         {
-            WineryModel wineryModel = _wineryCollection.GetWithID(winery_ID, _wineryRepository);
-            List<TasteTagModel> tasteTagModels = _tasteTagCollection.GetAll(_tasteTagRepository);
+            WineryModel wineryModel = _wineryCollection.GetWithID(winery_ID);
+            List<TasteTagModel> tasteTagModels = _tasteTagCollection.GetAll();
 
             UploadWineViewModel uploadViewModel = new(wineryModel, tasteTagModels);
 
@@ -36,7 +36,7 @@ namespace S2_Uncorkd.Controllers
 
         public IActionResult Update(int wine_ID)
         {
-            WineModel wineModel = _wineCollection.GetWithID(wine_ID, _wineRepository, _wineryRepository, _tasteTagRepository);
+            WineModel wineModel = _wineCollection.GetWithID(wine_ID);
 
             // TIMO feedback:
             if (wineModel == null)
@@ -44,7 +44,7 @@ namespace S2_Uncorkd.Controllers
                 return NotFound();
             }
 
-            List<TasteTagModel> tasteTagModels = _tasteTagCollection.GetAll(_tasteTagRepository);
+            List<TasteTagModel> tasteTagModels = _tasteTagCollection.GetAll();
 
             UpdateWineViewModel updateViewModel = new(wineModel,tasteTagModels);
 
@@ -53,7 +53,7 @@ namespace S2_Uncorkd.Controllers
 
         public void CreateWine(int wineryId, string name, string description, string tasteTags, string image_url)
         {
-            _wineCollection.Create(wineryId, name, description, tasteTags, image_url, _wineRepository);
+            _wineCollection.Create(wineryId, name, description, tasteTags, image_url);
         }
 
         public void UpdateWine(int wineId, string name, string description, string tasteTags, string image_url)
@@ -64,7 +64,7 @@ namespace S2_Uncorkd.Controllers
             // collect.getbyid(...bla)
             // if (wineModel == null) DePleurisBreektUit();
             // wineModel.Update(name, description, tasteTags, image_url, wineRepository);
-            _wineCollection.Update(wineId, name, description, tasteTags, image_url, _wineRepository);
+            _wineCollection.Update(wineId, name, description, tasteTags, image_url);
         }
     }
 }

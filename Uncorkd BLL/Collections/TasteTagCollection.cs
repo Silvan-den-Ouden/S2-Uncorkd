@@ -11,6 +11,13 @@ namespace Uncorkd_BLL.Collections
 {
     public class TasteTagCollection
     {
+        private readonly ITasteTag _tasteTagRepository;
+
+        public TasteTagCollection(ITasteTag tasteTagRepository)
+        {
+            _tasteTagRepository = tasteTagRepository;
+        }
+
         private List<TasteTagModel> TransformDTOs(List<TasteTagDTO> tasteTagDTOs)
         {
             List<TasteTagModel> tasteTagModels = new List<TasteTagModel>();
@@ -28,23 +35,23 @@ namespace Uncorkd_BLL.Collections
             return tasteTagModels;
         }
 
-        public List<TasteTagModel> GetAll(ITasteTag tasteTagRepository)
+        public List<TasteTagModel> GetAll()
         {
-            List<TasteTagModel> tasteTagModels = TransformDTOs(tasteTagRepository.GetAll());
+            List<TasteTagModel> tasteTagModels = TransformDTOs(_tasteTagRepository.GetAll());
 
             return tasteTagModels;
         }
 
-        public List<TasteTagModel> GetWithWineID(int wineID, ITasteTag tasteTagRepository)
+        public List<TasteTagModel> GetWithWineID(int wineID)
         {
-            List<TasteTagModel> tasteTagModels = TransformDTOs(tasteTagRepository.GetFromWineID(wineID));
+            List<TasteTagModel> tasteTagModels = TransformDTOs(_tasteTagRepository.GetFromWineID(wineID));
 
             return tasteTagModels;
         }
 
-        public List<TasteTagModel> GetWithReviewID(int reviewID, ITasteTag tasteTagRepository)
+        public List<TasteTagModel> GetWithReviewID(int reviewID)
         {
-            List<TasteTagModel> tasteTagModels = TransformDTOs(tasteTagRepository.GetFromReviewID(reviewID));
+            List<TasteTagModel> tasteTagModels = TransformDTOs(_tasteTagRepository.GetFromReviewID(reviewID));
 
             return tasteTagModels;
         }
