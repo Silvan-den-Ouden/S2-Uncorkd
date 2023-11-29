@@ -4,13 +4,14 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using MySql.Data.MySqlClient;
+using Uncorkd_BLL.Interfaces;
 using Uncorkd_DTO.DTOs;
 
 namespace Uncorkd_DAL.Repositories
 {
-    public class TasteTagRepository
+    public class TasteTagRepository : ITasteTag
     {
-        public TasteTagDTO CreateDTO(MySqlDataReader reader)
+        private TasteTagDTO CreateDTO(MySqlDataReader reader)
         {
             TasteTagDTO TasteTagDTO = new TasteTagDTO()
             {

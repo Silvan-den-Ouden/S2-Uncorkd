@@ -105,6 +105,10 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\Uncorkd BLL\Uncorkd BLL.csproj">
+      <Project>{29dc41f4-983e-42bc-9086-1ad341ce90bd}</Project>
+      <Name>Uncorkd BLL</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Uncorkd DTO\Uncorkd DTO.csproj">
       <Project>{883d1754-2edd-4f41-a550-fd10218b9e16}</Project>
       <Name>Uncorkd DTO</Name>

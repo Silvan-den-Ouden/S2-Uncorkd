@@ -45,6 +45,10 @@
     <Compile Include="Collections\TasteTagCollection.cs" />
     <Compile Include="Collections\WineCollection.cs" />
     <Compile Include="Collections\WineryCollection.cs" />
+    <Compile Include="Interfaces\IReview.cs" />
+    <Compile Include="Interfaces\ITasteTag.cs" />
+    <Compile Include="Interfaces\IWine.cs" />
+    <Compile Include="Interfaces\IWinery.cs" />
     <Compile Include="Models\ReviewModel.cs" />
     <Compile Include="Models\TasteTagModel.cs" />
     <Compile Include="Models\UserModel.cs" />
@@ -53,10 +57,6 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Uncorkd DAL\Uncorkd DAL.csproj">
-      <Project>{41491155-d399-48b4-84de-460b854b5b54}</Project>
-      <Name>Uncorkd DAL</Name>
-    </ProjectReference>
     <ProjectReference Include="..\Uncorkd DTO\Uncorkd DTO.csproj">
       <Project>{883d1754-2edd-4f41-a550-fd10218b9e16}</Project>
       <Name>Uncorkd DTO</Name>

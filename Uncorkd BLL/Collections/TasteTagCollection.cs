@@ -3,22 +3,15 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using Uncorkd_DAL.Repositories;
 using Uncorkd_BLL.Models;
 using Uncorkd_DTO.DTOs;
+using Uncorkd_BLL.Interfaces;
 
 namespace Uncorkd_BLL.Collections
 {
     public class TasteTagCollection
     {
-        private readonly TasteTagRepository _tasteTagRepository;
-
-        public TasteTagCollection()
-        {
-            _tasteTagRepository = new TasteTagRepository();
-        }
-
-        public List<TasteTagModel> TransformDTOs(List<TasteTagDTO> tasteTagDTOs)
+        private List<TasteTagModel> TransformDTOs(List<TasteTagDTO> tasteTagDTOs)
         {
             List<TasteTagModel> tasteTagModels = new List<TasteTagModel>();
 
@@ -35,23 +28,23 @@ namespace Uncorkd_BLL.Collections
             return tasteTagModels;
         }
 
-        public List<TasteTagModel> GetAll()
+        public List<TasteTagModel> GetAll(ITasteTag tasteTagRepository)
         {
-            List<TasteTagModel> tasteTagModels = TransformDTOs(_tasteTagRepository.GetAll());
+            List<TasteTagModel> tasteTagModels = TransformDTOs(tasteTagRepository.GetAll());
 
             return tasteTagModels;
         }
 
-        public List<TasteTagModel> GetWithWineID(int wineID)
+        public List<TasteTagModel> GetWithWineID(int wineID, ITasteTag tasteTagRepository)
         {
-            List<TasteTagModel> tasteTagModels = TransformDTOs(_tasteTagRepository.GetFromWineID(wineID));
+            List<TasteTagModel> tasteTagModels = TransformDTOs(tasteTagRepository.GetFromWineID(wineID));
 
             return tasteTagModels;
         }
 
-        public List<TasteTagModel> GetWithReviewID(int reviewID)
+        public List<TasteTagModel> GetWithReviewID(int reviewID, ITasteTag tasteTagRepository)
         {
-            List<TasteTagModel> tasteTagModels = TransformDTOs(_tasteTagRepository.GetFromReviewID(reviewID));
+            List<TasteTagModel> tasteTagModels = TransformDTOs(tasteTagRepository.GetFromReviewID(reviewID));
 
             return tasteTagModels;
         }
