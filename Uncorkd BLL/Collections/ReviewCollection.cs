@@ -14,10 +14,7 @@ namespace Uncorkd_BLL.Collections
         public WineCollection _wineCollection = new WineCollection();
         public TasteTagCollection _tasteTagCollection = new TasteTagCollection();
 
-        private readonly IWine _wineInterface;
-        private readonly ITasteTag _tasteTagInterface;
-
-       private List<ReviewModel> TransformDTOs(List<ReviewDTO> reviewDTOs)
+       private List<ReviewModel> TransformDTOs(List<ReviewDTO> reviewDTOs, IWine wineRepository, IWinery wineryRepository, ITasteTag tasteTagRepository)
         {
             List<ReviewModel> reviewModels = new List<ReviewModel>();
 
@@ -27,12 +24,12 @@ namespace Uncorkd_BLL.Collections
                 {
                     Id = reviewDTO.Id,
                     User_id = reviewDTO.User_id,
-                    Wine = _wineCollection.GetWithID(reviewDTO.Wine_id, _wineInterface),
+                    Wine = _wineCollection.GetWithID(reviewDTO.Wine_id, wineRepository, wineryRepository, tasteTagRepository),
                     Stars = (double)reviewDTO.Rating / 4,
                     Comment = reviewDTO.Comment,
                     Image_URL = reviewDTO.Image_URL,
                     Review_Date = reviewDTO.Review_Date,
-                    TasteTags = _tasteTagCollection.GetWithReviewID(reviewDTO.Id, _tasteTagInterface),
+                    TasteTags = _tasteTagCollection.GetWithReviewID(reviewDTO.Id, tasteTagRepository),
                 };
                 reviewModels.Add(reviewModel);
             }
@@ -40,20 +37,20 @@ namespace Uncorkd_BLL.Collections
             return reviewModels;
         }
 
-        public ReviewModel GetWithID(int id, IReview reviewRepository)
+        public ReviewModel GetWithID(int id, IReview reviewRepository, IWine wineRepository, IWinery wineryRepository, ITasteTag tasteTagRepository)
         {
             List<ReviewDTO> reviewDTOs = new List<ReviewDTO>() { reviewRepository.GetWithID(id) };
-            List<ReviewModel> reviewModels = TransformDTOs(reviewDTOs);
+            List<ReviewModel> reviewModels = TransformDTOs(reviewDTOs, wineRepository, wineryRepository, tasteTagRepository);
 
             ReviewModel reviewModel = reviewModels[0];
 
             return reviewModel;
         }
 
-        public List<ReviewModel> GetWithUserID(int user_id, int page_number, IReview reviewRepository)
+        public List<ReviewModel> GetWithUserID(int user_id, int page_number, IReview reviewRepository, IWine wineRepository, IWinery wineryRepository, ITasteTag tasteTagRepository)
         {
             int offset = page_number * 4 - 4;
-            List<ReviewModel> reviewModels = TransformDTOs(reviewRepository.GetWithUserID(user_id, offset));
+            List<ReviewModel> reviewModels = TransformDTOs(reviewRepository.GetWithUserID(user_id, offset), wineRepository, wineryRepository, tasteTagRepository);
 
             return reviewModels;
         }

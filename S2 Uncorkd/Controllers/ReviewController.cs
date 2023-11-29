@@ -13,12 +13,13 @@ namespace S2_Uncorkd.Controllers
         private readonly TasteTagCollection _tasteTagCollection = new();
 
         private readonly WineRepository _wineRepository = new();
+        private readonly WineryRepository _wineryRepository = new();
         private readonly ReviewRepository _reviewRepository = new();
         private readonly TasteTagRepository _tasteTagRepository = new();
 
         public IActionResult Index(int id)
         {
-            WineModel wineModel = _wineCollection.GetWithID(id, _wineRepository);
+            WineModel wineModel = _wineCollection.GetWithID(id, _wineRepository, _wineryRepository, _tasteTagRepository);
             List<TasteTagModel> tasteTagModels = _tasteTagCollection.GetAll(_tasteTagRepository);
 
 
@@ -28,8 +29,8 @@ namespace S2_Uncorkd.Controllers
 
         public IActionResult Update(int id)
         {
-            ReviewModel reviewModel = _reviewCollection.GetWithID(id, _reviewRepository);
-            WineModel wineModel = _wineCollection.GetWithID(reviewModel.Wine.Id, _wineRepository);
+            ReviewModel reviewModel = _reviewCollection.GetWithID(id, _reviewRepository, _wineRepository, _wineryRepository, _tasteTagRepository);
+            WineModel wineModel = _wineCollection.GetWithID(reviewModel.Wine.Id, _wineRepository, _wineryRepository, _tasteTagRepository);
             List<TasteTagModel> tasteTagModels = _tasteTagCollection.GetAll(_tasteTagRepository);
 
             ReviewViewModel reviewViewModel = new(wineModel, reviewModel, tasteTagModels);

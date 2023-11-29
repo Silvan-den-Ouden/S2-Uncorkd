@@ -13,14 +13,15 @@ namespace S2_Uncorkd.Controllers
 
         private readonly WineRepository _wineRepository = new();
         private readonly WineryRepository _wineryRepository = new();
+        private readonly TasteTagRepository _tasteTagRepository = new();
 
         public IActionResult Index()
         {
-            List<WineModel> wineModels = _wineCollection.GetAll(_wineRepository);
+            List<WineModel> wineModels = _wineCollection.GetAll(_wineRepository, _wineryRepository, _tasteTagRepository);
             List<WineryModel> wineryModels = _wineryCollection.GetAll(_wineryRepository);
-            List<WineModel> bestWines = _wineCollection.GetBest(_wineRepository);
-            List<WineModel> popularWines = _wineCollection.GetPopular(_wineRepository);
-            List<WineModel> randomWines = _wineCollection.GetRandom(_wineRepository);
+            List<WineModel> bestWines = _wineCollection.GetBest(_wineRepository, _wineryRepository, _tasteTagRepository);
+            List<WineModel> popularWines = _wineCollection.GetPopular(_wineRepository, _wineryRepository, _tasteTagRepository);
+            List<WineModel> randomWines = _wineCollection.GetRandom(_wineRepository, _wineryRepository, _tasteTagRepository);
 
             ExplorerViewModel explorerViewModel = new(wineModels, wineryModels, bestWines, popularWines, randomWines);
 

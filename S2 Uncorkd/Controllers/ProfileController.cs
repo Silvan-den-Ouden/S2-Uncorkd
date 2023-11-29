@@ -11,6 +11,9 @@ namespace S2_Uncorkd.Controllers
         private readonly ReviewCollection _reviewCollection = new();
 
         private readonly ReviewRepository _reviewRepository = new();
+        private readonly WineRepository _wineRepository = new();
+        private readonly WineryRepository _wineryRepository = new();
+        private readonly TasteTagRepository _tasteTagRepository = new();
 
         public IActionResult Index()
         {
@@ -19,7 +22,7 @@ namespace S2_Uncorkd.Controllers
 
         public IActionResult Reviews(int user_id, int page)
         {
-            List<ReviewModel> reviews = _reviewCollection.GetWithUserID(user_id, page, _reviewRepository);
+            List<ReviewModel> reviews = _reviewCollection.GetWithUserID(user_id, page, _reviewRepository, _wineRepository, _wineryRepository, _tasteTagRepository);
           
             return View(reviews);
         }

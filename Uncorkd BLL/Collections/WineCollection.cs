@@ -14,10 +14,7 @@ namespace Uncorkd_BLL.Collections
         private readonly WineryCollection _wineryCollection = new WineryCollection();
         private readonly TasteTagCollection _tasteTagCollection = new TasteTagCollection();
 
-        private readonly IWinery _wineryInterface;
-        private readonly ITasteTag _tasteTagInterface;
-
-        private List<WineModel> TransformDTOs(List<WineDTO> wineDTOs)
+        private List<WineModel> TransformDTOs(List<WineDTO> wineDTOs, IWinery wineryRepository, ITasteTag tasteTagRepository)
         {
             List<WineModel> wineModels = new List<WineModel>();
             string defaultWineImg = "https://i.ibb.co/KXygvP6/Default-Wine-512.png";
@@ -36,9 +33,9 @@ namespace Uncorkd_BLL.Collections
                     Description = wineDTO.Description,
                     Image_URL = wineDTO.Image_URL,
                     Check_ins = wineDTO.Check_ins,
-                    Winery = _wineryCollection.GetWithID(wineDTO.Winery_id, _wineryInterface),
+                    Winery = _wineryCollection.GetWithID(wineDTO.Winery_id, wineryRepository),
                     Stars = GetStars(wineDTO.Stars),
-                    TasteTags = _tasteTagCollection.GetWithWineID(wineDTO.Id, _tasteTagInterface),
+                    TasteTags = _tasteTagCollection.GetWithWineID(wineDTO.Id, tasteTagRepository),
                 };
                 wineModels.Add(wineModel);
             }
@@ -55,39 +52,39 @@ namespace Uncorkd_BLL.Collections
             return "???";
         }
             
-        public List<WineModel> GetAll(IWine wineRepository)
+        public List<WineModel> GetAll(IWine wineRepository, IWinery wineryRepository, ITasteTag tasteTagRepository)
         {
-            List<WineModel> wineModels = TransformDTOs(wineRepository.GetAll());
+            List<WineModel> wineModels = TransformDTOs(wineRepository.GetAll(), wineryRepository, tasteTagRepository);
             return wineModels;
         }
 
-        public WineModel GetWithID(int id, IWine wineRepository)
+        public WineModel GetWithID(int id, IWine wineRepository, IWinery wineryRepository, ITasteTag tasteTagRepository)
         {
             List<WineDTO> wineDTOs = new List<WineDTO>() { wineRepository.GetWithID(id) };
-            List<WineModel> wineModels = TransformDTOs(wineDTOs);
+            List<WineModel> wineModels = TransformDTOs(wineDTOs, wineryRepository, tasteTagRepository);
 
             WineModel wineModel = wineModels[0];
             
             return wineModel;
         }
 
-        public List<WineModel> GetBest(IWine wineRepository)
+        public List<WineModel> GetBest(IWine wineRepository, IWinery wineryRepository, ITasteTag tasteTagRepository)
         {
-            List<WineModel> wineModels = TransformDTOs(wineRepository.GetBest());
+            List<WineModel> wineModels = TransformDTOs(wineRepository.GetBest(), wineryRepository, tasteTagRepository);
 
             return wineModels;
         }
 
-        public List<WineModel> GetPopular(IWine wineRepository)
+        public List<WineModel> GetPopular(IWine wineRepository, IWinery wineryRepository, ITasteTag tasteTagRepository)
         {
-            List<WineModel> wineModels = TransformDTOs(wineRepository.GetPopular());
+            List<WineModel> wineModels = TransformDTOs(wineRepository.GetPopular(), wineryRepository, tasteTagRepository);
             
             return wineModels;
         }
 
-        public List<WineModel> GetRandom(IWine wineRepository)
+        public List<WineModel> GetRandom(IWine wineRepository, IWinery wineryRepository, ITasteTag tasteTagRepository)
         {
-            List<WineModel> wineModels = TransformDTOs (wineRepository.GetRandom());
+            List<WineModel> wineModels = TransformDTOs (wineRepository.GetRandom(), wineryRepository, tasteTagRepository);
 
             return wineModels;
         }

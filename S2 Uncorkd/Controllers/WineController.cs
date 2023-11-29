@@ -19,7 +19,7 @@ namespace S2_Uncorkd.Controllers
 
         public IActionResult Index(int ID)
         {
-            WineModel wineModel = _wineCollection.GetWithID(ID, _wineRepository);
+            WineModel wineModel = _wineCollection.GetWithID(ID, _wineRepository, _wineryRepository, _tasteTagRepository);
        
             return View(wineModel);
         }
@@ -36,7 +36,7 @@ namespace S2_Uncorkd.Controllers
 
         public IActionResult Update(int wine_ID)
         {
-            WineModel wineModel = _wineCollection.GetWithID(wine_ID, _wineRepository);
+            WineModel wineModel = _wineCollection.GetWithID(wine_ID, _wineRepository, _wineryRepository, _tasteTagRepository);
 
             // TIMO feedback:
             if (wineModel == null)
