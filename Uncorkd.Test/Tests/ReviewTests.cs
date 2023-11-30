@@ -1,6 +1,6 @@
 using Uncorkd_BLL.Collections;
 
-namespace Uncorkd.Test
+namespace Uncorkd_Test.Tests
 {
     [TestClass]
     public class ReviewTests
