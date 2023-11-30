@@ -13,7 +13,7 @@ namespace Uncorkd_Test.Repos
     {
         public ReviewDTO GetWithID(int id)
         {
-            ReviewDTO reviewDTO = new ReviewDTO()
+            ReviewDTO reviewDTO = new()
             {
                 Id = id,
                 User_id = 1,
@@ -28,7 +28,7 @@ namespace Uncorkd_Test.Repos
 
         public List<ReviewDTO> GetWithUserID(int user_id, int offset)
         {
-            List<ReviewDTO> reviewDTOs = new List<ReviewDTO>();
+            List<ReviewDTO> reviewDTOs = new();
 
             ReviewDTO reviewDTO = GetWithID(1);
 
