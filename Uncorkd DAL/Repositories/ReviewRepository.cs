@@ -69,40 +69,34 @@ namespace Uncorkd_DAL.Repositories
             return reviewDTOs;
         }
 
-        public bool Create(int user_id, int wine_id, int rating, string[] tasteTags, string comment)
+        public ReviewDTO Create(ReviewDTO reviewDTO)
         {
-            try
+            using (MySqlConnection con = Connector.MakeConnection())
             {
-                using (MySqlConnection con = Connector.MakeConnection())
+                con.Open();
+
+                MySqlCommand insertReviewCmd = new MySqlCommand("INSERT INTO `review` (user_id, wine_id, rating, comment) VALUES (@userId, @wineId, @rating, @comment);", con);
+                insertReviewCmd.Parameters.AddWithValue("@userId", reviewDTO.User_id);
+                insertReviewCmd.Parameters.AddWithValue("@wineId", reviewDTO.Wine_id);
+                insertReviewCmd.Parameters.AddWithValue("@rating", reviewDTO.Rating);
+                insertReviewCmd.Parameters.AddWithValue("@comment", reviewDTO.Comment);
+                insertReviewCmd.ExecuteNonQuery();
+
+                long reviewId = insertReviewCmd.LastInsertedId;
+
+                if (reviewDTO.TasteTags != null && reviewDTO.TasteTags.Count > 0)
                 {
-                    con.Open();
-
-                    MySqlCommand insertReviewCmd = new MySqlCommand("INSERT INTO `review` (user_id, wine_id, rating, comment) VALUES (@userId, @wineId, @rating, @comment);", con);
-                    insertReviewCmd.Parameters.AddWithValue("@userId", user_id);
-                    insertReviewCmd.Parameters.AddWithValue("@wineId", wine_id);
-                    insertReviewCmd.Parameters.AddWithValue("@rating", rating);
-                    insertReviewCmd.Parameters.AddWithValue("@comment", comment);
-                    insertReviewCmd.ExecuteNonQuery();
-
-                    long reviewId = insertReviewCmd.LastInsertedId;
-
-                    if (tasteTags != null && tasteTags.Length > 0)
+                    foreach (TasteTagDTO tasteTag in reviewDTO.TasteTags)
                     {
-                        foreach (string tastetagId in tasteTags)
-                        {
-                            MySqlCommand insertTastetagCmd = new MySqlCommand("INSERT INTO `review_to_tastetag` (review_id, tag_id) VALUES (@reviewId, @tastetagId);", con);
-                            insertTastetagCmd.Parameters.AddWithValue("@reviewId", reviewId);
-                            insertTastetagCmd.Parameters.AddWithValue("@tastetagId", tastetagId);
-                            insertTastetagCmd.ExecuteNonQuery();
-                        }
+                        MySqlCommand insertTastetagCmd = new MySqlCommand("INSERT INTO `review_to_tastetag` (review_id, tag_id) VALUES (@reviewId, @tastetagId);", con);
+                        insertTastetagCmd.Parameters.AddWithValue("@reviewId", reviewId);
+                        insertTastetagCmd.Parameters.AddWithValue("@tastetagId", tasteTag.Id);
+                        insertTastetagCmd.ExecuteNonQuery();
                     }
                 }
-            } catch (Exception)
-            {
-                return false;
             }
 
-            return true;
+            return reviewDTO;
         }
 
         public void Update(int user_id, int review_id, int rating, string[] tasteTags, string comment)

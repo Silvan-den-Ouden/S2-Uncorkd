@@ -10,7 +10,9 @@ namespace Uncorkd_BLL.Interfaces
     public interface ITasteTag
     {
         List<TasteTagDTO> GetAll();
+        TasteTagDTO GetWithId(int id);
         List<TasteTagDTO> GetFromWineID(int wineID);
         List<TasteTagDTO> GetFromReviewID(int reviewID);
+
     }
 }

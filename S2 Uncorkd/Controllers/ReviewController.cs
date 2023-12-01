@@ -42,7 +42,24 @@ namespace S2_Uncorkd.Controllers
 
         public IActionResult SendData(int sliderValue, int wineId, string tasteTags, string comment)
         {
-            _reviewCollection.Create(user_id, wineId, sliderValue, tasteTags, comment);
+            List<TasteTagModel> tasteTagList = new();
+
+            foreach (var tag in tasteTags.Split(","))
+            {
+                int tag_id = int.Parse(tag.Trim());
+                tasteTagList.Add(_tasteTagCollection.GetWithId(tag_id));
+            }
+
+            ReviewModel reviewModel = new()
+            {
+                User_id = user_id,
+                Wine = _wineCollection.GetWithID(wineId),
+                Stars = sliderValue,
+                Comment = comment,
+                TasteTags = tasteTagList,
+            };
+
+            _reviewCollection.Create(reviewModel);
 
             var responseData = new { tasteTags };
 

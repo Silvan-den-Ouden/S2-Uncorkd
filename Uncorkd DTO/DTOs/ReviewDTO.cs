@@ -15,6 +15,7 @@ namespace Uncorkd_DTO.DTOs
         public string Comment { get; set; }
         public string Image_URL { get; set; }
         public DateTime Review_Date { get; set; }
+        public List<TasteTagDTO> TasteTags { get; set; }
 
         public ReviewDTO() { }
     }

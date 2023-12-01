@@ -26,6 +26,17 @@ namespace Uncorkd_Test.Repos
             return tasteTagDTOs;
         }
 
+        public TasteTagDTO GetWithId(int id)
+        {
+            TasteTagDTO tasteTagDTO = new()
+            {
+                Id = id,
+                TagName = "testTag"
+            };
+
+            return tasteTagDTO;
+        }
+
         public List<TasteTagDTO> GetFromWineID(int wineID)
         {
             List<TasteTagDTO> tasteTagDTOs = new();

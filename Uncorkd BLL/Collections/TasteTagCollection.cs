@@ -42,6 +42,16 @@ namespace Uncorkd_BLL.Collections
             return tasteTagModels;
         }
 
+        public TasteTagModel GetWithId(int id)
+        {
+            List<TasteTagDTO> tastetagDTOs = new List<TasteTagDTO>() { _tasteTagRepository.GetWithId(id) };
+            List<TasteTagModel> tasteTagModels = TransformDTOs(tastetagDTOs);
+
+            TasteTagModel tasteTagModel = tasteTagModels[0];
+
+            return tasteTagModel;
+        }
+
         public List<TasteTagModel> GetWithWineID(int wineID)
         {
             List<TasteTagModel> tasteTagModels = TransformDTOs(_tasteTagRepository.GetFromWineID(wineID));
