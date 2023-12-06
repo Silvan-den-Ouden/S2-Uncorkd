@@ -31,23 +31,18 @@ namespace Uncorkd_Test.Tests
                 Id = test_wine_id,
             };
 
-            List<TasteTagModel> tasteTags = new List<TasteTagModel>()
+            List<TasteTagModel> tasteTags = new();
+
+            for (int i = 1; i <= 10; i++)
             {
-                new TasteTagModel()
+                TasteTagModel tasteTagModel = new()
                 {
-                    Id = 1,
-                    TagName = "TestTag1",
-                },
-                new TasteTagModel()
-                {
-                    Id = 2,
-                    TagName = "TestTag2",
-                },new TasteTagModel()
-                {
-                    Id = 3,
-                    TagName = "TestTag3",
-                },
-            };
+                    Id = i,
+                    TagName = "TestTag" + i,
+                };
+
+                tasteTags.Add(tasteTagModel);
+            }
 
             ReviewModel reviewModel = new()
             {
@@ -55,7 +50,7 @@ namespace Uncorkd_Test.Tests
                 Wine = wineModel,
                 Stars = 4,
                 Comment = "fake comment",
-                Image_URL = "https://imageurl.com",
+                Image_URL = "https://imageurl.com/",
                 Review_Date = DateTime.Now,
                 TasteTags = tasteTags,
             };
@@ -69,7 +64,7 @@ namespace Uncorkd_Test.Tests
             Assert.AreEqual(test_wine_id, result.Wine.Id); 
             Assert.AreEqual(4, result.Stars); 
             Assert.AreEqual("fake comment", result.Comment); 
-            Assert.AreEqual("https://imageurl.com", result.Image_URL); 
+            Assert.AreEqual("https://imageurl.com/", result.Image_URL); 
             Assert.IsNotNull(result.Review_Date); 
             Assert.AreEqual(tasteTags.Count, result.TasteTags.Count); 
         }

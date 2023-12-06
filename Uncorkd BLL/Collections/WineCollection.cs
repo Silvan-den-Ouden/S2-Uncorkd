@@ -18,7 +18,7 @@ namespace Uncorkd_BLL.Collections
         //private readonly IWinery _wineryRepository;
         //private readonly ITasteTag _tasteTagRepository;
 
-        public WineCollection(WineryCollection wineryCollection, TasteTagCollection tasteTagCollection, IWine wineRepository/*, IWinery wineryRepository, ITasteTag tasteTagRepository*/) 
+        public WineCollection(WineryCollection wineryCollection, TasteTagCollection tasteTagCollection, IWine wineRepository/*, IWinery wineryRepository, ITasteTag tasteTagRepository*/)
         {
             _wineryCollection = wineryCollection;
             _tasteTagCollection = tasteTagCollection;
@@ -71,7 +71,7 @@ namespace Uncorkd_BLL.Collections
                 tasteTagDTOs.Add(tasteTagDTO);
             }
 
-            if (wineModel.Stars == "???")
+            if (wineModel.Stars == "???" || wineModel.Stars is null)
             {
                 wineModel.Stars = "0";
             }

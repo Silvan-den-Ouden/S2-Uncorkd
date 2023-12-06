@@ -80,14 +80,14 @@ namespace Uncorkd_Test.Repos
             return wineDTOs;
         }
 
-        public void Create(int wineryId, string name, string description, string[] tasteTags, string image_url)
+        public WineDTO Create(WineDTO wineDTO)
         {
-
+            return wineDTO;
         }
 
-        public void Update(int wineId, string name, string description, string[] tasteTags, string image_url)
+        public WineDTO Update(WineDTO wineDTO)
         {
-
+            return wineDTO;
         }
     }
 }
