@@ -171,62 +171,66 @@ namespace Uncorkd_DAL.Repositories
             return wineDTOs;
         }
 
-        public void Create(int wineryId, string name, string description, string[] tasteTags, string image_url)
+        public WineDTO Create(WineDTO wineDTO)
         {
             using (MySqlConnection con = Connector.MakeConnection())
             {
                 con.Open();
 
                 MySqlCommand createWineCmd = new MySqlCommand("INSERT INTO `wine` (name, description, winery_id, image_url) VALUES (@name, @description, @wineryId, @image_url);", con);
-                createWineCmd.Parameters.AddWithValue("@name", name);
-                createWineCmd.Parameters.AddWithValue("@description", description);
-                createWineCmd.Parameters.AddWithValue("@wineryId", wineryId);
-                createWineCmd.Parameters.AddWithValue("@image_url", image_url);
+                createWineCmd.Parameters.AddWithValue("@name", wineDTO.Name);
+                createWineCmd.Parameters.AddWithValue("@description", wineDTO.Description);
+                createWineCmd.Parameters.AddWithValue("@wineryId", wineDTO.Winery_id);
+                createWineCmd.Parameters.AddWithValue("@image_url", wineDTO.Image_URL);
                 createWineCmd.ExecuteNonQuery();
 
                 long wineId = createWineCmd.LastInsertedId;
 
-                if (tasteTags != null && tasteTags.Length > 0)
+                if (wineDTO.TasteTags != null && wineDTO.TasteTags.Count > 0)
                 {
-                    foreach (string tastetagId in tasteTags)
+                    foreach (TasteTagDTO tastetag in wineDTO.TasteTags)
                     {
                         MySqlCommand insertTastetagCmd = new MySqlCommand("INSERT INTO `wine_to_tastetag` (wine_id, tag_id) VALUES (@wineId, @tastetagId);", con);
                         insertTastetagCmd.Parameters.AddWithValue("@wineId", wineId);
-                        insertTastetagCmd.Parameters.AddWithValue("@tastetagId", tastetagId);
+                        insertTastetagCmd.Parameters.AddWithValue("@tastetagId", tastetag.Id);
                         insertTastetagCmd.ExecuteNonQuery();
                     }
                 }
             }
+
+            return wineDTO;
         }
 
-        public void Update(int wineId, string name, string description, string[] tasteTags, string image_url)
+        public WineDTO Update(WineDTO wineDTO)
         {
             using (MySqlConnection con = Connector.MakeConnection())
             {
                 con.Open();
 
                 MySqlCommand updateWineCmd = new MySqlCommand("UPDATE `wine` SET name = @name, description = @description, image_url = @image_url WHERE id = @ID;", con);
-                updateWineCmd.Parameters.AddWithValue("@name", name);
-                updateWineCmd.Parameters.AddWithValue("@description", description);
-                updateWineCmd.Parameters.AddWithValue("@image_url", image_url);
-                updateWineCmd.Parameters.AddWithValue("@ID", wineId);
+                updateWineCmd.Parameters.AddWithValue("@name", wineDTO.Name);
+                updateWineCmd.Parameters.AddWithValue("@description", wineDTO.Description);
+                updateWineCmd.Parameters.AddWithValue("@image_url", wineDTO.Image_URL);
+                updateWineCmd.Parameters.AddWithValue("@ID", wineDTO.Id);
                 updateWineCmd.ExecuteNonQuery();
 
                 MySqlCommand deleteTasteTagsCmd = new MySqlCommand("DELETE FROM `wine_to_tastetag` WHERE wine_id = @wineId;", con);
-                deleteTasteTagsCmd.Parameters.AddWithValue("@wineId", wineId);
+                deleteTasteTagsCmd.Parameters.AddWithValue("@wineId", wineDTO.Id);
                 deleteTasteTagsCmd.ExecuteNonQuery();
 
-                if (tasteTags != null && tasteTags.Length > 0)
+                if (wineDTO.TasteTags != null && wineDTO.TasteTags.Count > 0)
                 {
-                    foreach (string tastetagId in tasteTags)
+                    foreach (TasteTagDTO tastetag in wineDTO.TasteTags)
                     {
                         MySqlCommand insertTastetagCmd = new MySqlCommand("INSERT INTO `wine_to_tastetag` (wine_id, tag_id) VALUES (@wineId, @tastetagId);", con);
-                        insertTastetagCmd.Parameters.AddWithValue("@wineId", wineId);
-                        insertTastetagCmd.Parameters.AddWithValue("@tastetagId", tastetagId);
+                        insertTastetagCmd.Parameters.AddWithValue("@wineId", wineDTO.Id);
+                        insertTastetagCmd.Parameters.AddWithValue("@tastetagId", tastetag.Id);
                         insertTastetagCmd.ExecuteNonQuery();
                     }
                 }
             }
+
+            return wineDTO;
         }
 
     }

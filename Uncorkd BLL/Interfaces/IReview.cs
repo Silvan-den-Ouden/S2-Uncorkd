@@ -14,7 +14,7 @@ namespace Uncorkd_BLL.Interfaces
         ReviewDTO GetWithID(int id);
         List<ReviewDTO> GetWithUserID(int user_id, int offset);
         ReviewDTO Create(ReviewDTO reviewDTO);
-        void Update(int user_id, int review_id, int rating, string[] tasteTags, string comment);
+        ReviewDTO Update(ReviewDTO reviewDTO);
         void Delete(int reviewId);
     }
 }

@@ -1,4 +1,5 @@
 using Uncorkd_BLL.Collections;
+using Uncorkd_BLL.Models;
 using Uncorkd_Test.Repos;
 
 namespace Uncorkd_Test.Tests
@@ -25,30 +26,67 @@ namespace Uncorkd_Test.Tests
         public void UC01HappyFlow()
         {
             // Arrange
-            int rating = 15;
-            string tasteTags = "1, 2, 3, 4, 5";
-            string comment = "this wine tastes like a test";
+            WineModel wineModel = new()
+            {
+                Id = test_wine_id,
+            };
+
+            List<TasteTagModel> tasteTags = new List<TasteTagModel>()
+            {
+                new TasteTagModel()
+                {
+                    Id = 1,
+                    TagName = "TestTag1",
+                },
+                new TasteTagModel()
+                {
+                    Id = 2,
+                    TagName = "TestTag2",
+                },new TasteTagModel()
+                {
+                    Id = 3,
+                    TagName = "TestTag3",
+                },
+            };
+
+            ReviewModel reviewModel = new()
+            {
+                User_id = test_user_id,
+                Wine = wineModel,
+                Stars = 4,
+                Comment = "fake comment",
+                Image_URL = "https://imageurl.com",
+                Review_Date = DateTime.Now,
+                TasteTags = tasteTags,
+            };
 
             // Act
-            bool result = _reviewCollection.Create(test_user_id, test_wine_id, rating, tasteTags, comment);
+            ReviewModel result = _reviewCollection.Create(reviewModel);
 
             // Assert
-            Assert.IsTrue(result);
+            Assert.IsNotNull(result); 
+            Assert.AreEqual(test_user_id, result.User_id); 
+            Assert.AreEqual(test_wine_id, result.Wine.Id); 
+            Assert.AreEqual(4, result.Stars); 
+            Assert.AreEqual("fake comment", result.Comment); 
+            Assert.AreEqual("https://imageurl.com", result.Image_URL); 
+            Assert.IsNotNull(result.Review_Date); 
+            Assert.AreEqual(tasteTags.Count, result.TasteTags.Count); 
         }
 
-        [TestMethod]
-        public void UC01EX2()
-        {
-            // Arrange
-            int rating = 15;
-            string tasteTags = "1, 2, 3, 4, 5";
-            string comment = "";
+        //[TestMethod]
+        //public void UC01EX2()
+        //{
+        //    // Arrange
+        //    int rating = 15;
+        //    string tasteTags = "1, 2, 3, 4, 5";
+        //    string comment = "";
 
-            // Act
-            _reviewCollection.Create(test_user_id, test_wine_id, rating, tasteTags, comment);
+        //    // Act
+        //    _reviewCollection.Create(test_user_id, test_wine_id, rating, tasteTags, comment);
 
-            // Assert
+        //    // Assert
             
-        }
+        //}
     }
 }

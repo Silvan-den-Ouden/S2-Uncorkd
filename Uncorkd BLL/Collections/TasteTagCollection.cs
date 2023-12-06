@@ -18,7 +18,7 @@ namespace Uncorkd_BLL.Collections
             _tasteTagRepository = tasteTagRepository;
         }
 
-        private List<TasteTagModel> TransformDTOs(List<TasteTagDTO> tasteTagDTOs)
+        public List<TasteTagModel> TransformDTOs(List<TasteTagDTO> tasteTagDTOs)
         {
             List<TasteTagModel> tasteTagModels = new List<TasteTagModel>();
 

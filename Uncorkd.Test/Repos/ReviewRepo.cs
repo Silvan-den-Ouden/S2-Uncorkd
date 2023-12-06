@@ -37,14 +37,14 @@ namespace Uncorkd_Test.Repos
             return reviewDTOs;
         }
 
-        public bool Create(int user_id, int wine_id, int rating, string[] tasteTags, string comment)
-        {
-            return true;
+        public ReviewDTO Create(ReviewDTO reviewDTO)
+            {
+            return reviewDTO;
         }
 
-        public void Update(int user_id, int review_id, int rating, string[] tasteTags, string comment)
+        public ReviewDTO Update(ReviewDTO reviewDTO)
         {
-            // hihi haha hoi
+            return reviewDTO;
         }
         public void Delete(int reviewId)
         {

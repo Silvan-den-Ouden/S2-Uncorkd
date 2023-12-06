@@ -14,7 +14,7 @@ namespace Uncorkd_BLL.Interfaces
         List<WineDTO> GetBest();
         List<WineDTO> GetPopular();
         List<WineDTO> GetRandom();
-        void Create(int wineryId, string name, string description, string[] tasteTags, string image_url);
-        void Update(int wineId, string name, string description, string[] tasteTags, string image_url);
+        WineDTO Create(WineDTO wineDTO);
+        WineDTO Update(WineDTO wineDTO);
     }
 }

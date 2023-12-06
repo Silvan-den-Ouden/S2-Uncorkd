@@ -15,6 +15,8 @@ namespace Uncorkd_DTO.DTOs
         public int Check_ins { get; set; }
         public int Winery_id { get; set;}
         public double Stars { get; set; }
+        public List<TasteTagDTO> TasteTags { get; set; }
+
 
         public WineDTO() { }
     }

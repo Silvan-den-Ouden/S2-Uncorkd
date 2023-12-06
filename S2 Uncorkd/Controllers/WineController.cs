@@ -53,7 +53,26 @@ namespace S2_Uncorkd.Controllers
 
         public void CreateWine(int wineryId, string name, string description, string tasteTags, string image_url)
         {
-            _wineCollection.Create(wineryId, name, description, tasteTags, image_url);
+            List<TasteTagModel> tasteTagList = new();
+
+            foreach (var tag in tasteTags.Split(","))
+            {
+                int tag_id = int.Parse(tag.Trim());
+                tasteTagList.Add(_tasteTagCollection.GetWithId(tag_id));
+            }
+
+            WineryModel wineryModel = _wineryCollection.GetWithID(wineryId);
+
+            WineModel wineModel = new()
+            {
+                Name = name,
+                Description = description,
+                Image_URL = image_url,
+                Winery = wineryModel,
+                TasteTags = tasteTagList,
+            }; 
+
+            _wineCollection.Create(wineModel);
         }
 
         public void UpdateWine(int wineId, string name, string description, string tasteTags, string image_url)
@@ -64,7 +83,24 @@ namespace S2_Uncorkd.Controllers
             // collect.getbyid(...bla)
             // if (wineModel == null) DePleurisBreektUit();
             // wineModel.Update(name, description, tasteTags, image_url, wineRepository);
-            _wineCollection.Update(wineId, name, description, tasteTags, image_url);
+            List<TasteTagModel> tasteTagList = new();
+
+            foreach (var tag in tasteTags.Split(","))
+            {
+                int tag_id = int.Parse(tag.Trim());
+                tasteTagList.Add(_tasteTagCollection.GetWithId(tag_id));
+            }
+
+            WineModel wineModel = new()
+            {
+                Id = wineId,
+                Name = name,
+                Description = description,
+                Image_URL = image_url,
+                TasteTags = tasteTagList,
+            };
+
+            _wineCollection.Update(wineModel);
         }
     }
 }

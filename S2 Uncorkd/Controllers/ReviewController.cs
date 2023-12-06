@@ -54,7 +54,7 @@ namespace S2_Uncorkd.Controllers
             {
                 User_id = user_id,
                 Wine = _wineCollection.GetWithID(wineId),
-                Stars = sliderValue,
+                Stars = sliderValue / 4,
                 Comment = comment,
                 TasteTags = tasteTagList,
             };
@@ -68,7 +68,25 @@ namespace S2_Uncorkd.Controllers
 
         public void UpdateReview(int sliderValue, int reviewId, string tasteTags, string comment)
         {
-            _reviewCollection.Update(user_id, reviewId, sliderValue, tasteTags, comment);
+            List<TasteTagModel> tasteTagList = new();
+
+            foreach (var tag in tasteTags.Split(","))
+            {
+                int tag_id = int.Parse(tag.Trim());
+                tasteTagList.Add(_tasteTagCollection.GetWithId(tag_id));
+            }
+
+            ReviewModel reviewModel = new()
+            {
+                Id = reviewId,
+                //User_id = user_id,
+                //Wine = _wineCollection.GetWithID(wineId),
+                Stars = sliderValue,
+                Comment = comment,
+                TasteTags = tasteTagList,
+            };
+
+            _reviewCollection.Update(reviewModel);
         }
 
         public void DeleteReview(int reviewId)
