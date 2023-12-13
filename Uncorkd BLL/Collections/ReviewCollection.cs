@@ -96,10 +96,14 @@ namespace Uncorkd_BLL.Collections
 
         public ReviewModel Create(ReviewModel reviewModel)
         {
-            if (reviewModel.TasteTags[0].Id == 0)
+            foreach (TasteTagModel tasteTag in reviewModel.TasteTags)
             {
-                reviewModel.TasteTags = new List<TasteTagModel>();
+                if (tasteTag.Id == 0)
+                {
+                    reviewModel.TasteTags = new List<TasteTagModel>();
+                }
             }
+            
             if (reviewModel.Comment == "")
             {
                 reviewModel.Comment = "no comment";

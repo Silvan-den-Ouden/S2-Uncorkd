@@ -23,7 +23,7 @@ namespace Uncorkd_Test.Tests
 
 
         [TestMethod]
-        public void UC01HappyFlow()
+        public void UserReviewsWineWithAllInfo()
         {
             // Arrange
             WineModel wineModel = new()
@@ -69,19 +69,73 @@ namespace Uncorkd_Test.Tests
             Assert.AreEqual(tasteTags.Count, result.TasteTags.Count); 
         }
 
-        //[TestMethod]
-        //public void UC01EX2()
-        //{
-        //    // Arrange
-        //    int rating = 15;
-        //    string tasteTags = "1, 2, 3, 4, 5";
-        //    string comment = "";
+        [TestMethod]
+        public void UserReviewsWineWithoutWritingComment_ReturnsNoComment()
+        {
+            // Arrange
+            WineModel wineModel = new()
+            {
+                Id = test_wine_id,
+            };
 
-        //    // Act
-        //    _reviewCollection.Create(test_user_id, test_wine_id, rating, tasteTags, comment);
+            List<TasteTagModel> tasteTags = new();
 
-        //    // Assert
-            
-        //}
+            for (int i = 1; i <= 10; i++)
+            {
+                TasteTagModel tasteTagModel = new()
+                {
+                    Id = i,
+                    TagName = "TestTag" + i,
+                };
+
+                tasteTags.Add(tasteTagModel);
+            }
+
+            ReviewModel reviewModel = new()
+            {
+                User_id = test_user_id,
+                Wine = wineModel,
+                Stars = 4,
+                Comment = "",
+                Image_URL = "https://imageurl.com/",
+                Review_Date = DateTime.Now,
+                TasteTags = tasteTags,
+            };
+
+            // Act
+            ReviewModel result = _reviewCollection.Create(reviewModel);
+
+            // Assert
+            Assert.AreEqual(result.Comment, "no comment");
+        }
+
+        [TestMethod]
+        public void UserReviewsWineWithoutChosingTasteTags_NoDataSavedAboutTasteTags()
+        {
+            // Arrange
+            WineModel wineModel = new()
+            {
+                Id = test_wine_id,
+            };
+
+            List<TasteTagModel> tasteTags = new();
+
+            ReviewModel reviewModel = new()
+            {
+                User_id = test_user_id,
+                Wine = wineModel,
+                Stars = 4,
+                Comment = "Fake comment",
+                Image_URL = "https://imageurl.com/",
+                Review_Date = DateTime.Now,
+                TasteTags = tasteTags,
+            };
+
+            // Act
+            ReviewModel result = _reviewCollection.Create(reviewModel);
+
+            // Assert
+            Assert.AreEqual(result.TasteTags.Count, reviewModel.TasteTags.Count);
+        }
     }
 }
