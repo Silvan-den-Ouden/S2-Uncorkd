@@ -23,7 +23,7 @@ namespace Uncorkd_Test.Tests
 
 
         [TestMethod]
-        public void UserReviewsWineWithAllInfo()
+        public void UserReviewsWineWithAllInfo_EverythingGoesCorrectlyAndWeAreAllHappy()
         {
             // Arrange
             WineModel wineModel = new()
@@ -136,6 +136,38 @@ namespace Uncorkd_Test.Tests
 
             // Assert
             Assert.AreEqual(result.TasteTags.Count, reviewModel.TasteTags.Count);
+        }
+
+        [TestMethod]
+        public void UserDeletedReview_Works()
+        {
+            WineModel wineModel = new()
+            {
+                Id = test_wine_id,
+            };
+
+            List<TasteTagModel> tasteTags = new();
+
+            ReviewModel reviewModel = new()
+            {
+                User_id = test_user_id,
+                Wine = wineModel,
+                Stars = 4,
+                Comment = "Fake comment",
+                Image_URL = "https://imageurl.com/",
+                Review_Date = DateTime.Now,
+                TasteTags = tasteTags,
+            };
+
+            try
+            {
+                _reviewCollection.Delete(reviewModel.Id);
+            } catch
+            {
+                Assert.Fail();
+            }
+
+            Assert.IsTrue(true);
         }
     }
 }

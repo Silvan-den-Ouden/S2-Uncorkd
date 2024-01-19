@@ -24,7 +24,7 @@ namespace Uncorkd_Test.Tests
         private readonly int test_winery_id = 99;
 
         [TestMethod]
-        public void TestMethodHappyFlow()
+        public void UserAddsWineWithAllInfo_EverythingGoesCorrectlyAndWeAreAllHappy()
         {
             // Arrange
             WineryModel wineryModel = new()
@@ -67,5 +67,75 @@ namespace Uncorkd_Test.Tests
             Assert.AreEqual(wineModel.Winery.Id, result.Winery.Id);
             Assert.AreEqual(wineModel.TasteTags.Count, result.TasteTags.Count);
         }
+
+        [TestMethod]
+        public void UserAddsWineWithoutImageUrl_ReturnsDefaultImageUrl()
+        {
+            // Arrange
+            WineryModel wineryModel = new()
+            {
+                Id = test_winery_id,
+            };
+
+            List<TasteTagModel> tasteTags = new();
+
+            for (int i = 1; i <= 5; i++)
+            {
+                TasteTagModel tasteTagModel = new()
+                {
+                    Id = i,
+                    TagName = "TestTag" + i,
+                };
+
+                tasteTags.Add(tasteTagModel);
+            }
+
+            WineModel wineModel = new()
+            {
+                Id = test_wine_id,
+                Name = "testWine",
+                Description = "this is the desciption of the test wine",
+                Winery = wineryModel,
+                TasteTags = tasteTags,
+            };
+
+            // Act
+            WineModel result = _wineCollection.Create(wineModel);
+
+            // Assert
+            Assert.IsNotNull(result);
+            Assert.AreEqual("https://i.ibb.co/KXygvP6/Default-Wine-512.png", result.Image_URL);
+        }
+
+        [TestMethod]
+        public void UserAddsWineWithoutChosingTasteTags_NoDataSavedAboutTasteTags()
+        {
+            // Arrange
+            WineryModel wineryModel = new()
+            {
+                Id = test_winery_id,
+            };
+
+            List<TasteTagModel> tasteTags = new();
+
+            WineModel wineModel = new()
+            {
+                Id = test_wine_id,
+                Name = "testWine",
+                Description = "this is the desciption of the test wine",
+                Image_URL = "https://imageurl.com/",
+                Winery = wineryModel,
+                TasteTags = tasteTags,
+            };
+
+            // Act
+            WineModel result = _wineCollection.Create(wineModel);
+
+            // Assert
+            Assert.AreEqual(result.TasteTags.Count, wineModel.TasteTags.Count);
+            Assert.AreEqual(0, wineModel.TasteTags.Count);
+        }
+
+        
     }
 }

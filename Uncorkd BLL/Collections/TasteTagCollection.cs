@@ -21,15 +21,17 @@ namespace Uncorkd_BLL.Collections
         public List<TasteTagModel> TransformDTOs(List<TasteTagDTO> tasteTagDTOs)
         {
             List<TasteTagModel> tasteTagModels = new List<TasteTagModel>();
-
-            foreach (TasteTagDTO tasteTagDTO in tasteTagDTOs)
+            if (tasteTagDTOs != null)
             {
-                TasteTagModel tasteTagModel = new TasteTagModel()
+                foreach (TasteTagDTO tasteTagDTO in tasteTagDTOs)
                 {
-                    Id = tasteTagDTO.Id,
-                    TagName = tasteTagDTO.TagName,
-                };
-                tasteTagModels.Add(tasteTagModel);
+                    TasteTagModel tasteTagModel = new TasteTagModel()
+                    {
+                        Id = tasteTagDTO.Id,
+                        TagName = tasteTagDTO.TagName,
+                    };
+                    tasteTagModels.Add(tasteTagModel);
+                }
             }
 
             return tasteTagModels;

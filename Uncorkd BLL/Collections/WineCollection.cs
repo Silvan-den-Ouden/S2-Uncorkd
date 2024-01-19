@@ -50,7 +50,7 @@ namespace Uncorkd_BLL.Collections
                     Check_ins = wineDTO.Check_ins,
                     Winery = _wineryCollection.GetWithID(wineDTO.Winery_id),
                     Stars = GetStars(wineDTO.Stars),
-                    TasteTags = _tasteTagCollection.GetWithWineID(wineDTO.Id),
+                    TasteTags = _tasteTagCollection.TransformDTOs(wineDTO.TasteTags),
                 };
                 wineModels.Add(wineModel);
             }
@@ -140,10 +140,14 @@ namespace Uncorkd_BLL.Collections
 
         public WineModel Create(WineModel wineModel)
         {
-            if (wineModel.TasteTags[0].Id == 0)
+            foreach (TasteTagModel tasteTag in wineModel.TasteTags)
             {
-                wineModel.TasteTags = new List<TasteTagModel>();
+                if (tasteTag.Id == 0)
+                {
+                    wineModel.TasteTags = new List<TasteTagModel>();
+                }
             }
+
             if (wineModel.Image_URL == "" || wineModel.Image_URL is null)
             {
                 wineModel.Image_URL = "https://i.ibb.co/KXygvP6/Default-Wine-512.png";
