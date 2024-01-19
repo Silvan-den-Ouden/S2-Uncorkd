@@ -13,6 +13,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\Uncorkd BLL\Uncorkd BLL.csproj" />
+    <ProjectReference Include="..\Uncorkd DAL\Uncorkd DAL.csproj" />
   </ItemGroup>
 
 </Project>

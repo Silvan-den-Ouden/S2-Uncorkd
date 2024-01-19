@@ -1,23 +1,24 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Policy;
 using System.Text;
 using System.Threading.Tasks;
+using Uncorkd_BLL.Interfaces;
 using Uncorkd_BLL.Models;
-using Uncorkd_DAL.Repositories;
 using Uncorkd_DTO.DTOs;
 
 namespace Uncorkd_BLL.Collections
 {
     public class WineryCollection
-    {
-        private readonly WineryRepository _wineryRepository;
-
-        public WineryCollection() {
-            _wineryRepository = new WineryRepository();
+    {   
+        private readonly IWinery _wineryRepository;
+        public WineryCollection(IWinery wineryRepository) { 
+            _wineryRepository = wineryRepository;
         }
 
-        public List<WineryModel> TransformDTOs(List<WineryDTO> wineryDTOs)
+
+        private List<WineryModel> TransformDTOs(List<WineryDTO> wineryDTOs)
         {
             List<WineryModel> wineryModels = new List<WineryModel>();
 

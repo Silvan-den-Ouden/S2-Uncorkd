@@ -4,13 +4,14 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using MySql.Data.MySqlClient;
+using Uncorkd_BLL.Interfaces;
 using Uncorkd_DTO.DTOs;
 
 namespace Uncorkd_DAL.Repositories
 {
-    public class WineryRepository
+    public class WineryRepository : IWinery
     {
-        public WineryDTO CreateDTO(MySqlDataReader reader)
+        private WineryDTO CreateDTO(MySqlDataReader reader)
         {
             WineryDTO wineryDTO = new WineryDTO()
             {

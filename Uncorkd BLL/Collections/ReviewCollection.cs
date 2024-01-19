@@ -1,28 +1,30 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Uncorkd_BLL.Interfaces;
 using Uncorkd_BLL.Models;
-using Uncorkd_DAL.Repositories;
 using Uncorkd_DTO.DTOs;
 
 namespace Uncorkd_BLL.Collections
 {
     public class ReviewCollection
     {
-        private readonly ReviewRepository _reviewRepository;
         private readonly WineCollection _wineCollection;
         private readonly TasteTagCollection _tasteTagCollection;
 
-        public ReviewCollection()
-        {
-            _reviewRepository = new ReviewRepository();
-            _wineCollection = new WineCollection();
-            _tasteTagCollection = new TasteTagCollection();
+        private readonly IReview _reviewRepository;
+
+        public ReviewCollection(WineCollection wineCollection, TasteTagCollection tasteTagCollection, IReview reviewRepository/*, IWine wineRepository, IWinery wineryRepository, ITasteTag tasteTagRepository*/) {
+            _wineCollection = wineCollection;
+            _tasteTagCollection = tasteTagCollection;
+
+            _reviewRepository = reviewRepository;
         }
 
-        public List<ReviewModel> TransformDTOs(List<ReviewDTO> reviewDTOs)
+        private List<ReviewModel> TransformDTOs(List<ReviewDTO> reviewDTOs)
         {
             List<ReviewModel> reviewModels = new List<ReviewModel>();
 
@@ -33,16 +35,45 @@ namespace Uncorkd_BLL.Collections
                     Id = reviewDTO.Id,
                     User_id = reviewDTO.User_id,
                     Wine = _wineCollection.GetWithID(reviewDTO.Wine_id),
-                    Stars = (double)reviewDTO.Rating / 4,
+                    Stars = reviewDTO.Rating,
                     Comment = reviewDTO.Comment,
                     Image_URL = reviewDTO.Image_URL,
                     Review_Date = reviewDTO.Review_Date,
-                    TasteTags = _tasteTagCollection.GetWithReviewID(reviewDTO.Id),
+                    TasteTags = _tasteTagCollection.TransformDTOs(reviewDTO.TasteTags),
                 };
                 reviewModels.Add(reviewModel);
             }
 
             return reviewModels;
+        }
+
+        private ReviewDTO TransformModel(ReviewModel reviewModel)
+        {
+            List<TasteTagDTO> tasteTagDTOs = new List<TasteTagDTO>();
+
+            foreach (TasteTagModel tasteTagModel in reviewModel.TasteTags)
+            {
+                TasteTagDTO tasteTagDTO = new TasteTagDTO()
+                {
+                    Id = tasteTagModel.Id,
+                    TagName = tasteTagModel.TagName,
+                };
+                tasteTagDTOs.Add(tasteTagDTO);
+            }
+
+            ReviewDTO reviewDTO = new ReviewDTO()
+            {
+                Id = reviewModel.Id,
+                User_id = reviewModel.User_id,
+                Wine_id =reviewModel.Wine.Id,
+                Rating = (int)reviewModel.Stars,
+                Comment = reviewModel.Comment,
+                Image_URL = reviewModel.Image_URL,
+                Review_Date = reviewModel.Review_Date,
+                TasteTags = tasteTagDTOs,
+            };
+
+            return reviewDTO;
         }
 
         public ReviewModel GetWithID(int id)
@@ -63,26 +94,43 @@ namespace Uncorkd_BLL.Collections
             return reviewModels;
         }
 
-        public void Create(int user_id, int wine_id, int rating, string tasteTags, string comment)
+        public ReviewModel Create(ReviewModel reviewModel)
         {
-            string[] tasteTagsArray = tasteTags.Split(',');
-            if (tasteTagsArray[0] == "0")
+            foreach (TasteTagModel tasteTag in reviewModel.TasteTags)
             {
-                tasteTagsArray = Array.Empty<string>();
+                if (tasteTag.Id == 0)
+                {
+                    reviewModel.TasteTags = new List<TasteTagModel>();
+                }
+            }
+            
+            if (reviewModel.Comment == "")
+            {
+                reviewModel.Comment = "no comment";
             }
 
-            _reviewRepository.Create(user_id, wine_id, rating, tasteTagsArray, comment);
+            ReviewDTO reviewDTO = TransformModel(reviewModel);
+            List<ReviewDTO> returnedDTOs = new List<ReviewDTO>() { _reviewRepository.Create(reviewDTO) };
+
+            ReviewModel returnModel = TransformDTOs(returnedDTOs)[0];
+
+            return returnModel;
         }
 
-        public void Update(int user_id, int review_id, int rating, string tasteTags, string comment)
+        public void Update(ReviewModel reviewModel)
         {
-            string[] tasteTagsArray = tasteTags.Split(',');
-            if (tasteTagsArray[0] == "0")
+            if (reviewModel.TasteTags[0].Id == 0)
             {
-                tasteTagsArray = Array.Empty<string>();
+                reviewModel.TasteTags = new List<TasteTagModel>();
+            }
+            if (reviewModel.Comment == "")
+            {
+                reviewModel.Comment = "no comment";
             }
 
-            _reviewRepository.Update(user_id, review_id, rating, tasteTagsArray, comment);
+            ReviewDTO reviewDTO = TransformModel(reviewModel);
+
+            _reviewRepository.Update(reviewDTO);
         }
 
         public void Delete(int reviewId)

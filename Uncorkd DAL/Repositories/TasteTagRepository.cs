@@ -4,13 +4,14 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using MySql.Data.MySqlClient;
+using Uncorkd_BLL.Interfaces;
 using Uncorkd_DTO.DTOs;
 
 namespace Uncorkd_DAL.Repositories
 {
-    public class TasteTagRepository
+    public class TasteTagRepository : ITasteTag
     {
-        public TasteTagDTO CreateDTO(MySqlDataReader reader)
+        private TasteTagDTO CreateDTO(MySqlDataReader reader)
         {
             TasteTagDTO TasteTagDTO = new TasteTagDTO()
             {
@@ -37,6 +38,25 @@ namespace Uncorkd_DAL.Repositories
                 }
             }
             return tasteTagDTOs;
+        }
+
+        public TasteTagDTO GetWithId(int id)
+        {
+            TasteTagDTO tasteTagDTO = new TasteTagDTO();
+
+            using (MySqlConnection con = Connector.MakeConnection())
+            {
+                con.Open();
+                MySqlCommand cmd = new MySqlCommand("SELECT * FROM `tastetag` WHERE `id` = @ID", con);
+                cmd.Parameters.AddWithValue("@ID", id);
+                MySqlDataReader reader = cmd.ExecuteReader();
+
+                while (reader.Read())
+                {
+                    tasteTagDTO = CreateDTO(reader);
+                }
+            }
+            return tasteTagDTO;
         }
 
         public List<TasteTagDTO> GetFromWineID(int wineID)

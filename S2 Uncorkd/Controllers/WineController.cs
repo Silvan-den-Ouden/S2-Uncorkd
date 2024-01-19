@@ -1,17 +1,21 @@
-﻿    using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Razor.TagHelpers;
 using S2_Uncorkd.ViewModels;
 using Uncorkd_BLL.Collections;
 using Uncorkd_BLL.Models;
+using Uncorkd_DAL.Repositories;
 
 namespace S2_Uncorkd.Controllers
 {
     public class WineController : Controller
     {
-        private readonly WineCollection _wineCollection = new();
-        private readonly WineryCollection _wineryCollection = new();
-        private readonly TasteTagCollection _tasteTagCollection = new();
-        
+        private readonly static WineRepository _wineRepository = new();
+        private readonly static WineryRepository _wineryRepository = new();
+        private readonly static TasteTagRepository _tasteTagRepository = new();
+
+        private readonly static TasteTagCollection _tasteTagCollection = new(_tasteTagRepository);
+        private readonly static WineryCollection _wineryCollection = new(_wineryRepository);
+        private readonly static WineCollection _wineCollection = new(_wineryCollection, _tasteTagCollection, _wineRepository);
 
         public IActionResult Index(int ID)
         {
@@ -33,6 +37,13 @@ namespace S2_Uncorkd.Controllers
         public IActionResult Update(int wine_ID)
         {
             WineModel wineModel = _wineCollection.GetWithID(wine_ID);
+
+            // TIMO feedback:
+            if (wineModel == null)
+            {
+                return NotFound();
+            }
+
             List<TasteTagModel> tasteTagModels = _tasteTagCollection.GetAll();
 
             UpdateWineViewModel updateViewModel = new(wineModel,tasteTagModels);
@@ -42,12 +53,54 @@ namespace S2_Uncorkd.Controllers
 
         public void CreateWine(int wineryId, string name, string description, string tasteTags, string image_url)
         {
-            _wineCollection.Create(wineryId, name, description, tasteTags, image_url);
+            List<TasteTagModel> tasteTagList = new();
+
+            foreach (var tag in tasteTags.Split(","))
+            {
+                int tag_id = int.Parse(tag.Trim());
+                tasteTagList.Add(_tasteTagCollection.GetWithId(tag_id));
+            }
+
+            WineryModel wineryModel = _wineryCollection.GetWithID(wineryId);
+
+            WineModel wineModel = new()
+            {
+                Name = name,
+                Description = description,
+                Image_URL = image_url,
+                Winery = wineryModel,
+                TasteTags = tasteTagList,
+            }; 
+
+            _wineCollection.Create(wineModel);
         }
 
         public void UpdateWine(int wineId, string name, string description, string tasteTags, string image_url)
         {
-            _wineCollection.Update(wineId, name, description, tasteTags, image_url);
+            // TIMO feedback: Hoe werkt dat nou, een PUT of een POST?
+            // TIMO feedback: fix de kebab ofzo
+            // TIMO feedback: Wat als wine niet bestaat?
+            // collect.getbyid(...bla)
+            // if (wineModel == null) DePleurisBreektUit();
+            // wineModel.Update(name, description, tasteTags, image_url, wineRepository);
+            List<TasteTagModel> tasteTagList = new();
+
+            foreach (var tag in tasteTags.Split(","))
+            {
+                int tag_id = int.Parse(tag.Trim());
+                tasteTagList.Add(_tasteTagCollection.GetWithId(tag_id));
+            }
+
+            WineModel wineModel = new()
+            {
+                Id = wineId,
+                Name = name,
+                Description = description,
+                Image_URL = image_url,
+                TasteTags = tasteTagList,
+            };
+
+            _wineCollection.Update(wineModel);
         }
     }
 }
